@@ -57,35 +57,35 @@ Technologies used
 ### Development
 
 - Running in dev mode: <br />
-  `yarn run dev` <br />
+  `pnpm run dev` <br />
 - Create production build: <br />
-  `yarn run build` <br />
+  `pnpm run build` <br />
 
-[//]: # (- View production build: <br />)
+[//]: # (- pnpm production build: <br />)
 
-[//]: # (  `yarn run view` <br />)
+[//]: # (  `pnpm run view` <br />)
 - Create jsdoc in `build/doc`: <br />
-  `yarn run doc` <br />
+  `pnpm run doc` <br />
 
 [//]: # (- Lint `*.pcss`, `*.css` and `*.js` project files: <br />)
 
-[//]: # (  `yarn run lint` <br />)
+[//]: # (  `pnpm run lint` <br />)
 
 [//]: # (- Lint `*.pcss`, `*.css` project files: <br />)
 
-[//]: # (  `yarn run lint-css` <br />)
+[//]: # (  `pnpm run lint-css` <br />)
 
 [//]: # (- Lint `*.styled.js` project files &#40;`css` in `js`&#41;: <br />)
 
-[//]: # (  `yarn run lint-js` <br />)
+[//]: # (  `pnpm run lint-js` <br />)
 
 [//]: # (- Lint `*.js` and `*.jsx` project files: <br />)
 
-[//]: # (  `yarn run lint-eslint` <br />)
+[//]: # (  `pnpm run lint-eslint` <br />)
 
 [//]: # (- Update git hooks after config changes <br />)
 
-[//]: # (  `yarn run git-hooks` <br />)
+[//]: # (  `pnpm run git-hooks` <br />)
 
 ---
 ### Configuration
@@ -101,7 +101,7 @@ Additional arguments could be added to `pnpm run dev`, or `pnpm run build` after
 * `--trace-deprecation` {string | false} [false] - enables deprecation warnings.
 * `--port` {string} - override application default port (for `dev` or `view` script).
 
-Additional arguments could be added to `yarn run build`:
+Additional arguments could be added to `pnpm run build`:
 * `--stats` {string | boolean} [false] - creates `stats.json` file inside `./build` folder.
 * `--source-maps` {string | false} [false] - creates [source maps](https://webpack.js.org/configuration/devtool/).
 
