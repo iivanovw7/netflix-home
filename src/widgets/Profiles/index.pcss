@@ -1,0 +1,73 @@
+/**
+ * Module contains profiles styles.
+ * @module widgets/profiles/index.pcss
+ */
+
+.page {
+    width: 100%;
+
+    &__content {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: zIndex(global, default);
+        color: var(--primary-text-color);
+        text-align: center;
+    }
+
+    &__container {
+        text-align: center;
+        animation-name: profile-gate;
+        animation-duration: 0.45s;
+        animation-timing-function: ease;
+        animation-delay: 0s;
+        animation-iteration-count: 1;
+        animation-direction: normal;
+        animation-fill-mode: forwards;
+    }
+}
+
+.profiles {
+    max-width: 80%;
+    text-align: center;
+
+    &__title {
+        @mixin fontSize $font-size-xx-large, 1.2, $font-weight-light;
+
+        width: 100%;
+        margin: 0.67em 0;
+        color: inherit;
+        user-select: none;
+
+        @mixin media sm-down {
+            @mixin fontSize 30px, 1.2, $font-weight-light;
+        }
+    }
+
+    &__list {
+        padding: 0;
+        text-align: center;
+        list-style-type: none;
+    }
+
+    &__footer {
+        display: inline-block;
+        padding: 1.5em 0.5em 0.5em;
+    }
+
+    &__button {
+        border-radius: 0;
+
+        &:not([disabled]) {
+            &:focus,
+            &:focus-visible {
+                &::before {
+                    border: none;
+                    border-radius: 0;
+                }
+            }
+        }
+    }
+}

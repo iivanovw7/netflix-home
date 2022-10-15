@@ -1,0 +1,38 @@
+////
+/// Fonts.
+///
+/// @group _fonts.
+////
+
+/*
+ * Wrapping around `@font-face`.
+ *
+ * @param {String} font-family - font family string.
+ * @param {String} woff - woff file path.
+ * @param {String} woff2 - woff2 file path.
+ * @param {String} fallback-woff - woff fallback `path` or `url`.
+ * @param {String} fallback-woff2 - woff2 fallback `path` or `url`.
+ *
+ * @example css
+ * 		@mixin font-face
+ *          $font-family-common,
+ *          url('../fonts/NetflixSans_W_Th.woff'),
+ *          url('../fonts/NetflixSans_W_Th.woff2'),
+ *          url('https://assets.nflxext.com/ffe/siteui/fonts/netflix-sans/v3/NetflixSans_W_Th.woff'),
+ *          url('https://assets.nflxext.com/ffe/siteui/fonts/netflix-sans/v3/NetflixSans_W_Th.woff2')
+ */
+@define-mixin font-face $font-family, $woff, $woff2, $fallback-woff, $fallback-woff2 {
+    @font-face {
+        font-weight: $font-weight-normal;
+        font-family: $font-family;
+        font-display: swap;
+        src:
+            local($font-family),
+            $woff2 format('woff2'),
+            local($font-family),
+            $woff format('woff');
+        src:
+            $fallback-woff2 format('woff2'),
+            $fallback-woff format('woff');
+    }
+}

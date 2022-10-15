@@ -1,0 +1,78 @@
+@charset "UTF-8";
+
+////
+/// Main.
+///
+/// @group main.
+////
+
+@import './colors.pcss';
+@import './fonts.pcss';
+@import './keyframes.pcss';
+
+@mixin font-face
+    $font-weight-normal,
+    url('../../../assest/fonts/NetflixSans_W_Rg.woff'),
+    url('../../../assest/fonts/NetflixSans_W_Rg.woff2'),
+    url('https://assets.nflxext.com/ffe/siteui/fonts/netflix-sans/v3/NetflixSans_W_Rg.woff'),
+    url('https://assets.nflxext.com/ffe/siteui/fonts/netflix-sans/v3/NetflixSans_W_Rg.woff2');
+
+@mixin font-face
+    $font-family-medium,
+    url('../../../assest/fonts/NetflixSans_W_Md.woff'),
+    url('../../../assest/fonts/NetflixSans_W_Md.woff2'),
+    url('https://assets.nflxext.com/ffe/siteui/fonts/netflix-sans/v3/NetflixSans_W_Md.woff'),
+    url('https://assets.nflxext.com/ffe/siteui/fonts/netflix-sans/v3/NetflixSans_W_Md.woff2');
+
+html {
+    font-weight: $font-weight-normal;
+    font-family: $font-family-common;
+}
+
+body {
+    font-weight: $font-weight-normal;
+    font-size: 0.95vw;
+    font-family: $font-family-common;
+    background-color: var(--background-global-color, #000);
+    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+    @mixin media sm-down, vertical {
+        font-size: 1.5vw;
+    }
+
+    @mixin media sm-up, md-down, vertical {
+        font-size: 1vw;
+    }
+
+    @mixin media md-up, xxl-down, vertical {
+        font-size: 0.75vw;
+    }
+
+    @mixin media xxl-up, xxxl-down, vertical {
+        font-size: 0.75vw;
+    }
+
+    @mixin media xxxl-up, vertical {
+        font-size: 14px;
+    }
+
+    @mixin media sm-down, landscape {
+        font-size: 1.5vw;
+    }
+
+    @mixin media sm-up, sm-down, landscape {
+        font-size: 1.2vw;
+    }
+
+    @mixin media md-up, xxl-down, landscape {
+        font-size: 0.85vw;
+    }
+
+    @mixin media xxl-up, xxxl-down, landscape {
+        font-size: 0.75vw;
+    }
+
+    @mixin media xxxl-up, landscape {
+        font-size: 14px;
+    }
+}

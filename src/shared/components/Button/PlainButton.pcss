@@ -1,0 +1,99 @@
+/**
+ * Module contains styles for plain button elements.
+ * @module shared/components/Button/PlainButton.pcss
+ */
+
+.plain-button {
+    @mixin fontSize $controls-font-size-medium, 1.3, $font-weight-medium;
+
+    position: relative;
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 0.6em 1.4em;
+    border: none;
+    border-radius: $border-radius;
+    outline: none;
+    cursor: pointer;
+
+    &:disabled {
+        pointer-events: none;
+    }
+
+    &--custom {
+        height: auto;
+        padding: 0;
+        border: 0;
+    }
+
+    &--small {
+        @mixin fontSize $controls-font-size-small, 1.4, $font-weight-bold;
+    }
+
+    &--large {
+        @mixin fontSize $controls-font-size-large, 1.6, $font-weight-bold;
+    }
+
+    &--vertical {
+        flex-direction: column;
+        height: auto;
+        padding: 16px;
+    }
+
+    &:not([disabled]) {
+        &:focus,
+        &:focus-visible {
+            &::before {
+                position: absolute;
+                top: -4px;
+                left: -4px;
+                display: block;
+                box-sizing: content-box;
+                width: 100%;
+                height: 100%;
+                padding: 2px;
+                border: 2px solid var(--white);
+                border-radius: $border-radius-controls;
+                content: '';
+            }
+        }
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    &__iconBox {
+        @mixin justifyAlignFlex;
+
+        z-index: zIndex(global, content);
+        grid-area: icon;
+        order: 1;
+
+        &--positionEnd {
+            order: 3;
+        }
+    }
+
+    &__textBox {
+        @mixin textOverflow;
+
+        flex: 1 1 auto;
+        grid-area: text;
+        order: 2;
+        margin-right: 4px;
+
+        &--left {
+            text-align: left;
+        }
+
+        &---right {
+            text-align: right;
+        }
+    }
+
+    @mixin media md-down {
+        @mixin fontSize $font-size-xx-small, 1.3, unset;
+    }
+}

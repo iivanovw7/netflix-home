@@ -1,0 +1,18 @@
+/**
+ * Module contains styled container.
+ * @module shared/components/Container/index.pcss
+ */
+@import './../../styles/fonts.pcss';
+
+.container {
+    @mixin justifyAlignFlex;
+
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: zIndex(layout, container);
+    flex-direction: column;
+}
+

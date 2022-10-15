@@ -1,0 +1,110 @@
+/**
+ * Module contains styles for `404` page.
+ * @module pages/technical/notFound/index.pcss
+ */
+
+.not-found {
+    &__title {
+        z-index: zIndex(global, default);
+        margin-top: 0;
+        margin-bottom: 2vw;
+    }
+
+    &__message {
+        margin-top: 0;
+        font-weight: $font-weight-light;
+    }
+
+    &__page {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: zIndex(global, overlay);
+        display: flex;
+        flex-flow: column nowrap;
+        padding-top: $header-height;
+        overflow: hidden;
+        color: var(--primary-text-color);
+        background: opacify(var(--black), 0.18);
+
+        &::after,
+        &::before {
+            display: flex;
+            flex: 1;
+            max-height: 25%;
+            content: '';
+        }
+    }
+
+    &__content {
+        position: relative;
+        display: flex;
+        flex: 2 0;
+        flex-flow: column nowrap;
+        margin: 1px 16px;
+        text-align: center;
+        user-select: none;
+
+        &::before {
+            position: absolute;
+            top: -10vw;
+            right: 10vw;
+            bottom: -10vw;
+            left: 10vw;
+            z-index: zIndex(global, default);
+            background:
+                radial-gradient(
+                    ellipse at center,
+                    opacify(var(--black), 0.5) 0,
+                    opacify(var(--black), 0.2) 45%,
+                    opacify(var(--black), 0.1) 55%,
+                    opacify(var(--black), 0) 70%
+                );
+            content: '';
+        }
+
+        &::after {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            z-index: zIndex(global, underlay);
+            background-image: url('assets/img/bg-lost-in-space.png');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            background-attachment: fixed;
+            content: '';
+        }
+    }
+
+    &__contentBody {
+        @mixin justifyAlignFlex;
+
+        z-index: zIndex(global, content);
+        display: flex;
+        flex: 1;
+        flex-flow: column nowrap;
+        width: 50vw;
+        margin: 0 auto;
+        padding-bottom: 32px;
+    }
+
+    &__contentFooter {
+        @mixin justifyAlignFlex center, flex-end;
+
+        z-index: zIndex(global, content);
+        flex: 1;
+        margin-top: 2em;
+    }
+
+    &__errorCode {
+        @mixin fontSize $font-size-x-large, 2.2, $font-weight-thin;
+
+        padding: 0 1vw;
+        border-left: 2px solid var(--alert-color);
+    }
+}

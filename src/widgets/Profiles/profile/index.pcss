@@ -1,0 +1,63 @@
+/**
+ * Module contains profile styles.
+ * @module widgets/profiles/profile/index.pcss
+ */
+
+.profile {
+    position: relative;
+    display: inline-block;
+    width: 10vw;
+    min-width: 84px;
+    max-width: 200px;
+    margin: 0 0 8px 0;
+    padding-bottom: 20px;
+    vertical-align: top;
+
+    &:not(:last-of-type) {
+        margin: 0 2vw 0 0;
+    }
+
+    &--locked {
+        padding-bottom: 0;
+    }
+
+    &__name {
+        @mixin textOverflow ellipsis, false;
+        @mixin fontSize $font-size-medium, 1.2, $font-weight-medium;
+
+        display: block;
+        min-height: 1.8em;
+        margin: 0.6em 0;
+        text-align: center;
+        transition: $transition-color;
+
+        @mixin media lg-down {
+            @mixin fontSize $font-size-xxx-small, 1.2, unset;
+        }
+    }
+
+    &__image img {
+        width: 100%;
+        border: 2px solid transparent;
+        border-radius: $border-radius;
+        transition: $transition-border-color;
+    }
+
+    &__link {
+        &:focus,
+        &:focus-visible,
+        &:hover {
+            .profile__image img {
+                border-color: var(--white);
+            }
+        }
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    &__icon {
+        color: var(--tertiary-link-color-text);
+    }
+}

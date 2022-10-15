@@ -1,0 +1,37 @@
+/**
+ * Module contains styled elements.
+ * @module widgets/Header/index.pcss
+ */
+
+@import './../../shared/styles/fonts.pcss';
+
+.header {
+    @mixin justifyAlignFlex space-between;
+
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: zIndex(layout, header);
+    flex-direction: row;
+    height: $header-height;
+    padding: 0 4%;
+    background-color: opacify(var(--black), 0.97);
+
+    &__image {
+        margin-right: 25px;
+
+        & > img {
+            max-height: 2.2em;
+        }
+    }
+
+    &__section {
+        @mixin justifyAlignFlex;
+    }
+
+    @mixin media lg-up {
+        height: $header-height-desktop;
+    }
+}
+
