@@ -9,6 +9,7 @@ export type ErrorData = {
 
 /**
  * Error codes.
+ * @function
  * @category ErrorCodeMap
  * @readonly
  * @enum {number}
@@ -20,6 +21,7 @@ export const errorCodeMap: Record<string, number> = {
 
 /**
  * Returns error message containing code provided.
+ * @function
  * @category ErrorCodeMap
  * @param {Object | number} error - code or error object.
  * @return {string} error code message.

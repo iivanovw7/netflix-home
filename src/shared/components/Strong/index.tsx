@@ -8,7 +8,7 @@ import React from 'react';
 
 import { bem } from '../../utils';
 
-const cls = bem('strong');
+const cls = bem('strong', { namespace: 'nh-components' });
 
 export type StrongProps = PropsWithChildren<{
     text?: string;

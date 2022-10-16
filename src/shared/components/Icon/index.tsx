@@ -22,7 +22,7 @@ export type IconProps = {
     className?: string;
 };
 
-const cls = bem('icon');
+const cls = bem('icon', { namespace: 'nh-components' });
 const PREFIX = 'icon';
 
 /**
@@ -47,7 +47,15 @@ const getIcon = (id: string): string => {
  * @constructor
  */
 export const Icon = (props: IconProps): ReactElement => {
-    const { name: iconName, fill, width, height, rotate, size, className } = props;
+    const {
+        name: iconName,
+        fill = 'currentColor',
+        width,
+        height,
+        rotate,
+        size,
+        className
+    } = props;
 
     const style: CSSProperties = {
         width: width || size,
@@ -67,8 +75,3 @@ export const Icon = (props: IconProps): ReactElement => {
         </div>
     );
 };
-
-Icon.defaultProps = {
-    fill: 'currentColor',
-};
-

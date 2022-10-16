@@ -36,7 +36,7 @@ export type PlainButtonProps =
     }>
     & Pick<ButtonHTMLAttributes<HTMLButtonElement>, 'type' | 'id' | 'name' | 'title' | 'style' | 'onMouseEnter' | 'onMouseLeave'>;
 
-const cls = bem('plain-button');
+const cls = bem('plain-button', { namespace: 'nh-components' });
 
 /**
  * Creates `PlainButton` component.

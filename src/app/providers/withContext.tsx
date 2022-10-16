@@ -5,9 +5,9 @@
 import type { RefObject, ReactElement} from 'react';
 import React, { useEffect, useMemo, useRef } from 'react';
 
+import { ModalManager } from '../../shared/components';
 import type { ContextValue } from '../../shared/context';
 import { Context, ctx, setContext } from '../../shared/context';
-import type { HFC } from '../../shared/types/util';
 import { setDisplayName } from '../../shared/utils';
 import { createRefContext } from '../model/utils';
 
@@ -45,6 +45,7 @@ export const withContext: HFC = (Component) => {
         return (
             <Context.Provider value={contextValue}>
                 <Component {...props} />
+                <ModalManager ref={refs.modal} />
             </Context.Provider>
         );
     });

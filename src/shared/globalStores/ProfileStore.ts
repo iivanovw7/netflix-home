@@ -6,14 +6,13 @@
 import type { Instance } from 'mobx-state-tree';
 import { flow, getEnv, types } from 'mobx-state-tree';
 
-import profilesStub from '../../../assets/json/profilesStub.json';
+import PROFILES_STUB from '../../../assets/json/profilesStub.json';
 import getLogger from '../log';
 import {
     getProfile as getLocalStorageProfile,
     setProfile as setLocalStorageProfile
 } from '../storage/profile';
 import { wait } from '../utils';
-
 
 declare global {
     interface IGlobalStore {
@@ -93,7 +92,7 @@ export const profileStore = ProfileModel.create(
         profiles: []
     },
     {
-        fetch: () => wait(profilesStub)
+        fetch: () => wait(PROFILES_STUB)
     }
 );
 

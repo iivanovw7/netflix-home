@@ -6,7 +6,6 @@ import type { ReactElement } from 'react';
 import React from 'react';
 
 import { ErrorBoundary } from '../../shared/components';
-import type { HFC } from '../../shared/types/util';
 import { setDisplayName } from '../../shared/utils';
 
 /**

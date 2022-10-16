@@ -9,9 +9,10 @@ import React from 'react';
 import Logo from '../../../assets/img/logo-v7.png?w=200&png&imagetools';
 import { Container, Img } from '../../shared/components';
 import { globalStore } from '../../shared/globalStores';
+
 import './index.pcss';
 
-const cls = bem('header');
+const cls = bem('header', { namespace: 'nh-widgets' });
 
 export type HeaderProps = PropsWithChildren<{
     withNavigation?: boolean;
@@ -35,10 +36,12 @@ export const Header = (props: HeaderProps): ReactElement => {
             <div className={cls('section')}>
                 <Img
                     alt="Netflix"
-                    className={cls('image')}
-                    width="10"
+                    className={cls('imageContainer')}
+                    imageClassName={cls('image')}
                     src={Logo} />
-                {profile && withNavigation && 'Navigation'}
+                {profile && withNavigation && (
+                    <span>Navigation</span>
+                )}
             </div>
             <div className={cls('section')}>
                 {children}

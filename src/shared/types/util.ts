@@ -1,11 +1,16 @@
-import type { FC } from 'react';
+import type { Key } from 'react';
 
-export type HFC = <Props extends object>(Component: FC<Props>) => FC<Props>;
+export type Size = 'small' | 'medium' | 'large';
 
-export type DotPrefix<T extends string> = T extends '' ? '' : `.${T}`;
+export type Color = 'primary' | 'secondary' | 'danger';
 
-export type DotNestedKeys<T> = (
-    T extends object
-        ? { [K in Exclude<keyof T, symbol>]: `${K}${DotPrefix<DotNestedKeys<T[K]>>}` }[Exclude<keyof T, symbol>]
-        : ''
-) extends infer D ? Extract<D, string> : never;
+export type Fill = 'full' | 'outline' | 'none';
+
+// TODO: horizontal and vertical alignment
+export type Alignment = 'left' | 'center' | 'right';
+
+export type FalsyJSX = false | null | undefined | '' | 0;
+
+export type MappableItems<T extends AnyObject> = ReadonlyArray<FalsyJSX | (T & { key?: Key })>;
+
+

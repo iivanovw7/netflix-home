@@ -6,7 +6,6 @@ import type { ReactElement} from 'react';
 import React, { useEffect } from 'react';
 
 import { settingsStore } from '../../shared/globalStores/SettingsStore';
-import type { HFC } from '../../shared/types/util';
 import { env, setDisplayName } from '../../shared/utils';
 
 const { html } = env;

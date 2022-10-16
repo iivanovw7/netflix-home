@@ -23,6 +23,7 @@ export const eventMap: Record<string, string> = {
 
 /**
  * Adds `event` listener to a target object.
+ * @function
  * @category Event
  * @param {TTarget} obj - represents target object reference.
  * @param {...any} args - event type string, listener function, options.
@@ -35,6 +36,8 @@ export function on<T extends TTarget>(obj: T | null, ...args: Parameters<T['addE
 
 /**
  * Removes `event` listener out of a target object.
+ * @function
+ * @category Event
  * @param {TTarget} obj - represents target object reference.
  * @param {...any} args - event type string, listener function, options.
  */

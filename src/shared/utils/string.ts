@@ -14,6 +14,7 @@ export const capitalizeFirstLetter = (str: string): string => str.charAt(0).toUp
 
 /**
  * CamelCase text converter `fn`.
+ * @function
  * @category String
  * @param {string} str - string value.
  * @return {string} result string.

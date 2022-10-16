@@ -5,3 +5,4 @@ export * from './func';
 export * from './stub';
 export * from './type';
 export * from './string';
+export * from './Key.enum';

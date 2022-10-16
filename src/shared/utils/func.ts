@@ -2,15 +2,12 @@
  * Module contains uncategorized utility functions.
  * @module shared/utils/func
  */
-
-import type { HFC } from '../types/util';
-
 export { v4 as uuid } from 'uuid';
-export { default as bem, setup } from 'bem-ts';
-
+export { default as bem, setup as setBemConfig } from 'bem-ts';
 
 /**
  * Used to assign display name to a method or a component.
+ * @function
  * @category Func
  * @param {string} displayName - component`s display name.
  *

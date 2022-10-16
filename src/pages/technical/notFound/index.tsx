@@ -14,7 +14,7 @@ import { routePath } from '../../routes';
 
 import './index.pcss';
 
-const cls = bem('not-found');
+const cls = bem('not-found', { namespace: 'pages-technical' });
 
 const { PAGE_NOT_FOUND } = errorCodeMap;
 

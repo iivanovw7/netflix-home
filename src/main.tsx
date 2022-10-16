@@ -15,7 +15,7 @@ import config from './shared/config';
 import { initGlobalStore } from './shared/globalStores';
 import { setLogLevel } from './shared/log';
 import { setMainStore } from './shared/storage';
-import { setup as bemSetup } from './shared/utils';
+import { setBemConfig } from './shared/utils';
 
 const { logLevel } = config;
 
@@ -25,11 +25,12 @@ const root = createRoot(MOUNT_NODE);
 
 setLogLevel(logLevel);
 setMainStore('netflix-home');
-initGlobalStore();
-
-bemSetup({
-    namespace: 'nh'
+setBemConfig({
+    namespace: 'nh',
+    elementDelimiter: '__',
 });
+
+initGlobalStore();
 
 /**
  *  Renders application at specified mount point.

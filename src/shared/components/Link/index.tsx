@@ -12,6 +12,8 @@ import { Icon } from '../Icon';
 
 import './index.pcss';
 
+export type TLinkElement = HTMLButtonElement | HTMLAnchorElement;
+
 export type LinkProps = PropsWithChildren<{
     /** @default "primary" */
     color?: 'primary' | 'secondary' | 'tertiary' | 'inherit';
@@ -27,16 +29,15 @@ export type LinkProps = PropsWithChildren<{
     iconPosition?: 'start' | 'end';
     noHoverAccent?: boolean;
     noWrap?: boolean;
-    /** @default "_self" */
     target?: '_self' | '_blank' | '_parent' | '_top';
     text?: string;
     /** @default "never" */
     underline?: 'hover' | 'always' | 'never';
     variant?: string;
-    onClick?: MouseEventHandler<HTMLButtonElement | HTMLAnchorElement>;
+    onClick?: MouseEventHandler<TLinkElement>;
 }> & Pick<AnchorHTMLAttributes<HTMLAnchorElement>, 'download' | 'href' | 'title'>;
 
-const cls = bem('link');
+const cls = bem('link', { namespace: 'nh-components' });
 
 /**
  * Creates Link component.
@@ -47,21 +48,21 @@ const cls = bem('link');
  * @return {ReactElement} React component with children.
  * @constructor
  */
-export const Link = forwardRef<HTMLButtonElement | HTMLAnchorElement, LinkProps>((props, ref) => {
+export const Link = forwardRef<TLinkElement, LinkProps>((props, ref) => {
     const {
         children,
         className,
         textClassName,
         tag,
-        color,
-        disabled,
+        color = 'primary',
+        disabled = false,
         text,
         icon,
-        iconPosition,
-        iconOffset,
+        iconPosition = 'end',
+        iconOffset = 'medium',
         noHoverAccent,
         noWrap,
-        underline,
+        underline = 'never',
         ...htmlAttributes
     } = props;
 
@@ -115,13 +116,4 @@ export const Link = forwardRef<HTMLButtonElement | HTMLAnchorElement, LinkProps>
 });
 
 Link.displayName = 'Link';
-
-Link.defaultProps = {
-    color: 'primary',
-    disabled: false,
-    iconOffset: 'medium',
-    iconPosition: 'end',
-    target: '_self',
-    underline: 'never',
-};
 

@@ -3,9 +3,7 @@
  * @module widgets/Header/index.pcss
  */
 
-@import './../../shared/styles/fonts.pcss';
-
-.header {
+.nh-widgets-header {
     @mixin justifyAlignFlex space-between;
 
     position: fixed;
@@ -18,12 +16,12 @@
     padding: 0 4%;
     background-color: opacify(var(--black), 0.97);
 
-    &__image {
+    &__imageContainer {
         margin-right: 25px;
+    }
 
-        & > img {
-            max-height: 2.2em;
-        }
+    &__image {
+        max-height: 2.2em;
     }
 
     &__section {

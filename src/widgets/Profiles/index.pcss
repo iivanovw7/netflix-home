@@ -3,33 +3,54 @@
  * @module widgets/profiles/index.pcss
  */
 
-.page {
+@keyframes profile-gate {
+    0% {
+        transform: scale(1.1);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.nh-widgets-profiles-page {
     width: 100%;
 
     &__content {
-        position: fixed;
+        position: absolute;
         top: 0;
         right: 0;
         bottom: 0;
         left: 0;
         z-index: zIndex(global, default);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
         color: var(--primary-text-color);
         text-align: center;
     }
 
     &__container {
         text-align: center;
-        animation-name: profile-gate;
-        animation-duration: 0.45s;
-        animation-timing-function: ease;
-        animation-delay: 0s;
-        animation-iteration-count: 1;
-        animation-direction: normal;
-        animation-fill-mode: forwards;
+        opacity: 0;
+
+        &--loaded {
+            animation-name: profile-gate;
+            animation-duration: 0.45s;
+            animation-timing-function: ease;
+            animation-delay: 0s;
+            animation-iteration-count: 1;
+            animation-direction: normal;
+            animation-fill-mode: forwards;
+        }
     }
 }
 
-.profiles {
+.nh-widgets-profiles-page-box {
     max-width: 80%;
     text-align: center;
 

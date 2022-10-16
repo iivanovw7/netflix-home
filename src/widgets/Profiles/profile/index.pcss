@@ -3,7 +3,7 @@
  * @module widgets/profiles/profile/index.pcss
  */
 
-.profile {
+.nh-widgets-profiles-profile {
     position: relative;
     display: inline-block;
     width: 10vw;
@@ -36,18 +36,22 @@
         }
     }
 
-    &__image img {
-        width: 100%;
-        border: 2px solid transparent;
-        border-radius: $border-radius;
-        transition: $transition-border-color;
+    &__image {
+        display: flex;
+
+        & img {
+            width: 100%;
+            border: 2px solid transparent;
+            border-radius: $border-radius;
+            transition: $transition-border-color;
+        }
     }
 
     &__link {
         &:focus,
         &:focus-visible,
         &:hover {
-            .profile__image img {
+            .nh-widgets-profiles-profile__image img {
                 border-color: var(--white);
             }
         }

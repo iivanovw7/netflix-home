@@ -2,9 +2,8 @@
  * Module contains styled button elements.
  * @module shared/components/Button/index.pcss
  */
-@import './../../styles/fonts.pcss';
 
-.button {
+.nh-components-button {
     width: fit-content;
     transition: $transition-color, $transition-border-color;
 
@@ -25,11 +24,11 @@
     &--outlined {
         @mixin buttonColors primary, outlined;
 
-        &.button--secondary {
+        &.nh-components-button--secondary {
             @mixin buttonColors secondary, outlined;
         }
 
-        &.button--tertiary {
+        &.nh-components-button--tertiary {
             @mixin buttonColors tertiary, outlined;
         }
     }
