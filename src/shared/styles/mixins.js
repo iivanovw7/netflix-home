@@ -86,13 +86,17 @@ const media = (mixin, ...breakpoints) => {
  * Used to add button color styles.
  * @param {object} mixin - parent node.
  * @param {'primary' | 'secondary' | 'tertiary'} [variant = 'primary'] - color variant.
- * @param {'full' | 'outlined'} [fill = 'full'] - color fill prop.
+ * @param {'full' | 'outlined' | 'none'} [fill = 'full'] - color fill prop.
  * @return {object} mixin - returns mixin content.
  */
 const buttonColors = (mixin, variant = 'primary', fill = 'full') => {
     const { main, disabled, text, accent } = getButtonColorsSet(variant);
     const isoOutlined = fill === 'outlined';
-    const frac = 0.8;
+    const isFillNone = fill === 'none';
+
+    const FULL_FRAC = 0.8;
+    const OUTLINE_FRAC = 0.8;
+    const FILL_NONE_FRAC = 0.9;
 
     return {
         color: text,
@@ -103,14 +107,25 @@ const buttonColors = (mixin, variant = 'primary', fill = 'full') => {
             'background-color': 'transparent',
         }),
 
+        ...(isFillNone && {
+            border: 'none',
+            'background-color': 'transparent',
+        }),
+
         '&:hover, &:focus-visible': {
-            'background-color': opacify(main, frac),
+            'background-color': opacify(main, FULL_FRAC),
 
             ...(isoOutlined && {
-                color: opacify(accent, frac),
+                color: opacify(accent, OUTLINE_FRAC),
                 'background-color': 'transparent',
-                'border-color': opacify(accent, frac),
-            })
+                'border-color': opacify(accent, OUTLINE_FRAC),
+            }),
+
+            ...(isFillNone && {
+                color: opacify(accent, FILL_NONE_FRAC),
+                'background-color': 'transparent',
+                'border-color': opacify(accent, FILL_NONE_FRAC),
+            }),
         },
 
         '&:disabled': {
@@ -120,7 +135,11 @@ const buttonColors = (mixin, variant = 'primary', fill = 'full') => {
             ...(isoOutlined && {
                 'background-color': 'transparent',
                 'border-color': disabled,
-            })
+            }),
+
+            ...(isFillNone && {
+                'background-color': 'transparent',
+            }),
         }
     };
 };

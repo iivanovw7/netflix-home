@@ -41,7 +41,9 @@ export const Profile = observer((props: ProfileProps) => {
 
     return (
         <li className={cls({ locked })}>
-            <Link className={cls('link')} onClick={onClick} color="tertiary">
+            <Link className={cls('link')}
+                color="tertiary"
+                onClick={onClick}>
                 <Img
                     alt="avatar"
                     className={cls('image')}
@@ -51,7 +53,7 @@ export const Profile = observer((props: ProfileProps) => {
                     {profileName}
                 </span>
             </Link>
-            {locked && <Icon className={cls('icon')} size={20} name="lock" />}
+            {locked && <Icon className={cls('icon')} name="lock" size={20} />}
         </li>
     );
 });

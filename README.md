@@ -156,6 +156,9 @@ Contains information about main configuration files and folders.
 - Test production view script. <br/>
 - ~~Configure js/ts linter.~~ <br/>
 - ~~Configure css linter.~~ <br/>
+- Setup unit tests <br />
+- Setup integration tests <br />
+- Setup e2e tests <br />
 - Browse page: Header controls <br/>
 - Browse page: Assets requests <br/>
 - Browse page: Playable header <br/>
@@ -169,4 +172,5 @@ Contains information about main configuration files and folders.
 
 - **[MIT license](http://opensource.org/licenses/mit-license.php)**
 - Copyright 2022 © <a href="https://github.com/iivanovw7/netflix-home" target="_blank">netflix-home</a>
+
 

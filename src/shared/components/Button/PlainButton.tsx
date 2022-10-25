@@ -25,13 +25,11 @@ export type PlainButtonProps =
         layout?: 'horizontal' | 'vertical';
         /** @default 'medium' */
         size?: 'small' | 'medium' | 'large';
-        text: ReactNode,
+        text?: ReactNode,
         /** @default 'center' */
         textAlign?: 'left' | 'right' | 'center';
         /** @default 'button' */
         type?: 'button' | 'submit' | 'reset';
-        /** @default 'primary' */
-        variant?: 'primary' | 'secondary' | 'danger';
         onClick?: () => void;
     }>
     & Pick<ButtonHTMLAttributes<HTMLButtonElement>, 'type' | 'id' | 'name' | 'title' | 'style' | 'onMouseEnter' | 'onMouseLeave'>;
@@ -53,18 +51,18 @@ export const PlainButton = forwardRef<HTMLButtonElement, PlainButtonProps>((prop
         className,
         children,
         customIcon,
-        disabled,
+        disabled = false,
         dataId,
         id,
         name: buttonName,
-        layout,
+        layout = 'horizontal',
         icon,
-        iconPosition,
+        iconPosition = 'start',
         text,
-        textAlign,
-        type,
+        textAlign = 'center',
+        type = 'button',
         title,
-        size,
+        size = 'medium',
         onClick
     } = props;
 
@@ -74,7 +72,6 @@ export const PlainButton = forwardRef<HTMLButtonElement, PlainButtonProps>((prop
     return (
         <button
             ref={ref}
-            data-id={dataId}
             className={classNames(
                 cls({
                     custom: isValidElement(text),
@@ -84,17 +81,18 @@ export const PlainButton = forwardRef<HTMLButtonElement, PlainButtonProps>((prop
                 }),
                 className
             )}
-            id={id}
-            title={title}
-            name={buttonName}
-            // eslint-disable-next-line react/button-has-type
-            type={type}
+            data-id={dataId}
             disabled={disabled}
+            id={id}
+            name={buttonName}
+            title={title}
+            /* eslint-disable-next-line react/button-has-type */
+            type={type}
             onClick={onClick}>
             {children}
             {hasText && (
                 <div
-                    className={cls('iconBox', {
+                    className={cls('textBox', {
                         positionEnd: iconPosition === 'end'
                     })}
                 >
@@ -103,7 +101,7 @@ export const PlainButton = forwardRef<HTMLButtonElement, PlainButtonProps>((prop
             )}
             {iconElement && (
                 <div
-                    className={cls('textBox', {
+                    className={cls('iconBox', {
                         left: textAlign === 'left',
                         right: textAlign === 'right'
                     })}
@@ -116,13 +114,3 @@ export const PlainButton = forwardRef<HTMLButtonElement, PlainButtonProps>((prop
 });
 
 PlainButton.displayName = 'PlainButton';
-
-PlainButton.defaultProps = {
-    disabled: false,
-    iconPosition: 'start',
-    layout: 'horizontal',
-    size: 'medium',
-    textAlign: 'center',
-    type: 'button',
-    variant: 'primary',
-};

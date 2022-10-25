@@ -5,10 +5,10 @@
 
 import { createContext } from 'react';
 
+import type { ModalManagerRef } from '../components';
 import type { ErrorBoundaryContext} from '../components/ErrorBoundary/ErrorBoundaryContext';
 import { errorBoundaryContext } from '../components/ErrorBoundary/ErrorBoundaryContext';
 import { defaultModalContext } from '../components/Modal/modalContext';
-import type { ModalManagerRef } from '../components/Modal/ModalManager';
 
 export type ContextValue = {
     modal: ModalManagerRef;

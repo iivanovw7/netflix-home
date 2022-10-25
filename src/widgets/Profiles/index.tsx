@@ -1,25 +1,22 @@
 /**
  * Module contains `Profiles` page.
- * @module widgets/profiles/index.styled
+ * @module widgets/Profiles/index.styled
  */
 
 import { observer } from 'mobx-react-lite';
 import type { ReactElement } from 'react';
 import React, { useCallback, useEffect, useState } from 'react';
 
-import avatar1 from '../../../assets/img/avatar-stub-1.png?w=200&png&imagetools';
-import avatar2 from '../../../assets/img/avatar-stub-2.png?w=200&png&imagetools';
-import avatar3 from '../../../assets/img/avatar-stub-3.png?w=200&png&imagetools';
-import avatar4 from '../../../assets/img/avatar-stub-4.png?w=200&png&imagetools';
-import avatar5 from '../../../assets/img/avatar-stub-5.png?w=200&png&imagetools';
 import type { LinkProps } from '../../shared/components';
-import { Button, Container, H1 } from '../../shared/components';
+import { Button, Container, H1, AVATARS } from '../../shared/components';
 import { ctx } from '../../shared/context';
 import { globalStore } from '../../shared/globalStores';
 import type { TProfile } from '../../shared/globalStores/ProfileStore';
 import { bem, uuid } from '../../shared/utils';
 
+import { isValidCode } from './model/utils';
 import { Profile } from './profile';
+import { getUnlockModalProps } from './unlockModal';
 
 import './index.pcss';
 
@@ -33,18 +30,10 @@ const MESSAGES = {
     title: "Who's watching?"
 };
 
-const AVATARS = [
-    avatar1,
-    avatar2,
-    avatar3,
-    avatar4,
-    avatar5
-];
-
 /**
  * `Profiles` page.
  * @constructor
- * @name widgets/profiles/Profiles
+ * @name widgets/Profiles
  * @method
  * @return {ReactElement} React component with children.
  */
@@ -64,15 +53,22 @@ export const Profiles = observer((): ReactElement => {
     }, []);
 
     const handleClick = useCallback((profile: TProfile): LinkProps['onClick'] => () => {
-        if (profile.lock) {
-            ctx.modal.open({});
+        const { lock } = profile;
+
+        if (lock && isValidCode(lock)) {
+            ctx.modal.open(getUnlockModalProps({
+                lock,
+                onClose: ctx.modal.close,
+                onSuccess: () => {
+                    setProfile(profile);
+                    ctx.modal.close();
+                }
+            }));
         }
         else {
             setProfile(profile);
         }
-
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    }, [setProfile]);
 
     useEffect(() => {
         // eslint-disable-next-line no-void
@@ -89,8 +85,8 @@ export const Profiles = observer((): ReactElement => {
                         <ul className={cls.box('list')}>
                             {profiles.map((profile, index) => (
                                 <Profile
-                                    avatar={AVATARS[index]}
                                     key={uuid()}
+                                    avatar={AVATARS[index]}
                                     profile={profile}
                                     onClick={handleClick(profile)}
                                     onLoaded={handleLoaded} />

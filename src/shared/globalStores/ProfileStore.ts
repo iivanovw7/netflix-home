@@ -25,13 +25,13 @@ const logger = getLogger('ProfileStore');
 const Profile = types.model('Profile', {
     id: types.string,
     name: types.string,
-    lock: types.union(types.maybe(types.number), types['null'])
+    lock: types.union(types.maybe(types.string), types['null'])
 });
 
 export type TProfile = {
     id: string;
     name: string;
-    lock: Maybe<number>;
+    lock: Maybe<string>;
 };
 
 export const ProfileModel = types

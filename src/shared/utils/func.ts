@@ -2,6 +2,8 @@
  * Module contains uncategorized utility functions.
  * @module shared/utils/func
  */
+import type { IReactionDisposer } from 'mobx';
+
 export { v4 as uuid } from 'uuid';
 export { default as bem, setup as setBemConfig } from 'bem-ts';
 
@@ -26,9 +28,33 @@ export const setDisplayName = (displayName: string): HFC => {
     };
 };
 
-export const wait = async <T>(data: T, delay = 300): Promise<T> => {
+export const wait = async <T>(data?: T, delay = 300): Promise<unknown> => {
     // eslint-disable-next-line no-promise-executor-return
     return new Promise((resolve) => setTimeout(() => resolve(data), delay));
+};
+
+export type TDisposerFn = () => void;
+
+export type TStoreWithSubscriptions = {
+    subscribeReactions: () => TDisposerFn;
+};
+
+/**
+ * Receives list of disposers and creates `unsubscribe` method.
+ * @param {Function} disposers - list of disposers.
+ * @return {Function} unsubscribe method.
+ * @example
+ *     subscribeReactions = () => {
+ *         return withDisposer([
+ *             reaction(
+ *                 () => this.A,
+ *                 () => this.reactionA(),
+ *             ),
+ *         ]);
+ *     };
+ */
+export const withDisposer = (disposers: IReactionDisposer[]): TDisposerFn => {
+    return () => disposers.forEach((disposer) => disposer());
 };
 
 

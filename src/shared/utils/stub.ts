@@ -20,6 +20,4 @@ export const noop: AnyFunction = () => {};
  */
 export const noop2: (...args: any[]) => AnyFunction = () => () => {};  // eslint-disable-line @typescript-eslint/no-explicit-any
 
-export const identity = <T>(arg: T): T => arg;
-
 /* eslint-enable @typescript-eslint/no-empty-function */

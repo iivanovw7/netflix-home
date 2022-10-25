@@ -48,6 +48,7 @@ export const enum Key {
     Super = 'Super',
 
     /** The Symbol modifier key (found on certain virtual keyboards). */
+    // eslint-disable-next-line @typescript-eslint/no-shadow
     Symbol = 'Symbol',
 
     /** The Symbol Lock key. */
@@ -399,6 +400,7 @@ export const enum Key {
     LastNumberRedial = 'LastNumberRedial',
 
     /** The Notification key. */
+    // eslint-disable-next-line @typescript-eslint/no-shadow
     Notification = 'Notification',
 
     /** A button which cycles among the notification modes: silent, vibrate, ring, and so forth. */
@@ -690,6 +692,7 @@ export const enum Key {
     LiveContent = 'LiveContent',
 
     /** Locks or unlocks the currently selected content or pgoram. */
+    // eslint-disable-next-line @typescript-eslint/no-shadow
     Lock = 'Lock',
 
     /** Presents a list of media applications, such as photo viewers, audio and video players, and games. [1] */

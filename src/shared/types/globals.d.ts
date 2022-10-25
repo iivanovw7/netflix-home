@@ -2,15 +2,19 @@
  * Module contains global application types.
  * @module shared/types/global
  */
-import type { FC, ComponentType, PropsWithChildren } from 'react';
+import type { FC, ComponentType, PropsWithChildren, ReactElement, Key } from 'react';
+import type { ValidateOptions } from 'yup/lib/types';
 
 declare global {
 
-    // eslint-disable-next-line @typescript-eslint/no-empty-interface
-    interface IGlobalStore {}
-
     // eslint-disable-next-line @typescript-eslint/ban-types
     type JSX = {};
+
+    // eslint-disable-next-line @typescript-eslint/ban-types
+    type ReactFC<T = {}, R extends 'nullable' = null> = {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/prefer-function-type
+        (props: T): R extends 'nullable' ? Nullable<ReactElement<any, any>> : ReactElement<any, any>;
+    };
 
     namespace JSX {}
 
@@ -22,8 +26,18 @@ declare global {
     /** Represents type of `nullable` object. */
     type Nullable<T> = T | null;
 
+    type ErrorMessage = string;
+
+    type Voidable<T> = T | void | undefined;
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    type UnwrapPromise<T extends Promise<any>> = T extends Promise<infer Data> ? Data : never;
+
     /** Represents any function. */
     type AnyFunction = (...args: unknown[]) => unknown;
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    type AsyncReturnType<T extends (...args: any[]) => Promise<any>> = UnwrapPromise<ReturnType<T>>;
 
     type Optional<T extends object, K extends keyof T = keyof T> = Omit<T, K> & Partial<Pick<T, K>>;
 
@@ -62,6 +76,11 @@ declare global {
 
     export type HFC = <Props extends object>(Component: FC<Props>) => FC<Props>;
 
+    export type FieldValidationResult = Maybe<ErrorMessage>;
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    export type Validate<T = any> = (value?: T, options?: ValidateOptions<any>) => FieldValidationResult;
+
     export type DotPrefix<T extends string> = T extends '' ? '' : `.${T}`;
 
     export type DotNestedKeys<T> = (
@@ -69,4 +88,8 @@ declare global {
             ? { [K in Exclude<keyof T, symbol>]: `${K}${DotPrefix<DotNestedKeys<T[K]>>}` }[Exclude<keyof T, symbol>]
             : ''
     ) extends infer D ? Extract<D, string> : never;
+
+    export type FalsyJSX = false | null | undefined | '' | 0;
+
+    export type MappableItems<T extends AnyObject> = ReadonlyArray<FalsyJSX | (T & { key?: Key })>;
 }

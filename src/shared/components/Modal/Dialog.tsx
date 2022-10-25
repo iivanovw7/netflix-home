@@ -3,7 +3,13 @@
  * @module shared/components/Modal/Dialog
  */
 import classNames from 'classnames';
-import type { FC, KeyboardEventHandler, PropsWithChildren } from 'react';
+import type {
+    AnimationEventHandler,
+    FC,
+    KeyboardEventHandler,
+    MouseEventHandler,
+    PropsWithChildren
+} from 'react';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 
 import { useMountedState } from '../../hooks';
@@ -27,9 +33,11 @@ export type DialogProps = PropsWithChildren<{
     backdropRef?: React.RefObject<HTMLDivElement>;
 }>;
 
-const cls = bem('dialog', { namespace: 'nh-components' });
+export type ClickHandler = MouseEventHandler<HTMLDivElement>;
+export type KeyDownHandler = KeyboardEventHandler<HTMLDivElement>;
+export type AnimationHandler = AnimationEventHandler<HTMLDivElement>;
 
-const CLOSING_ANIMATION_NAME = cls();
+const cls = bem('dialog', { namespace: 'nh-components' });
 
 /**
  * Creates Dialog component.
@@ -61,27 +69,27 @@ export const Dialog: FC<DialogProps> = (props) => {
     const [isOpen, setOpen] = useState<boolean>(modalOpen);
     const [isClosing, setClosing] = useState<boolean>(false);
 
-    const handleBackdropClick = useCallback(() => {
+    const handleBackdropClick: ClickHandler = useCallback(() => {
         if (disableBackdropClick) return;
 
         onRequestClose();
     }, [disableBackdropClick, onRequestClose]);
 
-    const handleKeyDown: KeyboardEventHandler<HTMLDivElement> = useCallback((e) => {
+    const handleKeyDown: KeyDownHandler = useCallback((e) => {
         if (e.key !== Key.Escape || disableEscapeKeyDown) return;
 
         e.stopPropagation();
         onRequestClose();
     }, [disableEscapeKeyDown, onRequestClose]);
 
-    const handleAnimationEnd = useCallback(({ animationName }) => {
-        if (animationName === CLOSING_ANIMATION_NAME) {
+    const handleAnimationEnd: AnimationHandler = useCallback(({ animationName }) => {
+        if (animationName === 'fade-out') {
             setOpen(false);
             setClosing(false);
         }
     }, []);
 
-    const handleClick = useCallback((eventData) => {
+    const handleClick: ClickHandler = useCallback((eventData) => {
         eventData.stopPropagation();
     }, []);
 
@@ -109,14 +117,12 @@ export const Dialog: FC<DialogProps> = (props) => {
                     cls('backdrop', { isClosing }),
                     backdropClassName
                 )}
+                onAnimationEnd={handleAnimationEnd}
                 onClick={handleBackdropClick}
                 onKeyDown={handleKeyDown}
-                onAnimationEnd={handleAnimationEnd}
             >
                 <div
-                    tabIndex={-1}
                     ref={paperRef}
-                    onClick={handleClick}
                     className={classNames(
                         cls('paper', {
                             widthLarge: width === 'large',
@@ -127,6 +133,8 @@ export const Dialog: FC<DialogProps> = (props) => {
                         }),
                         paperClassName
                     )}
+                    tabIndex={-1}
+                    onClick={handleClick}
                 >
                     {children}
                 </div>

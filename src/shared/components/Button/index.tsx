@@ -44,16 +44,17 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) =>
 
     return (
         <PlainButton
+            ref={ref}
             className={classNames(
                 cls({
                     fluid,
                     outlined: fill === 'outlined',
+                    fillNone: fill === 'none',
                     secondary: color === 'secondary',
                     tertiary: color === 'tertiary'
                 }),
                 className
             )}
-            ref={ref}
             {...plainButtonProps}
         />
     );

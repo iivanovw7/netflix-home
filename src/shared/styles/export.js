@@ -26,6 +26,7 @@ module.exports = {
     LimeA400: '#c6ff00',
     LimeA700: '#aeea00',
     LightGreenA400: '#76ff03',
+    Yellow200: '#e6b209',
     Orange500: '#ff9800',
     Orange700: '#f57c00',
     Purple100: '#e1bee7',
@@ -64,6 +65,7 @@ module.exports = {
     Red9100: '#b71c1c',
     Shadow: '0 2px 10px rgba(136, 154, 201, 0.3)',
     ShadowModals: '0 4px 20px rgba(66, 69, 115, 0.3)',
+    BackgroundContentColor: '#212121',
     BackgroundGlobalColor: '#141414',
     BackgroundHeaderColor: '#050708',
     BackgroundModalBackdropColor: 'rgba(13, 28, 46, 0.4)',
@@ -99,5 +101,5 @@ module.exports = {
     TertiaryTextColor: '#9e9e9e',
     AlertColor: '#e50914',
     SecondaryColor: '#aeea00',
-    WarningColor: '#f57c00',
+    WarningColor: '#e6b209',
 };

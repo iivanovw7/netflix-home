@@ -28,13 +28,13 @@ export const withRouter: HFC = (Component) => {
     return setDisplayName('BrowserRouter')(observer((props): ReactElement => {
         return (
             <Router
-                location={routerStore.location}
                 navigator={{
                     go,
                     push,
                     replace: redirect,
                     createHref
                 }}
+                location={routerStore.location}
             >
                 <Component {...props} />
             </Router>

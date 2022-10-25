@@ -93,13 +93,13 @@ export const Img = (props: ImgProps): ReactElement => {
     return (
         <div className={classNames(cls({ rounded }), className)} style={containerStyles} onClick={onClick}>
             <img
-                className={classNames(cls('image'), imageClassName)}
-                src={src}
                 alt={alt}
+                className={classNames(cls('image'), imageClassName)}
                 data-id={dataId}
                 loading="lazy"
-                onLoad={onLoad}
-                onError={handleError} />
+                src={src}
+                onError={handleError}
+                onLoad={onLoad} />
         </div>
     );
 };

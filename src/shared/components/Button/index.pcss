@@ -32,5 +32,17 @@
             @mixin buttonColors tertiary, outlined;
         }
     }
+
+    &--fillNone {
+        @mixin buttonColors primary, none;
+
+        &.nh-components-button--secondary {
+            @mixin buttonColors secondary, none;
+        }
+
+        &.nh-components-button--tertiary {
+            @mixin buttonColors tertiary, none;
+        }
+    }
 }
 

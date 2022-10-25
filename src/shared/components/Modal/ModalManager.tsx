@@ -33,6 +33,15 @@ export type ModalManagerRef = {
     backdropRef: NonNullable<ModalBaseProps['backdropRef']>;
 };
 
+/**
+ * Creates ModalManager component.
+ * @name shared/components/Modal/ModalManager
+ * @method
+ * @param {object} props - contains component props.
+ *
+ * @return {ReactNode} React component with children.
+ * @constructor
+ */
 export const ModalManager = forwardRef<ModalManagerRef>((_, ref) => {
     const contentRef = useRef<Nullable<HTMLDivElement>>(null);
     const backdropRef = useRef<Nullable<HTMLDivElement>>(null);
@@ -88,10 +97,10 @@ export const ModalManager = forwardRef<ModalManagerRef>((_, ref) => {
         <Modal
             {...baseProps}
             key={modalKey}
-            open={isOpen}
-            onRequestClose={close}
-            contentRef={contentRef}
             backdropRef={backdropRef}
+            contentRef={contentRef}
+            open={isOpen}
+            onRequestClose={closeModal}
         />
     );
 });
