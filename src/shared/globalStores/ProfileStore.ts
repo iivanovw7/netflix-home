@@ -4,7 +4,7 @@
  */
 
 import type { Instance } from 'mobx-state-tree';
-import { flow, getEnv, types } from 'mobx-state-tree';
+import { getEnv, types } from 'mobx-state-tree';
 
 import PROFILES_STUB from '../../../assets/json/profilesStub.json';
 import getLogger from '../log';
@@ -12,7 +12,7 @@ import {
     getProfile as getLocalStorageProfile,
     setProfile as setLocalStorageProfile
 } from '../storage/profile';
-import { wait } from '../utils';
+import { makeApiRequest, wait } from '../utils';
 
 declare global {
     interface IGlobalStore {
@@ -57,18 +57,24 @@ export const ProfileModel = types
             }
         };
 
+        /**
+         *  Updates user`s profiles.
+         *  @param {Array.<Profile>} profiles - profiles list.
+         */
         const updateProfiles = (profiles): void => {
             _self.profiles = profiles;
         };
 
-        const loadProfiles = flow(function *loadProfiles() {
-            try {
-                updateProfiles(yield _self.fetch());
-            }
-            catch (err: unknown) {
-                logger.error('Failed to load profiles ', err);
-            }
-        });
+        const loadProfiles = async () => {
+            return await makeApiRequest({
+                request: async () => {
+                    updateProfiles(await _self.fetch());
+                },
+                onError: (errorData: unknown) => {
+                    logger.error('Failed to load profiles ', errorData);
+                },
+            });
+        };
 
         /**
          * Sets new use profile.

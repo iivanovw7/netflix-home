@@ -66,7 +66,7 @@ module.exports = {
         'import/extensions': ['d.ts'],
         'import/resolver': {
             node: {
-                paths: ['src'],
+                paths: ['src', 'test'],
                 extensions: ['.js', '.jsx', '.ts', '.tsx', 'd.ts'],
                 typescript: {}
             },

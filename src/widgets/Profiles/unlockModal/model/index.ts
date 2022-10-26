@@ -5,7 +5,7 @@
 
 import { runInAction } from 'mobx';
 import type { Instance } from 'mobx-state-tree';
-import { cast, types } from 'mobx-state-tree';
+import { cast, getEnv, types } from 'mobx-state-tree';
 import { equals } from 'ramda';
 
 import { withStoreContext } from '../../../../shared/hoc/withStoreContext';
@@ -30,29 +30,56 @@ export const UnlockModel = types
         get isPinCorrect() {
             return equals(_self.lock, _self.pin);
         },
+        get fetch(): <Data>(data: Data) => Promise<Data> {
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+            return getEnv(_self).fetch;
+        },
     }))
-    .actions((_self) => ({
-        resetFiled() {
+    .actions((_self) => {
+        /**
+         *  Resets pin field.
+         */
+        const resetFiled = () => {
             _self.pin = cast(DEFAULT_PIN);
             _self.isPinError = false;
             _self.pinValidation = '';
-        },
-        setLock(lock: string) {
+        };
+        /**
+         *  Sets new lock string.
+         *  @param {string} lock - lock string.
+         */
+        const setLock = (lock: string) => {
             for (const [index, value] of lock.split('').entries()) {
                 _self.lock[index] = value;
             }
-        },
-        setPinNumber(index: number, value: string) {
+        };
+        /**
+         *  Sets pin value.
+         *  @param {number} index - pin input index.
+         *  @param {string} value - pin input value.
+         */
+        const setPinNumber = (index: number, value: string) => {
             _self.pin[index] = value;
             _self.pinValidation = '';
-        },
-        setPinError(value: boolean) {
+        };
+        /**
+         *  Sets pin code error.
+         *  @param {boolean} value - pin error value.
+         */
+        const setPinError = (value: boolean) => {
             _self.isPinError = value;
-        },
-        setPinValidation(value = '') {
+        };
+        /**
+         *  Sets pin validation string.
+         *  @param {boolean} value - validation string.
+         */
+        const setPinValidation = (value = '') => {
             _self.pinValidation = value;
-        },
-        async onSubmit() {
+        };
+        /**
+         *  Submits current pin code to verify result.
+         */
+        const onSubmit = async () => {
             return await makeApiRequest({
                 request: async () => {
                     const { isPinCorrect, pin } = _self;
@@ -68,7 +95,7 @@ export const UnlockModel = types
                         }
                     });
 
-                    return await wait(isPinCorrect);
+                    return await _self.fetch(isPinCorrect);
                 },
                 onError: (errorData: unknown) => {
                     logger.error(errorData);
@@ -77,10 +104,21 @@ export const UnlockModel = types
                     _self.pinValidation = validationError.errors[0];
                 }
             });
-        }
-    }));
+        };
 
-export const unlockModel = UnlockModel.create();
+        return {
+            resetFiled,
+            setLock,
+            setPinNumber,
+            setPinError,
+            setPinValidation,
+            onSubmit
+        };
+    });
+
+export const unlockModel = UnlockModel.create({}, {
+    fetch: <Data>(data: Data) => wait(data)
+});
 
 export type TUnlockModel = Instance<typeof UnlockModel>;
 

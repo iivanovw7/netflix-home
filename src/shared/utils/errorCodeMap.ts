@@ -9,7 +9,6 @@ export type ErrorData = {
 
 /**
  * Error codes.
- * @function
  * @category ErrorCodeMap
  * @readonly
  * @enum {number}
@@ -20,16 +19,24 @@ export const errorCodeMap: Record<string, number> = {
 };
 
 /**
+ * Error code prefix.
+ * @category ERROR_PREFIX
+ * @readonly
+ * @enum {string}
+ */
+export const ERROR_PREFIX = 'NSES';
+
+/**
  * Returns error message containing code provided.
  * @function
  * @category ErrorCodeMap
  * @param {Object | number} error - code or error object.
  * @return {string} error code message.
  */
-export function getErrorCodeString(error: ErrorData | number): string {
+export const getErrorCodeString = (error: ErrorData | number): string => {
     const code = typeof error === 'number'
         ? error
         : error.code;
 
-    return `NSES-${code}`;
-}
+    return `${ERROR_PREFIX}-${code}`;
+};

@@ -2,7 +2,6 @@
  * Module contains request utility functions.
  * @module shared/utils/request
  */
-
 import type { ValidationError } from 'yup';
 
 import getLogger from '../../shared/log';
