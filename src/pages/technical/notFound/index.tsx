@@ -16,7 +16,7 @@ import './index.pcss';
 
 const cls = bem('not-found', { namespace: 'pages-technical' });
 
-const { PAGE_NOT_FOUND } = errorCodeMap;
+const { NOT_FOUND } = errorCodeMap;
 
 const MESSAGES = {
     title: 'Lost your way?',
@@ -49,7 +49,7 @@ export const NotFound = observer((): ReactElement => {
                 <div className={cls('contentFooter')}>
                     <span className={cls('errorCode')}>
                         {MESSAGES.code}
-                        <Strong text={getErrorCodeString(PAGE_NOT_FOUND)} />
+                        <Strong text={getErrorCodeString(NOT_FOUND)} />
                     </span>
                 </div>
             </div>

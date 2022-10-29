@@ -3,8 +3,8 @@
  * @module shared/hooks/useLocalState
  */
 
-import { useContext} from 'react';
 import type { Context } from 'react';
+import { useContext } from 'react';
 
 /**
  * Used to access store context inside Provider component.

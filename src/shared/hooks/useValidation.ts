@@ -17,7 +17,7 @@ export type UseValidationResult = {
     hasValidationError?: boolean;
 };
 
-export type UseValidation = <Value = unknown>({ value, validate, errorText, hasError }: UseValidationParams<Value>) => UseValidationResult;
+export type UseValidation = <Value = unknown>(params: UseValidationParams<Value>) => UseValidationResult;
 
 /**
  * Validation hook.

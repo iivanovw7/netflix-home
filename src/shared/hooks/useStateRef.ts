@@ -3,7 +3,7 @@
  * @module shared/hooks/useStateRef
  */
 
-import type { Dispatch, MutableRefObject, SetStateAction} from 'react';
+import type { Dispatch, MutableRefObject, SetStateAction } from 'react';
 import { useRef, useState } from 'react';
 
 type UseStateRef = {

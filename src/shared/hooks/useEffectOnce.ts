@@ -3,7 +3,7 @@
  * @module shared/hooks/useEffectOnce
  */
 
-import type { EffectCallback} from 'react';
+import type { EffectCallback } from 'react';
 import { useEffect } from 'react';
 
 /**

@@ -3,11 +3,14 @@
  */
 
 import { ERROR_PREFIX, errorCodeMap, getErrorCodeString } from '../../../src/shared/utils';
-import { getTestName } from '../../_helper/common';
+import { getSpecTitle } from '../../_helper/common';
 
-jest.mock('../../../src/shared/utils/env', jest.fn);
+const {
+    NOT_FOUND,
+    UNKNOWN_ERROR
+} = errorCodeMap;
 
-describe(getTestName('shared.utils', 'errorCodeMap'), () => {
+describe(getSpecTitle('shared.utils', 'errorCodeMap'), () => {
     describe('errorCodeMap', () => {
         it('Should have errorCode map', () => {
             expect(errorCodeMap).toBeDefined();
@@ -19,8 +22,8 @@ describe(getTestName('shared.utils', 'errorCodeMap'), () => {
                 expect(code).toBeGreaterThan(0);
             };
 
-            checkErrorCode(errorCodeMap.PAGE_NOT_FOUND);
-            checkErrorCode(errorCodeMap.UNKNOWN_ERROR);
+            checkErrorCode(NOT_FOUND);
+            checkErrorCode(UNKNOWN_ERROR);
         });
     });
 
@@ -31,11 +34,11 @@ describe(getTestName('shared.utils', 'errorCodeMap'), () => {
             expect(getErrorCodeString(code))
                 .toBe(`${ERROR_PREFIX}-${code}`);
 
-            expect(getErrorCodeString(errorCodeMap.PAGE_NOT_FOUND))
-                .toBe(`${ERROR_PREFIX}-${errorCodeMap.PAGE_NOT_FOUND}`);
+            expect(getErrorCodeString(NOT_FOUND))
+                .toBe(`${ERROR_PREFIX}-${NOT_FOUND}`);
 
-            expect(getErrorCodeString(errorCodeMap.UNKNOWN_ERROR))
-                .toBe(`${ERROR_PREFIX}-${errorCodeMap.UNKNOWN_ERROR}`);
+            expect(getErrorCodeString(UNKNOWN_ERROR))
+                .toBe(`${ERROR_PREFIX}-${UNKNOWN_ERROR}`);
         });
     });
 });

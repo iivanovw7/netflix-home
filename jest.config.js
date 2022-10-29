@@ -3,9 +3,11 @@
  * @module _/jest.config.js
  */
 
+
 module.exports = {
     bail: 1,
     preset: 'ts-jest',
+    setupFilesAfterEnv: ['./test/_helper/jestSetup.ts'],
     coverageDirectory: './build/coverage',
     coveragePathIgnorePatterns: [
         'node_modules',

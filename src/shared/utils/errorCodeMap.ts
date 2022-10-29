@@ -14,7 +14,7 @@ export type ErrorData = {
  * @enum {number}
  */
 export const errorCodeMap: Record<string, number> = {
-    PAGE_NOT_FOUND: 404,
+    NOT_FOUND: 404,
     UNKNOWN_ERROR: 5000
 };
 

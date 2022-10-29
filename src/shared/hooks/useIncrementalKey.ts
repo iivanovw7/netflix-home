@@ -3,7 +3,7 @@
  * @module shared/hooks/useIncrementalKey
  */
 
-import type { DispatchWithoutAction, ReducerStateWithoutAction} from 'react';
+import type { DispatchWithoutAction, ReducerStateWithoutAction } from 'react';
 import { useReducer } from 'react';
 
 export type UseIncrementalKey = (initialKey?: number) => [

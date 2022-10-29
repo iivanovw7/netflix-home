@@ -28,7 +28,7 @@ export const eventMap: Record<string, string> = {
  * @param {TTarget} obj - represents target object reference.
  * @param {...any} args - event type string, listener function, options.
  */
-export function on<T extends TTarget>(obj: T | null, ...args: Parameters<T['addEventListener']> | TListeners): void {
+export function onEvent<T extends TTarget>(obj: T | null, ...args: Parameters<T['addEventListener']> | TListeners): void {
     if (obj?.addEventListener) {
         obj.addEventListener(...(args as TEventListener));
     }
@@ -41,7 +41,7 @@ export function on<T extends TTarget>(obj: T | null, ...args: Parameters<T['addE
  * @param {TTarget} obj - represents target object reference.
  * @param {...any} args - event type string, listener function, options.
  */
-export function off<T extends TTarget>(obj: T | null, ...args: Parameters<T['removeEventListener']> | TListeners): void {
+export function offEvent<T extends TTarget>(obj: T | null, ...args: Parameters<T['removeEventListener']> | TListeners): void {
     if (obj?.removeEventListener) {
         obj.removeEventListener(...(args as TEventListener));
     }

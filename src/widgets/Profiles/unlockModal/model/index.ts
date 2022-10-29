@@ -15,6 +15,10 @@ import { makeApiRequest, wait } from '../../../../shared/utils';
 import { DEFAULT_PIN } from './constants';
 import { validateUnlockModalData } from './validation';
 
+export type UnlockModelEnv = {
+    fetch: <Data>(data: Data) => Promise<Data>
+};
+
 const { array, string, optional } = types;
 
 const logger = getLogger('UnlockModal store');
@@ -30,9 +34,8 @@ export const UnlockModel = types
         get isPinCorrect() {
             return equals(_self.lock, _self.pin);
         },
-        get fetch(): <Data>(data: Data) => Promise<Data> {
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-            return getEnv(_self).fetch;
+        get fetch(): UnlockModelEnv['fetch'] {
+            return getEnv<UnlockModelEnv>(_self).fetch;
         },
     }))
     .actions((_self) => {
@@ -80,7 +83,7 @@ export const UnlockModel = types
          *  Submits current pin code to verify result.
          */
         const onSubmit = async () => {
-            return await makeApiRequest({
+            return makeApiRequest({
                 request: async () => {
                     const { isPinCorrect, pin } = _self;
 
