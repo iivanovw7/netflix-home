@@ -6,28 +6,28 @@ import { observer } from 'mobx-react-lite';
 import type { ReactElement } from 'react';
 import React from 'react';
 
-import { ErrorScreen } from '../../../shared/components';
+import { ErrorScreen } from '../../../shared/components/ErrorBoundary/ErrorScreen';
 import { bem, errorCodeMap } from '../../../shared/utils';
 import { Header } from '../../../widgets';
 
-import './index.pcss';
+import './ErrorFallback.pcss';
 
-const cls = bem('not-found', { namespace: 'nh-components' });
+const cls = bem('error-fallback', { namespace: 'nh-components' });
 
 const { NOT_FOUND } = errorCodeMap;
 
 const MESSAGES = {
-    title: 'Lost your way?',
-    subtitle: 'Sorry, we can`t find that page. You`ll find lots to explore on the home page.',
+    title: 'Sorry for interruption',
+    subtitle: 'Sorry, we`re having trouble with your request.',
 };
 
 /**
- * `404` page.
+ * ErrorFallback page.
  * @method
  * @constructor
  * @return {ReactElement} React component with children.
  */
-export const NotFound = observer((): ReactElement => {
+export const ErrorFallback = observer((): ReactElement => {
 
     return (
         <div className={cls()}>

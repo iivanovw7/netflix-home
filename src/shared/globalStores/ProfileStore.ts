@@ -103,6 +103,7 @@ export const profileStore = ProfileModel.create(
         profiles: []
     },
     {
+        // TODO: Replace stub with api.
         fetch: () => wait(PROFILES_STUB)
     }
 );

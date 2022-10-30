@@ -82,32 +82,30 @@ export const UnlockModel = types
         /**
          *  Submits current pin code to verify result.
          */
-        const onSubmit = async () => {
-            return makeApiRequest({
-                request: async () => {
-                    const { isPinCorrect, pin } = _self;
+        const onSubmit = async () => makeApiRequest({
+            request: async () => {
+                const { isPinCorrect, pin } = _self;
 
-                    validateUnlockModalData({ pin: pin.join('') });
+                validateUnlockModalData({ pin: pin.join('') });
 
-                    runInAction(() => {
-                        _self.isPinError = ! isPinCorrect;
+                runInAction(() => {
+                    _self.isPinError = ! isPinCorrect;
 
-                        if (! isPinCorrect) {
-                            _self.pin = cast(DEFAULT_PIN);
-                            _self.pinValidation = '';
-                        }
-                    });
+                    if (! isPinCorrect) {
+                        _self.pin = cast(DEFAULT_PIN);
+                        _self.pinValidation = '';
+                    }
+                });
 
-                    return await _self.fetch(isPinCorrect);
-                },
-                onError: (errorData: unknown) => {
-                    logger.error(errorData);
-                },
-                onValidationError: (validationError) => {
-                    _self.pinValidation = validationError.errors[0];
-                }
-            });
-        };
+                return await _self.fetch(isPinCorrect);
+            },
+            onError: (errorData: unknown) => {
+                logger.error(errorData);
+            },
+            onValidationError: (validationError) => {
+                _self.pinValidation = validationError.errors[0];
+            }
+        });
 
         return {
             resetFiled,
@@ -120,6 +118,7 @@ export const UnlockModel = types
     });
 
 export const unlockModel = UnlockModel.create({}, {
+    // TODO: Replace stub with api.
     fetch: <Data>(data: Data) => wait(data)
 });
 

@@ -9,6 +9,7 @@
 
 # linting
 .eslintcache
+.stylelintcache
 
 # testing
 /coverage

@@ -9,15 +9,6 @@
     height: 100%;
     text-align: center;
 
-    &__close {
-        top: calc($header-height + 16px);
-        right: calc($header-height + 16px);
-    }
-
-    &__closeIcon {
-        display: flex;
-    }
-
     &__content {
         margin-bottom: 64px;
         color: var(--primary-text-color);
@@ -38,26 +29,6 @@
         z-index: zIndex(layout, container);
         flex-direction: column;
         height: 100%;
-    }
-
-    &__pinPad {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    &__pinContainer {
-        display: flex;
-        flex: 0 1 auto;
-        margin: 0.5em;
-        color: var(--black);
-        direction: ltr;
-        border: none;
-
-        &--error {
-            animation: shake-it 0.3s 1;
-            animation-delay: 0.3s;
-        }
     }
 
     &__title {
@@ -81,6 +52,35 @@
         min-height: 30px;
         color: var(--alert-color);
         font-size: $controls-font-size-medium;
+    }
+}
+
+.nh-widgets-profiles-unlock-modal-pin-pad {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &__container {
+        display: flex;
+        flex: 0 1 auto;
+        margin: 0.5em;
+        color: var(--black);
+        direction: ltr;
+        border: none;
+
+        &--error {
+            animation: shake-it 0.3s 1;
+            animation-delay: 0.3s;
+        }
+    }
+}
+
+.nh-widgets-profiles-unlock-modal-close {
+    top: calc($header-height + 16px);
+    right: calc($header-height + 16px);
+
+    &__icon {
+        display: flex;
     }
 }
 

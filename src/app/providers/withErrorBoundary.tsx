@@ -5,7 +5,7 @@
 import type { ReactElement } from 'react';
 import React from 'react';
 
-import { ErrorBoundary } from '../../shared/components';
+import { ErrorBoundary, ErrorFallback } from '../../shared/components';
 import { setDisplayName } from '../../shared/utils';
 
 /**
@@ -18,7 +18,7 @@ import { setDisplayName } from '../../shared/utils';
 export const withErrorBoundary: HFC = (Component) => {
     return setDisplayName('ErrorBoundary')((props): ReactElement => {
         return (
-            <ErrorBoundary fallback={<div>ERROR</div>}>
+            <ErrorBoundary fallback={<ErrorFallback />}>
                 <Component {...props} />
             </ErrorBoundary>
         );

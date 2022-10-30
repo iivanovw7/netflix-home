@@ -10,9 +10,14 @@ import Logo from '../../../assets/img/logo-v7.png?w=200&png&imagetools';
 import { Container, Img } from '../../shared/components';
 import { globalStore } from '../../shared/globalStores';
 
+import { Navigation } from './Navigation';
+
 import './index.pcss';
 
-const cls = bem('header', { namespace: 'nh-widgets' });
+const cls = {
+    header: bem('header', { namespace: 'nh-widgets' }),
+    logo: bem('header-logo', { namespace: 'nh-widgets' })
+};
 
 export type HeaderProps = PropsWithChildren<{
     withNavigation?: boolean;
@@ -32,18 +37,16 @@ export const Header = (props: HeaderProps): ReactElement => {
     } = globalStore;
 
     return (
-        <Container className={cls()}>
-            <div className={cls('section')}>
+        <Container className={cls.header()}>
+            <div className={cls.header('section')}>
                 <Img
                     alt="Netflix"
-                    className={cls('imageContainer')}
-                    imageClassName={cls('image')}
+                    className={cls.logo()}
+                    imageClassName={cls.logo('image')}
                     src={Logo} />
-                {profile && withNavigation && (
-                    <span>Navigation</span>
-                )}
+                {profile && withNavigation && <Navigation />}
             </div>
-            <div className={cls('section')}>
+            <div className={cls.header('section')}>
                 {children}
             </div>
         </Container>

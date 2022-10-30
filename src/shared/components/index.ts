@@ -1,4 +1,6 @@
 export * from './ErrorBoundary';
+export * from './ErrorBoundary/ErrorScreen';
+export * from './ErrorBoundary/ErrorFallback';
 export * from './H1';
 export * from './H2';
 export * from './H3';

@@ -24,7 +24,11 @@ export type UnlockModalContentProps = {
     onSuccess: () => void;
 };
 
-const cls = bem('unlock-modal', { namespace: 'nh-widgets-profiles' });
+const cls = {
+    modal: bem('unlock-modal', { namespace: 'nh-widgets-profiles' }),
+    modalClose: bem('unlock-modal-close', { namespace: 'nh-widgets-profiles' }),
+    pinPad: bem('unlock-modal-pin-pad', { namespace: 'nh-widgets-profiles' })
+};
 
 const MESSAGES = {
     status: 'Profile Lock is currently on.',
@@ -114,17 +118,17 @@ const UnlockModalContent = observer((props: UnlockModalContentProps) => {
     });
 
     return (
-        <div className={cls('content')}>
-            <P className={cls('status')} text={MESSAGES.status} />
+        <div className={cls.modal('content')}>
+            <P className={cls.modal('status')} text={MESSAGES.status} />
             <H3
-                className={cls(
+                className={cls.modal(
                     'title',
                     { error: isPinError })}
                 text={MESSAGES[isPinError
                     ? 'errorTitle'
                     : 'title']} />
-            <div className={cls('pinPad')}>
-                <div className={cls('pinContainer', { error: isPinError })}>
+            <div className={cls.pinPad()}>
+                <div className={cls.pinPad('container', { error: isPinError })}>
                     {pin.map((pinNumber: string, pinNumberIndex: number) => (
                         <PinField
                             key={PIN_IDS[pinNumberIndex]}
@@ -138,7 +142,7 @@ const UnlockModalContent = observer((props: UnlockModalContentProps) => {
                     ))}
                 </div>
             </div>
-            <p className={cls('validation')}>
+            <p className={cls.modal('validation')}>
                 {pinValidation}
             </p>
         </div>
@@ -150,15 +154,15 @@ export const getUnlockModalProps = (params: GetUnlockModalPropsParams): ModalPro
 
     return {
         hoc: withUnlockStore,
-        className: cls(),
-        closeButtonClassName: cls('close'),
+        className: cls.modal(),
+        closeButtonClassName: cls.modalClose(),
         closeButtonIconProps: {
-            className: cls('closeIcon')
+            className: cls.modalClose('icon')
         },
         content: (
             <UnlockModalContent lock={lock} onClose={onClose} onSuccess={onSuccess} />
         ),
-        paperClassName: cls('paper'),
+        paperClassName: cls.modal('paper'),
         width: 'max',
         withCloseButton: true
     };
