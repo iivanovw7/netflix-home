@@ -5,16 +5,20 @@
 
 import { createContext } from 'react';
 
+import type { ModalManagerRef } from '../components';
 import type { ErrorBoundaryContext} from '../components/ErrorBoundary/ErrorBoundaryContext';
 import { errorBoundaryContext } from '../components/ErrorBoundary/ErrorBoundaryContext';
+import { defaultModalContext } from '../components/Modal/modalContext';
 
 export type ContextValue = {
-    errorBoundary: ErrorBoundaryContext
+    modal: ModalManagerRef;
+    errorBoundary: ErrorBoundaryContext;
 };
 
 export type SetContext = (value: ContextValue) => ContextValue;
 
 export const ctx = {
+    modal: defaultModalContext,
     errorBoundary: errorBoundaryContext
 };
 

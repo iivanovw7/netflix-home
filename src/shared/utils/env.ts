@@ -15,6 +15,7 @@ export type Env = {
 
 /**
  * Indicates whether the `theme` is set to dark or not.
+ * @function
  * @category env
  * @return {boolean}
  *  returns `true` if is in dark mode.

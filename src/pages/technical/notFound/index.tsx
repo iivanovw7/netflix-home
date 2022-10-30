@@ -4,25 +4,21 @@
  */
 import { observer } from 'mobx-react-lite';
 import type { ReactElement } from 'react';
-import React, { useCallback } from 'react';
+import React from 'react';
 
-import { Button, H1, P, Strong } from '../../../shared/components';
-import { navigate } from '../../../shared/globalStores/RouterStore';
-import { bem, errorCodeMap, getErrorCodeString } from '../../../shared/utils';
+import { ErrorScreen } from '../../../shared/components';
+import { bem, errorCodeMap } from '../../../shared/utils';
 import { Header } from '../../../widgets';
-import { routePath } from '../../routes';
 
 import './index.pcss';
 
-const cls = bem('not-found');
+const cls = bem('not-found', { namespace: 'nh-components' });
 
-const { PAGE_NOT_FOUND } = errorCodeMap;
+const { NOT_FOUND } = errorCodeMap;
 
 const MESSAGES = {
     title: 'Lost your way?',
-    body: 'Sorry, we can`t find that page. You`ll find lots to explore on the home page.',
-    button: 'Netflix Home',
-    code: 'Error Code '
+    subtitle: 'Sorry, we can`t find that page. You`ll find lots to explore on the home page.',
 };
 
 /**
@@ -33,26 +29,15 @@ const MESSAGES = {
  */
 export const NotFound = observer((): ReactElement => {
 
-    const handleHomeClick = useCallback(() => {
-        navigate.redirect(routePath.home);
-    }, []);
-
     return (
-        <div className={cls('page')}>
+        <div className={cls()}>
             <Header />
-            <div className={cls('content')}>
-                <H1 className={cls('title')} text={MESSAGES.title} />
-                <div className={cls('contentBody')}>
-                    <P className={cls('message')} text={MESSAGES.body} />
-                    <Button color="secondary" text={MESSAGES.button} onClick={handleHomeClick} />
-                </div>
-                <div className={cls('contentFooter')}>
-                    <span className={cls('errorCode')}>
-                        {MESSAGES.code}
-                        <Strong text={getErrorCodeString(PAGE_NOT_FOUND)} />
-                    </span>
-                </div>
-            </div>
+            <ErrorScreen
+                className={cls('content')}
+                error={NOT_FOUND}
+                subtitle={MESSAGES.subtitle}
+                title={MESSAGES.title}
+            />
         </div>
     );
 });

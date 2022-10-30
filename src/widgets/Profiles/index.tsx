@@ -1,25 +1,28 @@
 /**
  * Module contains `Profiles` page.
- * @module widgets/profiles/index.styled
+ * @module widgets/Profiles/index.styled
  */
 
 import { observer } from 'mobx-react-lite';
 import type { ReactElement } from 'react';
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 
 import type { LinkProps } from '../../shared/components';
-import { Button, Container, H1 } from '../../shared/components';
+import { Button, Container, H1, AVATARS } from '../../shared/components';
+import { ctx } from '../../shared/context';
 import { globalStore } from '../../shared/globalStores';
 import type { TProfile } from '../../shared/globalStores/ProfileStore';
 import { bem, uuid } from '../../shared/utils';
 
+import { isValidCode } from './model/utils';
 import { Profile } from './profile';
+import { getUnlockModalProps } from './unlockModal';
 
 import './index.pcss';
 
 const cls = {
-    page: bem('page'),
-    profiles: bem('profiles')
+    page: bem('page', { namespace: 'nh-widgets-profiles' }),
+    box: bem('box', { namespace: 'nh-widgets-profiles-page' })
 };
 
 const MESSAGES = {
@@ -30,7 +33,7 @@ const MESSAGES = {
 /**
  * `Profiles` page.
  * @constructor
- * @name pages/profiles/Profiles
+ * @name widgets/Profiles
  * @method
  * @return {ReactElement} React component with children.
  */
@@ -43,11 +46,29 @@ export const Profiles = observer((): ReactElement => {
         },
     } = globalStore;
 
-    const handleClick = useCallback((profile: TProfile): LinkProps['onClick'] => () => {
-        setProfile(profile);
+    const [loaded, setLoaded] = useState(false);
 
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+    const handleLoaded = useCallback(() => {
+        setLoaded(true);
     }, []);
+
+    const handleClick = useCallback((profile: TProfile): LinkProps['onClick'] => () => {
+        const { lock } = profile;
+
+        if (lock && isValidCode(lock)) {
+            ctx.modal.open(getUnlockModalProps({
+                lock,
+                onClose: ctx.modal.close,
+                onSuccess: () => {
+                    setProfile(profile);
+                    ctx.modal.close();
+                }
+            }));
+        }
+        else {
+            setProfile(profile);
+        }
+    }, [setProfile]);
 
     useEffect(() => {
         // eslint-disable-next-line no-void
@@ -58,21 +79,22 @@ export const Profiles = observer((): ReactElement => {
     return (
         <div className={cls.page()}>
             <div className={cls.page('content')}>
-                <Container className={cls.page('container')}>
-                    <div className={cls.profiles()}>
-                        <H1 className={cls.profiles('title')} text={MESSAGES.title} />
-                        <ul className={cls.profiles('list')}>
+                <Container className={cls.page('container', { loaded })}>
+                    <div className={cls.box()}>
+                        <H1 className={cls.box('title')} text={MESSAGES.title} />
+                        <ul className={cls.box('list')}>
                             {profiles.map((profile, index) => (
                                 <Profile
                                     key={uuid()}
-                                    index={index}
+                                    avatar={AVATARS[index]}
                                     profile={profile}
-                                    onClick={handleClick(profile)} />
+                                    onClick={handleClick(profile)}
+                                    onLoaded={handleLoaded} />
                             ))}
                         </ul>
-                        <div className={cls.profiles('footer')}>
+                        <div className={cls.box('footer')}>
                             <Button
-                                className={cls.profiles('button')}
+                                className={cls.box('button')}
                                 color="tertiary"
                                 fill="outlined"
                                 text={MESSAGES.button} />

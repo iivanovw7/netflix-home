@@ -8,7 +8,6 @@ import React from 'react';
 import { Router } from 'react-router-dom';
 
 import { navigate, routerStore } from '../../shared/globalStores/RouterStore';
-import type { HFC } from '../../shared/types/util';
 import { setDisplayName } from '../../shared/utils';
 
 const {
@@ -29,13 +28,13 @@ export const withRouter: HFC = (Component) => {
     return setDisplayName('BrowserRouter')(observer((props): ReactElement => {
         return (
             <Router
-                location={routerStore.location}
                 navigator={{
                     go,
                     push,
                     replace: redirect,
                     createHref
                 }}
+                location={routerStore.location}
             >
                 <Component {...props} />
             </Router>

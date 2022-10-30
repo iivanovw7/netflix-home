@@ -14,7 +14,7 @@ export type H1Props = PropsWithChildren<{
     className?: string;
 }>;
 
-const cls = bem('header-1');
+const cls = bem('header-1', { namespace: 'nh-components' });
 
 /**
  * `H1` component.

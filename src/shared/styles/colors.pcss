@@ -30,6 +30,7 @@
     --lime-a400: #c6ff00;
     --lime-a700: #aeea00;
     --light-green-a400: #76ff03;
+    --yellow-200: #e6b209;
     --orange-500: #ff9800;
     --orange-700: #f57c00;
     --purple-100: #e1bee7;
@@ -69,9 +70,14 @@
 
     /* Theme colors for `dark` theme. */
     @media (prefers-color-scheme: dark) {
+        --shadow: 0 2px 10px rgba(136, 154, 201, 30%);
+        --shadow-modals: 0 4px 20px rgba(66, 69, 115, 30%);
+
         /** Backgrounds */
+        --background-content-color: var(--grey-900);
         --background-global-color: var(--grey-950);
         --background-header-color: var(--grey-1200);
+        --background-modal-backdrop-color: rgba(13, 28, 46, 40%);
 
         /** Button primary */
         --primary-button-color: var(--grey-100);
@@ -120,7 +126,7 @@
         /** State colors */
         --alert-color: var(--red-650);
         --secondary-color: var(--lime-a700);
-        --warning-color: var(--orange-700);
+        --warning-color: var(--yellow-200);
     }
 }
 

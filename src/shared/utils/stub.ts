@@ -7,12 +7,14 @@
 
 /**
  * No operation function.
+ * @function
  * @category Stub
  */
 export const noop: AnyFunction = () => {};
 
 /**
  * No operation curried function.
+ * @function
  * @category Stub
  * @return {Function} empty function.
  */

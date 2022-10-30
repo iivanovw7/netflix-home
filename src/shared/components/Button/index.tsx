@@ -12,7 +12,7 @@ import { PlainButton } from './PlainButton';
 
 import './index.pcss';
 
-const cls = bem('button');
+const cls = bem('button', { namespace: 'nh-components' });
 
 export type ButtonProps = PlainButtonProps & {
     /** @default 'primary' */
@@ -34,30 +34,31 @@ export type ButtonProps = PlainButtonProps & {
  * @return {ReactElement} React component with children.
  */
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
-    const { className, color, fill, fluid, ...plainButtonProps } = props;
+    const {
+        className,
+        color = 'primary',
+        fill = 'full',
+        fluid = false,
+        ...plainButtonProps
+    } = props;
 
     return (
         <PlainButton
+            ref={ref}
             className={classNames(
                 cls({
                     fluid,
                     outlined: fill === 'outlined',
+                    fillNone: fill === 'none',
                     secondary: color === 'secondary',
                     tertiary: color === 'tertiary'
                 }),
                 className
             )}
-            ref={ref}
             {...plainButtonProps}
         />
     );
 });
 
 Button.displayName = 'Button';
-
-Button.defaultProps = {
-    color: 'primary',
-    fill: 'full',
-    fluid: false
-};
 

@@ -16,7 +16,7 @@ import { withProviders } from './providers';
  * @constructor
  * @return {ReactElement} React component with children.
  */
-export const App = withProviders(observer((): ReactElement => {
+export const App = observer(withProviders((): ReactElement => {
     const {
         profile: { loadProfile },
     } = globalStore;

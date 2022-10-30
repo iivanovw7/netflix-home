@@ -15,7 +15,7 @@ export type PProps = PropsWithChildren<{
     className?: string;
 }>;
 
-const cls = bem('paragraph');
+const cls = bem('paragraph', { namespace: 'nh-components' });
 
 /**
  * Creates `P` component.

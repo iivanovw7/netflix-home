@@ -14,7 +14,7 @@ export type ContainerProps = PropsWithChildren<{
     className?: string;
 }>;
 
-const cls = bem('container');
+const cls = bem('container', { namespace: 'nh-components' });
 
 /**
  * `Container` component.

@@ -1,0 +1,83 @@
+/**
+ * Module contains Dialog classes.
+ * @module shared/components/Modal/Dialog.pcss
+ */
+
+.nh-components-dialog {
+    &__backdrop {
+        --scroll-bar-size: $scroll-bar-size-normal;
+
+        position: fixed;
+        z-index: zIndex(global, overlay);
+        display: flex;
+        align-items: flex-start;
+        height: 100%;
+        overflow: hidden scroll;
+        background-color: var(--background-modal-backdrop-color);
+        inset: 0;
+        animation: fade-in 225ms 1 forwards;
+
+        &--isClosing {
+            animation: fade-out 195ms 1 forwards;
+        }
+    }
+
+    &__paper {
+        position: relative;
+        width: 496px;
+        max-width: 100vw;
+        max-height: 100vh;
+        margin: auto;
+        overflow: hidden;
+        background-color: var(--background-global-color);
+        border-radius: $border-radius;
+        outline: 0;
+        box-shadow: var(--shadow-modals);
+        transition: $transition-background-color;
+
+        &--transitionWidth {
+            transition: $transition-background-color, $transition-width;
+        }
+
+        &--outerScroll {
+            height: max-content;
+            max-height: none;
+
+            .modal {
+                max-height: none;
+            }
+        }
+
+        &--widthLarge {
+            width: 696px;
+        }
+
+        &--widthAuto {
+            width: auto;
+        }
+
+        &--widthMax {
+            width: 100%;
+        }
+    }
+}
+
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fade-out {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}

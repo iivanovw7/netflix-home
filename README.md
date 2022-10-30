@@ -20,7 +20,6 @@ Will contain netflix-like browse page.
 
 - [NodeJS 16.15.1](https://nodejs.org/en/)
 - [PNPM 7.x](https://pnpm.io/)
-- [YARN 1.22.x](https://classic.yarnpkg.com/en/)
 
 ---
 ### Libs
@@ -42,7 +41,6 @@ Technologies used
 - Clone repository: <br />
   `git clone https://github.com/iivanovw7/netflix-home.git` <br />
 
-
 ---
 ### Installation
 
@@ -60,41 +58,28 @@ Technologies used
   `pnpm run dev` <br />
 - Create production build: <br />
   `pnpm run build` <br />
-
-[//]: # (- pnpm production build: <br />)
-
-[//]: # (  `pnpm run view` <br />)
-- Create jsdoc in `build/doc`: <br />
+- Serve last production build <br />
+  `pnpm run view` <br />
+- Create jsdoc in `build/doc` <br />
   `pnpm run doc` <br />
-
-[//]: # (- Lint `*.pcss`, `*.css` and `*.js` project files: <br />)
-
-[//]: # (  `pnpm run lint` <br />)
-
-[//]: # (- Lint `*.pcss`, `*.css` project files: <br />)
-
-[//]: # (  `pnpm run lint-css` <br />)
-
-[//]: # (- Lint `*.styled.js` project files &#40;`css` in `js`&#41;: <br />)
-
-[//]: # (  `pnpm run lint-js` <br />)
-
-[//]: # (- Lint `*.js` and `*.jsx` project files: <br />)
-
-[//]: # (  `pnpm run lint-eslint` <br />)
-
-[//]: # (- Update git hooks after config changes <br />)
-
-[//]: # (  `pnpm run git-hooks` <br />)
-
+- Lint `*.pcss`, `*.css` and `*.js` project files: <br />
+  `pnpm run lint` <br />
+- Lint `*.pcss`, `*.css` project files: <br />
+  `pnpm run lint-css` <br />
+- Lint `*.ts`, `*.tsx`, `*.js`, `*.jsx` project files: <br />
+  `pnpm run lint-eslint` <br />
+- Update simple git hooks after config changes <br />
+  `npx simple-git-hooks` <br />
+- Run all tests <br />
+  `pnpm run test` <br />
+- Run all tests with coverage report <br />
+  `pnpm run coverage` <br />
+-
 ---
 ### Configuration
 
 `./.env` in used for storing private keys:
 (Later it will contain api keys, for now empty file should be created to avoid bundler errors.)
-
-```
-```
 
 Additional arguments could be added to `pnpm run dev`, or `pnpm run build` after `--`:
 * `--source-maps` {string | false} [true] - creates [source maps](https://webpack.js.org/configuration/devtool/).
@@ -105,12 +90,17 @@ Additional arguments could be added to `pnpm run build`:
 * `--stats` {string | boolean} [false] - creates `stats.json` file inside `./build` folder.
 * `--source-maps` {string | false} [false] - creates [source maps](https://webpack.js.org/configuration/devtool/).
 
+Additional arguments could be added to `test` or `coverage` scripts.
+* `--verbose` - add verbose cli report during run.
+* `--watch` - execute test run in `watch` mode.
+
 Examples:
 * `pnpm run build -- --source-maps=true`
 * `pnpm run build -- --stats`
-* `pnpm run dev --trace-deprecation`
+* `pnpm run dev -- --trace-deprecation`
 * `pnpm run view -- --port=9000`
 * `pnpm run dev -- --port=9000`
+* `pnpm run test -- --verbose --watch`
 
 #### Application ports.
 
@@ -156,6 +146,10 @@ Contains information about main configuration files and folders.
 - Test production view script. <br/>
 - ~~Configure js/ts linter.~~ <br/>
 - ~~Configure css linter.~~ <br/>
+- Add global loader and spinner <br/>
+- Setup unit tests <br />
+- Setup integration tests <br />
+- Setup e2e tests <br />
 - Browse page: Header controls <br/>
 - Browse page: Assets requests <br/>
 - Browse page: Playable header <br/>
@@ -169,4 +163,5 @@ Contains information about main configuration files and folders.
 
 - **[MIT license](http://opensource.org/licenses/mit-license.php)**
 - Copyright 2022 © <a href="https://github.com/iivanovw7/netflix-home" target="_blank">netflix-home</a>
+
 

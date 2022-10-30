@@ -27,10 +27,10 @@ const {
 export const Routing = observer((): ReactElement => {
     return (
         <Routes>
-            <Route path={browse} element={<Browse />} />
-            <Route path={notFound} element={<NotFound />} />
-            <Route path={home} element={<Navigate replace to={browse} />} />
-            <Route path="/*" element={<Navigate replace to={notFound} />} />
+            <Route element={<Browse />} path={browse} />
+            <Route element={<NotFound />} path={notFound} />
+            <Route element={<Navigate replace to={browse} />} path={home} />
+            <Route element={<Navigate replace to={notFound} />} path="/*" />
         </Routes>
     );
 });

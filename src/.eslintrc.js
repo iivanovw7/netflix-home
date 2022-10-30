@@ -1,4 +1,5 @@
 const path = require('path');
+
 module.exports = {
     parserOptions: {
         babelOptions: { configFile: path.resolve(__dirname, '../babel.config.js') },
@@ -26,6 +27,7 @@ module.exports = {
             },
             rules: {
                 '@typescript-eslint/no-unsafe-call': 0,
+                '@typescript-eslint/unbound-method': 0,
                 '@typescript-eslint/no-unsafe-assignment': 0,
                 '@typescript-eslint/no-unsafe-member-access': 0,
                 '@typescript-eslint/naming-convention': 0,
@@ -38,7 +40,13 @@ module.exports = {
                 'react/prop-types': 0,
                 'arrow-body-style': 0,
                 'react-hooks/rules-of-hooks': 'error',
-                'react-hooks/exhaustive-deps': 'warn'
+                'react-hooks/exhaustive-deps': 'warn',
+                'react/jsx-sort-props': [2, {
+                    'callbacksLast': true,
+                    'shorthandFirst': true,
+                    'multiline': 'first',
+                    'reservedFirst': true,
+                } ]
             },
             settings: {
                 'import/resolver': {

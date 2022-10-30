@@ -18,8 +18,8 @@ import { withTheme } from './withTheme';
  * @return {function(*)} all HOC`s combined.
  */
 export const withProviders = compose(
+    withErrorBoundary,
     withContext,
     withRouter,
-    withErrorBoundary,
     withTheme
 );

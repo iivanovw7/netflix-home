@@ -1,11 +1,9 @@
 /**
- * Module contains styled elements.
+ * Module header styles.
  * @module widgets/Header/index.pcss
  */
 
-@import './../../shared/styles/fonts.pcss';
-
-.header {
+.nh-widgets-header {
     @mixin justifyAlignFlex space-between;
 
     position: fixed;
@@ -18,20 +16,21 @@
     padding: 0 4%;
     background-color: opacify(var(--black), 0.97);
 
-    &__image {
-        margin-right: 25px;
-
-        & > img {
-            max-height: 2.2em;
-        }
-    }
-
     &__section {
         @mixin justifyAlignFlex;
     }
 
     @mixin media lg-up {
         height: $header-height-desktop;
+    }
+}
+
+.nh-widgets-header-logo {
+    width: auto;
+    margin-right: 25px;
+
+    &__image {
+        max-height: 2.2em;
     }
 }
 

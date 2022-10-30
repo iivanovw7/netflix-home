@@ -1,4 +1,9 @@
-import type { Dispatch, MutableRefObject, SetStateAction} from 'react';
+/**
+ * Module contains useStateRef hook.
+ * @module shared/hooks/useStateRef
+ */
+
+import type { Dispatch, MutableRefObject, SetStateAction } from 'react';
 import { useRef, useState } from 'react';
 
 type UseStateRef = {
@@ -9,6 +14,7 @@ type UseStateRef = {
 /**
  * Combines `useState` with `useRef`.
  * @function
+ * @category hooks
  * @template State
  * @param {State | function} [initialState] - `useState` initial state.
  * @return {Array.<State, Dispatch<SetStateAction<State>>, Readonly<MutableRefObject<State>>>} `useState` return type with `ref`.

@@ -2,18 +2,16 @@
  * Module contains global application profile store.
  * @module shared/globalStores/ProfileStore
  */
-
 import type { Instance } from 'mobx-state-tree';
 import { flow, getEnv, types } from 'mobx-state-tree';
 
-import profilesStub from '../../../assets/json/profilesStub.json';
+import PROFILES_STUB from '../../../assets/json/profilesStub.json';
 import getLogger from '../log';
 import {
     getProfile as getLocalStorageProfile,
     setProfile as setLocalStorageProfile
 } from '../storage/profile';
-import { wait } from '../utils';
-
+import { makeApiRequest, wait } from '../utils';
 
 declare global {
     interface IGlobalStore {
@@ -26,13 +24,17 @@ const logger = getLogger('ProfileStore');
 const Profile = types.model('Profile', {
     id: types.string,
     name: types.string,
-    lock: types.union(types.maybe(types.number), types['null'])
+    lock: types.union(types.maybe(types.string), types['null'])
 });
 
 export type TProfile = {
     id: string;
     name: string;
-    lock: Maybe<number>;
+    lock: Maybe<string>;
+};
+
+export type ProfileModelEnv = {
+    fetch: () => Promise<never>
 };
 
 export const ProfileModel = types
@@ -41,9 +43,8 @@ export const ProfileModel = types
         profiles: types.optional(types.array(Profile), []),
     })
     .views((_self) => ({
-        get fetch(): () => Promise<never> {
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-            return getEnv(_self).fetch;
+        get fetch(): ProfileModelEnv['fetch'] {
+            return getEnv<ProfileModelEnv>(_self).fetch;
         },
     }))
     .actions((_self) => {
@@ -58,17 +59,26 @@ export const ProfileModel = types
             }
         };
 
+        /**
+         *  Updates user`s profiles.
+         *  @param {Array.<Profile>} profiles - profiles list.
+         */
         const updateProfiles = (profiles): void => {
             _self.profiles = profiles;
         };
 
+        /**
+         *  Fetches user`s profiles STUB.
+         */
         const loadProfiles = flow(function *loadProfiles() {
-            try {
-                updateProfiles(yield _self.fetch());
-            }
-            catch (err: unknown) {
-                logger.error('Failed to load profiles ', err);
-            }
+            updateProfiles(yield makeApiRequest({
+                request: async () => {
+                    return await _self.fetch();
+                },
+                onError: (errorData: unknown) => {
+                    logger.error('Failed to load profiles ', errorData);
+                },
+            }));
         });
 
         /**
@@ -93,7 +103,8 @@ export const profileStore = ProfileModel.create(
         profiles: []
     },
     {
-        fetch: () => wait(profilesStub)
+        // TODO: Replace stub with api.
+        fetch: () => wait(PROFILES_STUB)
     }
 );
 

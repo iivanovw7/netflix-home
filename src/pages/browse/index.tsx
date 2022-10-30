@@ -6,7 +6,7 @@ import { observer } from 'mobx-react-lite';
 import type { ReactElement } from 'react';
 import React from 'react';
 
-import { withProfileCheck } from '../../shared/components/Hoc';
+import { withProfileCheck } from '../../shared/hoc/withProfileCheck';
 import { Header } from '../../widgets';
 
 /**

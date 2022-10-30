@@ -29,6 +29,7 @@ module.exports = function getConfig(config) {
                 darkSelector: '[data-theme="dark"]',
                 lightSelector: '[data-theme="light"]'
             }),
+            require('postcss-calc'),
             require('postcss-url')({
                 url: 'rebase',
                 useHash: true

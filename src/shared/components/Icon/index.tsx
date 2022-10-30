@@ -3,14 +3,14 @@
  * @module shared/components/Icon
  */
 import classNames from 'classnames';
-import { findOr } from 'ramda-adjunct';
 import type { CSSProperties, ReactElement } from 'react';
 import React from 'react';
 // eslint-disable-next-line import/no-unresolved
 import icons from 'virtual:svg-icons-names';
 
+import { bem, findOr } from '../../utils';
+
 import './index.pcss';
-import { bem } from '../../utils';
 
 export type IconProps = {
     fill?: string;
@@ -22,7 +22,7 @@ export type IconProps = {
     className?: string;
 };
 
-const cls = bem('icon');
+const cls = bem('icon', { namespace: 'nh-components' });
 const PREFIX = 'icon';
 
 /**
@@ -33,7 +33,7 @@ const PREFIX = 'icon';
 const getIcon = (id: string): string => {
     return findOr(
         `${PREFIX}-no-icon`,
-        (val: string) => val === `${PREFIX}-${id}`,
+        (val) => val === `${PREFIX}-${id}`,
         icons
     );
 };
@@ -47,7 +47,15 @@ const getIcon = (id: string): string => {
  * @constructor
  */
 export const Icon = (props: IconProps): ReactElement => {
-    const { name: iconName, fill, width, height, rotate, size, className } = props;
+    const {
+        name: iconName,
+        fill = 'currentColor',
+        width,
+        height,
+        rotate,
+        size,
+        className
+    } = props;
 
     const style: CSSProperties = {
         width: width || size,
@@ -61,14 +69,9 @@ export const Icon = (props: IconProps): ReactElement => {
 
     return (
         <div className={classNames(cls(), className)}>
-            <svg style={style} aria-hidden="true">
-                <use href={`#${getIcon(iconName)}`} fill={fill} />
+            <svg aria-hidden="true" style={style}>
+                <use fill={fill} href={`#${getIcon(iconName)}`} />
             </svg>
         </div>
     );
 };
-
-Icon.defaultProps = {
-    fill: 'currentColor',
-};
-

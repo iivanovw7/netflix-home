@@ -1,11 +1,14 @@
-import type { FC } from 'react';
+/**
+ * Module contains utility application types.
+ * @module shared/types/util
+ */
+export type Size = 'small' | 'medium' | 'large';
 
-export type HFC = <Props extends object>(Component: FC<Props>) => FC<Props>;
+export type Color = 'primary' | 'secondary' | 'danger';
 
-export type DotPrefix<T extends string> = T extends '' ? '' : `.${T}`;
+export type Fill = 'full' | 'outline' | 'none';
 
-export type DotNestedKeys<T> = (
-    T extends object
-        ? { [K in Exclude<keyof T, symbol>]: `${K}${DotPrefix<DotNestedKeys<T[K]>>}` }[Exclude<keyof T, symbol>]
-        : ''
-) extends infer D ? Extract<D, string> : never;
+// TODO: horizontal and vertical alignment
+export type Alignment = 'left' | 'center' | 'right';
+
+
