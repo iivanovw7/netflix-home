@@ -10,13 +10,13 @@ import React, { useCallback, useEffect, useState } from 'react';
 import type { LinkProps } from '../../shared/components';
 import { Button, Container, H1, AVATARS } from '../../shared/components';
 import { ctx } from '../../shared/context';
-import { globalStore } from '../../shared/globalStores';
-import type { TProfile } from '../../shared/globalStores/ProfileStore';
+import { stores } from '../../shared/stores';
+import type { TProfile } from '../../shared/stores/ProfileStore';
 import { bem, uuid } from '../../shared/utils';
 
 import { isValidCode } from './model/utils';
-import { Profile } from './profile';
-import { getUnlockModalProps } from './unlockModal';
+import { Profile } from './Profile';
+import { getUnlockModalProps } from './UnlockModal';
 
 import './index.pcss';
 
@@ -44,7 +44,7 @@ export const Profiles = observer((): ReactElement => {
             loadProfiles,
             setProfile
         },
-    } = globalStore;
+    } = stores;
 
     const [loaded, setLoaded] = useState(false);
 

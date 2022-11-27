@@ -12,9 +12,9 @@ import { createRoot } from 'react-dom/client';
 import { App } from './app';
 import { reportWebVitals } from './reportWebVitals';
 import config from './shared/config';
-import { initGlobalStore } from './shared/globalStores';
 import { setLogLevel } from './shared/log';
 import { setMainStore } from './shared/storage';
+import { initStore } from './shared/stores';
 import { setBemConfig } from './shared/utils';
 
 const { logLevel } = config;
@@ -30,7 +30,7 @@ setBemConfig({
     elementDelimiter: '__',
 });
 
-initGlobalStore();
+initStore();
 
 /**
  *  Renders application at specified mount point.

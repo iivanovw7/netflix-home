@@ -1,6 +1,6 @@
 /**
  * Module contains global application profile store.
- * @module shared/globalStores/ProfileStore
+ * @module shared/stores/ProfileStore
  */
 import type { Instance } from 'mobx-state-tree';
 import { flow, getEnv, types } from 'mobx-state-tree';
@@ -24,13 +24,15 @@ const logger = getLogger('ProfileStore');
 const Profile = types.model('Profile', {
     id: types.string,
     name: types.string,
-    lock: types.union(types.maybe(types.string), types['null'])
+    lock: types.union(types.maybe(types.string), types['null']),
+    index: types.number
 });
 
 export type TProfile = {
     id: string;
     name: string;
     lock: Maybe<string>;
+    index: number;
 };
 
 export type ProfileModelEnv = {
@@ -103,7 +105,7 @@ export const profileStore = ProfileModel.create(
         profiles: []
     },
     {
-        // TODO: Replace stub with api.
+        // TODO: Replace stub with API.
         fetch: () => wait(PROFILES_STUB)
     }
 );

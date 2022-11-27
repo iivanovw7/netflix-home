@@ -5,7 +5,7 @@
 import React from 'react';
 
 import { Profiles } from '../../widgets';
-import { globalStore } from '../globalStores';
+import { stores } from '../stores';
 import { setDisplayName } from '../utils';
 
 /**
@@ -17,7 +17,7 @@ import { setDisplayName } from '../utils';
  */
 export const withProfileCheck: HFC = (Component?) => {
     return setDisplayName('withProfileCheck')((props) => {
-        const { profile } = globalStore.profile;
+        const { profile } = stores.profile;
 
         return profile
             ? <Component {...props} />

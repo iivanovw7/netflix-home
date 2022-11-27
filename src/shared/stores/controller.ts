@@ -1,6 +1,6 @@
 /**
  * Module contains global stores controller.
- * @module shared/globalStores
+ * @module shared/stores/controller
  */
 
 export const controller = {

@@ -12,27 +12,27 @@ import { Icon } from '../Icon';
 
 import './PlainButton.pcss';
 
-export type PlainButtonProps =
-    PropsWithChildren<{
-        customIcon?: ReactNode;
-        className?: string;
-        dataId?: string | number;
-        disabled?: boolean;
-        icon?: IconProps;
-        /** @default 'start' */
-        iconPosition?: 'start' | 'end';
-        /** @default 'horizontal' */
-        layout?: 'horizontal' | 'vertical';
-        /** @default 'medium' */
-        size?: 'small' | 'medium' | 'large';
-        text?: ReactNode,
-        /** @default 'center' */
-        textAlign?: 'left' | 'right' | 'center';
-        /** @default 'button' */
-        type?: 'button' | 'submit' | 'reset';
-        onClick?: () => void;
-    }>
-    & Pick<ButtonHTMLAttributes<HTMLButtonElement>, 'type' | 'id' | 'name' | 'title' | 'style' | 'onMouseEnter' | 'onMouseLeave'>;
+export type ButtonAttributeProps = Pick<ButtonHTMLAttributes<HTMLButtonElement>, 'type' | 'id' | 'name' | 'title' | 'style' | 'onMouseEnter' | 'onMouseLeave'>;
+
+export type PlainButtonProps = ButtonAttributeProps & PropsWithChildren<{
+    customIcon?: ReactNode;
+    className?: string;
+    dataId?: string | number;
+    disabled?: boolean;
+    icon?: IconProps;
+    /** @default 'start' */
+    iconPosition?: 'start' | 'end';
+    /** @default 'horizontal' */
+    layout?: 'horizontal' | 'vertical';
+    /** @default 'medium' */
+    size?: 'small' | 'medium' | 'large';
+    text?: ReactNode,
+    /** @default 'center' */
+    textAlign?: 'left' | 'right' | 'center';
+    /** @default 'button' */
+    type?: 'button' | 'submit' | 'reset';
+    onClick?: () => void;
+}>;
 
 const cls = bem('plain-button', { namespace: 'nh-components' });
 

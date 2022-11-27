@@ -35,7 +35,7 @@ export type LinkProps = PropsWithChildren<{
     underline?: 'hover' | 'always' | 'never';
     variant?: string;
     onClick?: MouseEventHandler<TLinkElement>;
-}> & Pick<AnchorHTMLAttributes<HTMLAnchorElement>, 'download' | 'href' | 'title'>;
+}> & Pick<AnchorHTMLAttributes<HTMLAnchorElement>, 'download' | 'href' | 'title' | 'tabIndex'>;
 
 const cls = bem('link', { namespace: 'nh-components' });
 

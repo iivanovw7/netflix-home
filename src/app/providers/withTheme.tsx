@@ -5,7 +5,7 @@
 import type { ReactElement} from 'react';
 import React, { useEffect } from 'react';
 
-import { settingsStore } from '../../shared/globalStores/SettingsStore';
+import { settingsStore } from '../../shared/stores/SettingsStore';
 import { env, setDisplayName } from '../../shared/utils';
 
 const { html } = env;

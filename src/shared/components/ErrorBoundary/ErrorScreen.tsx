@@ -10,7 +10,7 @@ import React, { useCallback } from 'react';
 import { routePath } from '../../../pages/routes';
 import { Button, H1, P, Strong } from '../../../shared/components';
 import { bem, getErrorCodeString } from '../../../shared/utils';
-import { navigate } from '../../globalStores/RouterStore';
+import { navigate } from '../../stores/RouterStore';
 import type { ErrorData } from '../../utils';
 
 import './ErrorScreen.pcss';

@@ -37,10 +37,7 @@ module.exports = function getViteCommonConfig(env) {
                 inject: 'body-last'
             }),
             imagetools({
-                include: path.resolve(
-                    __dirname,
-                    './../../assets/img/**/*.{jpeg,jpg,png,webp,gif}?'
-                )
+                include: path.resolve(__dirname, './../../assets/img/**/*.{jpeg,jpg,png,webp,gif}?')
             }),
         ],
         root: path.resolve(__dirname, './../../'),

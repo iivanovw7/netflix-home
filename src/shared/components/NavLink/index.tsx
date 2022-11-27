@@ -35,10 +35,22 @@ export const NavLink = forwardRef<HTMLAnchorElement, NavLinkProps>((props, ref) 
         className
     } = props;
 
+    const linkClassName = classNames(cls({ disabled }), className);
+
+    if (disabled) {
+        return (
+            <div className={linkClassName}>
+                <span className={cls('text')}>
+                    {text}
+                </span>
+            </div>
+        );
+    }
+
     return (
         <RouterLink
             ref={ref}
-            className={classNames(cls({ disabled }), className)}
+            className={linkClassName}
             replace={replace}
             to={to}>
             {({ isActive }) => (

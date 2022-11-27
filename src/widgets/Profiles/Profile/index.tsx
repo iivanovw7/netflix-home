@@ -7,7 +7,7 @@ import React, { useEffect, useState } from 'react';
 
 import { Icon, Img, Link } from '../../../shared/components';
 import type { LinkProps } from '../../../shared/components';
-import type { TProfile } from '../../../shared/globalStores/ProfileStore';
+import type { TProfile } from '../../../shared/stores/ProfileStore';
 import { bem } from '../../../shared/utils';
 
 import './index.pcss';

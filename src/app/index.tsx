@@ -7,7 +7,7 @@ import type { ReactElement } from 'react';
 import React, { useLayoutEffect } from 'react';
 
 import { Routing } from '../pages';
-import { globalStore } from '../shared/globalStores';
+import { stores } from '../shared/stores';
 
 import { withProviders } from './providers';
 
@@ -19,7 +19,7 @@ import { withProviders } from './providers';
 export const App = observer(withProviders((): ReactElement => {
     const {
         profile: { loadProfile },
-    } = globalStore;
+    } = stores;
 
     useLayoutEffect(loadProfile, [loadProfile]);
 

@@ -16,7 +16,9 @@ module.exports = {
         '<rootDir>//test',
     ],
     moduleNameMapper: {
-        '\\.(css|less|scss)$': 'identity-obj-proxy',
+        '\\.(css|less|scss|pcss)$': 'identity-obj-proxy',
+        '\\.(svg|png)(.*?)$': 'jest-transform-stub',
+        '\\:svg-icons-names': 'jest-transform-stub',
     },
     resetModules: true,
     roots: ['<rootDir>/test/'],

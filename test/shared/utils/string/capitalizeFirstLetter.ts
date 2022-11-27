@@ -1,5 +1,5 @@
-import { capitalizeFirstLetter } from '../../../src/shared/utils';
-import { getSpecTitle } from '../../_helper/common';
+import { capitalizeFirstLetter } from '../../../../src/shared/utils';
+import { getSpecTitle } from '../../../_helper/common';
 
 describe(getSpecTitle('shared.utils', 'string'), () => {
     describe('capitalizeFirstLetter', () => {

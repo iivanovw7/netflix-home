@@ -2,7 +2,7 @@
  * Module contains profile local storage.
  * @module shared/storage/profile
  */
-import type { TProfile } from '../globalStores/ProfileStore';
+import type { TProfile } from '../stores/ProfileStore';
 
 import { store, storeKeySet } from './index';
 
