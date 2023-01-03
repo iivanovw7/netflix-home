@@ -1,6 +1,6 @@
 /**
- * Module contains strings related utility functions.
- * @module shared/utils/string
+ * Module contains capitalizeFirstLetter utility function.
+ * @module shared/utils/string/capitalizeFirstLetter
  */
 
 /**
@@ -11,4 +11,3 @@
  * @return {string} result.
  */
 export const capitalizeFirstLetter = (str: string): string => str.charAt(0).toUpperCase() + str.slice(1);
-

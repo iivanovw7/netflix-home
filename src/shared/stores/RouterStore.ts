@@ -1,6 +1,6 @@
 /**
  * Module contains global application router store.
- * @module shared/globalStores/RouterStore
+ * @module shared/stores/RouterStore
  */
 import type { BrowserHistory, Location as BrowserLocation, Path, To } from 'history';
 import { createBrowserHistory } from 'history';

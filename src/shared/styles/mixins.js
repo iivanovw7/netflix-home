@@ -91,6 +91,7 @@ const media = (mixin, ...breakpoints) => {
  */
 const buttonColors = (mixin, variant = 'primary', fill = 'full') => {
     const { main, disabled, text, accent } = getButtonColorsSet(variant);
+
     const isoOutlined = fill === 'outlined';
     const isFillNone = fill === 'none';
 
@@ -108,6 +109,7 @@ const buttonColors = (mixin, variant = 'primary', fill = 'full') => {
         }),
 
         ...(isFillNone && {
+            color: main,
             border: 'none',
             'background-color': 'transparent',
         }),

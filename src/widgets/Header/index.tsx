@@ -8,9 +8,12 @@ import React from 'react';
 
 import Logo from '../../../assets/img/logo-v7.png?w=200&png&imagetools';
 import { Container, Img } from '../../shared/components';
-import { globalStore } from '../../shared/globalStores';
+import { stores } from '../../shared/stores';
 
+import { Menu } from './Menu';
 import { Navigation } from './Navigation';
+import { Notifications } from './Notifications';
+import { Search } from './Search';
 
 import './index.pcss';
 
@@ -34,7 +37,7 @@ export const Header = (props: HeaderProps): ReactElement => {
     const { children, withNavigation } = props;
     const {
         profile: { profile },
-    } = globalStore;
+    } = stores;
 
     return (
         <Container className={cls.header()}>
@@ -48,6 +51,9 @@ export const Header = (props: HeaderProps): ReactElement => {
             </div>
             <div className={cls.header('section')}>
                 {children}
+                <Search />
+                <Notifications />
+                <Menu />
             </div>
         </Container>
     );

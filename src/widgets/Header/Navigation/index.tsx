@@ -1,6 +1,6 @@
 /**
  * Module contains application header navigation.
- * @module widgets/Header
+ * @module widgets/Header/Notifications
  */
 import bem from 'bem-ts';
 import type { ReactElement } from 'react';

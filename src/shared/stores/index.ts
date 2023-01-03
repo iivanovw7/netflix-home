@@ -1,6 +1,6 @@
 /**
- * Module contains global aplication stores.
- * @module shared/globalStores
+ * Module contains global application stores.
+ * @module shared/stores
  */
 
 import { controller } from './controller';
@@ -8,9 +8,9 @@ import { profileStore } from './ProfileStore';
 import { routerStore } from './RouterStore';
 import { settingsStore } from './SettingsStore';
 
-export const globalStore = controller.stores;
+export const stores = controller.stores;
 
-export const initGlobalStore = controller.init({
+export const initStore = controller.init({
     router: routerStore,
     profile: profileStore,
     settings: settingsStore

@@ -1,16 +1,9 @@
 /**
- * Module contains stubs.
- * @module shared/utils/stub
+ * Module contains curried no operation stub.
+ * @module shared/utils/stub/noop2
  */
 
 /* eslint-disable @typescript-eslint/no-empty-function */
-
-/**
- * No operation function.
- * @function
- * @category Stub
- */
-export const noop: AnyFunction = () => {};
 
 /**
  * No operation curried function.

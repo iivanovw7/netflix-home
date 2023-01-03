@@ -7,7 +7,7 @@ import type { ReactElement } from 'react';
 import React from 'react';
 import { Router } from 'react-router-dom';
 
-import { navigate, routerStore } from '../../shared/globalStores/RouterStore';
+import { navigate, routerStore } from '../../shared/stores/RouterStore';
 import { setDisplayName } from '../../shared/utils';
 
 const {

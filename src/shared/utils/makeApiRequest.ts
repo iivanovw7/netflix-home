@@ -1,6 +1,6 @@
 /**
  * Module contains request utility functions.
- * @module shared/utils/request
+ * @module shared/utils/makeApiRequest
  */
 import type { ValidationError } from 'yup';
 

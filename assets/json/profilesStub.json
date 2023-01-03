@@ -2,26 +2,31 @@
     {
         "name": "1 - Ortega",
         "id": "08ceaa13-47fd-4c8a-a124-d115b4a2dcfb",
-        "lock": null
+        "lock": null,
+        "index": 0
     },
     {
         "name": "2 - 1234",
         "id": "d95c648a-ac40-4222-ac1e-72244a8042cd",
-        "lock": "1234"
+        "lock": "1234",
+        "index": 1
     },
     {
         "name": "3 - Mr. Snicket",
         "id": "9905616f-d036-4ad9-aa4d-033b68f73427",
-        "lock": null
+        "lock": null,
+        "index": 2
     },
     {
         "name": "4 - Orazio",
         "id": "3ce04c00-efa6-453e-a241-3a32ae4866df",
-        "lock": null
+        "lock": null,
+        "index": 3
     },
     {
         "name": "5 - 9999",
         "id": "cfd0334c-d5ae-4c43-8322-a1b278f2634c",
-        "lock": "9999"
+        "lock": "9999",
+        "index": 4
     }
 ]

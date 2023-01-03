@@ -76,7 +76,7 @@ module.exports = {
     SecondaryButtonColor: '#f5f5f5',
     SecondaryButtonColorDisabled: '#9e9e9e',
     SecondaryButtonColorText: '#000',
-    SecondaryButtonColorAccent: '#f5f5f5',
+    SecondaryButtonColorAccent: '#e0e0e0',
     TertiaryButtonColor: '#777',
     TertiaryButtonColorDisabled: '#9e9e9e',
     TertiaryButtonColorText: '#777',

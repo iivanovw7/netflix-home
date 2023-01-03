@@ -1,0 +1,29 @@
+/**
+ * Module header menu styles.
+ * @module widgets/Header/Menu/index.styled
+ */
+
+.nh-widgets-header-menu {
+    position: relative;
+
+    &__toggle {
+        width: 28px;
+        height: 28px;
+        margin-left: 16px;
+        padding: 2px;
+        border: 2px solid transparent;
+        border-radius: $border-radius-controls;
+
+        &:focus-visible {
+            border-color: var(--white);
+        }
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    &__avatar {
+        border-radius: $border-radius;
+    }
+}

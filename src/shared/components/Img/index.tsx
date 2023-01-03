@@ -7,8 +7,9 @@ import type { CSSProperties, ReactElement, ReactEventHandler} from 'react';
 import React, { useCallback } from 'react';
 
 import placeholder from '../../../../assets/img/placeholder-square.png';
-import './index.pcss';
 import { bem } from '../../utils';
+
+import './index.pcss';
 
 const cls = bem('img', { namespace: 'nh-components' });
 
@@ -22,7 +23,7 @@ export type ImgProps = {
     maxWidth?: string | number;
     size?: string | number;
     rounded?: boolean;
-    src: string;
+    src?: string;
     width?: string | number;
     onClick?: () => void;
     onLoad?: () => void;
@@ -66,17 +67,9 @@ export const Img = (props: ImgProps): ReactElement => {
         containerStyles.maxWidth = maxWidth;
     }
 
-    if (width) {
-        containerStyles.width = String(width);
-    }
-
-    if (height) {
-        containerStyles.height = String(height);
-    }
-
     if (keepSize) {
-        containerStyles.width = width;
-        containerStyles.height = height;
+        containerStyles.width = String(width);
+        containerStyles.height = String(height);
     }
 
     if (typeof width === 'number' && typeof height === 'number') {
