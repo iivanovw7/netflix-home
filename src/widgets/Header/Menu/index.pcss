@@ -3,12 +3,27 @@
  * @module widgets/Header/Menu/index.styled
  */
 
+@import '../../../shared/styles/mixins.pcss';
+
 .nh-widgets-header-menu {
-    position: relative;
+    &__avatar {
+        max-width: 32px;
+        height: 32px;
+        border-radius: $border-radius;
+    }
+
+    &__logout {
+        display: block;
+        width: 100%;
+        padding: 10px 5px;
+        text-align: center;
+    }
 
     &__toggle {
-        width: 28px;
-        height: 28px;
+        @mixin justify-align-flex;
+
+        position: relative;
+        flex-direction: row;
         margin-left: 16px;
         padding: 2px;
         border: 2px solid transparent;
@@ -21,9 +36,5 @@
         &:hover {
             cursor: pointer;
         }
-    }
-
-    &__avatar {
-        border-radius: $border-radius;
     }
 }

@@ -24,6 +24,7 @@ export const Search = (): ReactElement => {
             className={cls('toggle')}
             color="secondary"
             fill="none"
-            icon={{ name: 'search', size: 20 }} />
+            icon={{ name: 'search', size: 24 }}
+        />
     );
 };

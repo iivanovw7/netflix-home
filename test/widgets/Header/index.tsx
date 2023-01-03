@@ -2,18 +2,13 @@
  * Module contains widgets header utils.
  */
 import { render } from '@testing-library/react';
-import React from 'react';
+import * as React from 'react';
 
 import type { HeaderProps } from '../../../src/widgets';
 import { Header } from '../../../src/widgets';
-import { getSpecTitle } from '../../_helper/common';
 
-describe(getSpecTitle('widgets', 'Header'), () => {
-    const renderHeader = (props?: HeaderProps) => {
-        return render(
-            <Header {...props} />
-        );
-    };
+describe('widgets/Header', () => {
+    const renderHeader = (props?: HeaderProps) => render(<Header {...props} />);
 
     it('Should render successfully', () => {
         expect(renderHeader().baseElement).toBeTruthy();

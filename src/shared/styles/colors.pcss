@@ -53,6 +53,7 @@
     --grey-600: #757575;
     --grey-700: #616161;
     --grey-800: #424242;
+    --grey-850: #2d2d32;
     --grey-900: #212121;
     --grey-950: #141414;
     --grey-1200: #050708;
@@ -70,32 +71,55 @@
 
     /* Theme colors for `dark` theme. */
     @media (prefers-color-scheme: dark) {
+        /** Shadows */
         --shadow: 0 2px 10px rgba(136, 154, 201, 30%);
         --shadow-modals: 0 4px 20px rgba(66, 69, 115, 30%);
 
+        /** Divider */
+        --divider-color: var(--grey-800);
+
+        /** Borders */
+        --border-color: var(--grey-850);
+
         /** Backgrounds */
         --background-content-color: var(--grey-900);
+        --background-content-color-accent: var(--grey-50);
         --background-global-color: var(--grey-950);
-        --background-header-color: var(--grey-1200);
+        --background-header-color: color-mod(var(--grey-1200) a(90%));
         --background-modal-backdrop-color: rgba(13, 28, 46, 40%);
+        --background-overlay: color-mod(var(--black) a(18%));
+        --background-backdrop-shadow:
+            radial-gradient(
+                ellipse at center,
+                color-mod(var(--black) a(50%)) 0,
+                color-mod(var(--black) a(20%)) 45%,
+                color-mod(var(--black) a(10%)) 55%,
+                color-mod(var(--black) a(0%)) 70%
+            );
 
         /** Button primary */
         --primary-button-color: var(--grey-100);
         --primary-button-color-disabled: var(--grey-500);
         --primary-button-color-text: var(--black);
-        --primary-button-color-accent: var(--grey-100);
+        --primary-button-color-accent: color-mod(var(--grey-100) a(80%));
+        --primary-button-color-accent-outlined: color-mod(var(--grey-100) a(85%));
+        --primary-button-color-accent-fill-none: color-mod(var(--grey-100) a(90%));
 
         /** Button secondary */
         --secondary-button-color: var(--grey-100);
         --secondary-button-color-disabled: var(--grey-500);
         --secondary-button-color-text: var(--black);
-        --secondary-button-color-accent: var(--grey-300);
+        --secondary-button-color-accent: color-mod(var(--grey-100) a(80%));
+        --secondary-button-color-accent-outlined: color-mod(var(--grey-100) a(85%));
+        --secondary-button-color-accent-fill-none: color-mod(var(--grey-100) a(90%));
 
         /** Button tertiary */
         --tertiary-button-color: var(--grey-550);
         --tertiary-button-color-disabled: var(--grey-500);
         --tertiary-button-color-text: var(--grey-550);
-        --tertiary-button-color-accent: var(--grey-100);
+        --tertiary-button-color-accent: color-mod(var(--grey-550) a(80%));
+        --tertiary-button-color-accent-outlined: color-mod(var(--grey-550) a(85%));
+        --tertiary-button-color-accent-fill-none: color-mod(var(--grey-550) a(90%));
 
         /** Link primary */
         --primary-link-color: var(--grey-100);
@@ -103,6 +127,7 @@
         --primary-link-color-text: var(--black);
         --primary-link-color-text-disabled: var(--black);
         --primary-link-color-accent: var(--grey-100);
+        --primary-link-color-text-accent: color-mod(var(--black) a(80%));
 
         /** Link secondary */
         --secondary-link-color: var(--grey-550);
@@ -110,6 +135,7 @@
         --secondary-link-color-text: var(--grey-350);
         --secondary-link-color-text-disabled: var(--grey-500);
         --secondary-link-color-accent: var(--grey-100);
+        --secondary-link-color-text-accent: color-mod(var(--grey-350) a(80%));
 
         /** Link tertiary */
         --tertiary-link-color: var(--grey-550);
@@ -117,6 +143,7 @@
         --tertiary-link-color-text: var(--grey-550);
         --tertiary-link-color-text-disabled: var(--black);
         --tertiary-link-color-accent: var(--grey-100);
+        --tertiary-link-color-text-accent: color-mod(var(--grey-550) a(80%));
 
         /** Text */
         --primary-text-color: var(--grey-100);
@@ -125,6 +152,7 @@
 
         /** State colors */
         --alert-color: var(--red-650);
+        --promary-color: var(--red-650);
         --secondary-color: var(--lime-a700);
         --warning-color: var(--yellow-200);
     }

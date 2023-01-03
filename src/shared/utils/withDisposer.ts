@@ -1,9 +1,8 @@
-import type { IReactionDisposer } from 'mobx';
-
 /**
  * Module contains withDisposer helper.
  * @module shared/utils/withDisposer
  */
+import type { IReactionDisposer } from 'mobx';
 
 export type TDisposerFn = () => void;
 

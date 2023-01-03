@@ -18,10 +18,14 @@ import { withProviders } from './providers';
  */
 export const App = observer(withProviders((): ReactElement => {
     const {
-        profile: { loadProfile },
+        profile: { loadLocalProfile, loadProfiles },
     } = stores;
 
-    useLayoutEffect(loadProfile, [loadProfile]);
+    useLayoutEffect(() => {
+        // eslint-disable-next-line no-void
+        void loadProfiles();
+        loadLocalProfile();
+    }, [loadLocalProfile, loadProfiles]);
 
     return <Routing />;
 }));

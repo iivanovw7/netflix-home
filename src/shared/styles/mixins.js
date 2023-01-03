@@ -5,11 +5,8 @@
 
 'use strict';
 
-const { opacify } = require('./functions');
-const { getValues, getButtonColorsSet } = require('./utils');
+const { getValues } = require('./utils');
 const variables = require('./variables.json');
-
-/* eslint-disable node/no-unsupported-features/es-syntax */
 
 /**
  * Sets base font rules.
@@ -23,7 +20,7 @@ const variables = require('./variables.json');
 const fontSize = (mixin, size, lineHeight, fontHeight) => {
     const mixinContent = {
         'font-size': size,
-        'line-height': lineHeight
+        'line-height': lineHeight,
     };
 
     if (fontHeight) {
@@ -77,72 +74,8 @@ const media = (mixin, ...breakpoints) => {
 
     return {
         [mediaQuery]: {
-            '@mixin-content': {}
-        }
-    };
-};
-
-/**
- * Used to add button color styles.
- * @param {object} mixin - parent node.
- * @param {'primary' | 'secondary' | 'tertiary'} [variant = 'primary'] - color variant.
- * @param {'full' | 'outlined' | 'none'} [fill = 'full'] - color fill prop.
- * @return {object} mixin - returns mixin content.
- */
-const buttonColors = (mixin, variant = 'primary', fill = 'full') => {
-    const { main, disabled, text, accent } = getButtonColorsSet(variant);
-
-    const isoOutlined = fill === 'outlined';
-    const isFillNone = fill === 'none';
-
-    const FULL_FRAC = 0.8;
-    const OUTLINE_FRAC = 0.8;
-    const FILL_NONE_FRAC = 0.9;
-
-    return {
-        color: text,
-        'background-color': main,
-
-        ...(isoOutlined && {
-            border: `1px solid ${main}`,
-            'background-color': 'transparent',
-        }),
-
-        ...(isFillNone && {
-            color: main,
-            border: 'none',
-            'background-color': 'transparent',
-        }),
-
-        '&:hover, &:focus-visible': {
-            'background-color': opacify(main, FULL_FRAC),
-
-            ...(isoOutlined && {
-                color: opacify(accent, OUTLINE_FRAC),
-                'background-color': 'transparent',
-                'border-color': opacify(accent, OUTLINE_FRAC),
-            }),
-
-            ...(isFillNone && {
-                color: opacify(accent, FILL_NONE_FRAC),
-                'background-color': 'transparent',
-                'border-color': opacify(accent, FILL_NONE_FRAC),
-            }),
+            '@mixin-content': {},
         },
-
-        '&:disabled': {
-            'background-color': disabled,
-            'border-color': disabled,
-
-            ...(isoOutlined && {
-                'background-color': 'transparent',
-                'border-color': disabled,
-            }),
-
-            ...(isFillNone && {
-                'background-color': 'transparent',
-            }),
-        }
     };
 };
 
@@ -161,7 +94,7 @@ const buttonColors = (mixin, variant = 'primary', fill = 'full') => {
 const textOverflow = (mixin, overflow = 'ellipsis', addWhiteSpace = true) => {
     const mixinContent = {
         overflow: 'hidden',
-        'text-overflow': overflow
+        'text-overflow': overflow,
     };
 
     if (addWhiteSpace) {
@@ -172,31 +105,49 @@ const textOverflow = (mixin, overflow = 'ellipsis', addWhiteSpace = true) => {
 };
 
 /**
- * Aligns element`s children vertically and justifies horizontally (along main axis) using flex.
+ * Centers both horizontally and vertically or in one direction,
+ *      assuming parent element has `position: relative;` property.
+ *
  * @param {object} mixin - parent node
- * @param {string} [justifyContent = 'center'] justify-content css rule.
- * @param {string} [alignItems = 'center'] align-items css rule.
+ * @param {"X" | "Y"} [axis]
+ *      string represents `axis`, if nothing passed - centers in both directions.
  * @return {object} mixin - returns mixin content.
  *
  * @example
- *    `@mixin justifyAlignFlex;`
- *    `@mixin justifyAlignFlex unset;`
- *    `@mixin justifyAlignFlex stretch, flex-end;`
+ *  @include center-absolute;
+ *  @include center-absolute(X);
+ *  @include center-absolute(Y);
  */
-const justifyAlignFlex = (mixin, justifyContent = 'center', alignItems = 'center') => {
-    return {
-        display: 'flex',
-        'align-items': alignItems,
-        'justify-content': justifyContent
-    };
-};
+const centerAbsolute = (mixin, axis) => ({
+    position: 'absolute',
+    ...(() => {
+        switch (axis) {
+            case 'X': {
+                return {
+                    left: '50%',
+                    transform: 'translateX(-50%)',
+                };
+            }
+            case 'Y': {
+                return {
+                    top: '50%',
+                    transform: 'translateY(-50%)',
+                };
+            }
+            default: {
+                return {
+                    top: '50%',
+                    left: '50%',
+                    transform: 'translate(-50%, -50%)',
+                };
+            }
+        }
+    })(),
+});
 
 module.exports = {
     fontSize,
     media,
-    buttonColors,
     textOverflow,
-    justifyAlignFlex
+    centerAbsolute,
 };
-
-/* eslint-enable node/no-unsupported-features/es-syntax */

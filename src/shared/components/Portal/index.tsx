@@ -1,6 +1,6 @@
 /**
  * Module contains `Portal` component.
- * @module shared/components/Portal
+ * @module ~/shared/components/Portal
  */
 import type { PropsWithChildren, ReactElement } from 'react';
 import { createPortal } from 'react-dom';

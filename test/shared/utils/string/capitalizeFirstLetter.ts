@@ -1,7 +1,6 @@
 import { capitalizeFirstLetter } from '../../../../src/shared/utils';
-import { getSpecTitle } from '../../../_helper/common';
 
-describe(getSpecTitle('shared.utils', 'string'), () => {
+describe('shared/utils/string', () => {
     describe('capitalizeFirstLetter', () => {
         const check = (val: string, assert: string = val) => {
             expect(capitalizeFirstLetter(val)).toEqual(assert);

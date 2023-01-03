@@ -1,8 +1,13 @@
 /**
  * Module contains styled elements.
- * @module shared/components/Icon/index.pcss
+ * @module ~/shared/components/Icon/index.pcss
  */
 
 .nh-components-icon {
+    position: relative;
     display: inline-block;
+
+    > svg {
+        @mixin centerAbsolute;
+    }
 }

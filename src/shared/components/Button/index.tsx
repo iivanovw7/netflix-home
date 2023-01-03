@@ -5,6 +5,7 @@
 import classNames from 'classnames';
 import React, { forwardRef } from 'react';
 
+import type { Fill, Color } from '../../types';
 import { bem } from '../../utils';
 
 import type { PlainButtonProps } from './PlainButton';
@@ -12,21 +13,22 @@ import { PlainButton } from './PlainButton';
 
 import './index.pcss';
 
+
 const cls = bem('button', { namespace: 'nh-components' });
 
 export type ButtonProps = PlainButtonProps & {
-    /** @default 'primary' */
-    color?: 'primary' | 'secondary' | 'tertiary' | 'danger';
-    /** @default 'full' */
-    fill?: 'full' | 'outlined' | 'none';
-    fluid?: boolean;
     className?: string;
+    /** @default 'primary' */
+    color?: Color | 'danger';
+    /** @default 'full' */
+    fill?: Fill;
+    fluid?: boolean;
 };
 
 /**
  * Creates `Button` component.
  * @constructor
- * @name shared/components/Button
+ * @name ~/shared/components/Button
  * @method
  * @param {object} props - contains component props.
  * @param {ForwardedRef<HTMLButtonElement>} ref - contains button `ref`.

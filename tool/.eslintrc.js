@@ -1,22 +1,14 @@
 /**
  * Eslint configuration.
- * @module _/tool/eslintrc.js
+ * @module _/tool/.eslintrc.js
  */
-
-'use strict';
-
-const path = require('path');
 
 module.exports = {
     'extends': [
-        'ts-guard/node'
+        require.resolve('../config/.eslintrc')
     ],
-    parserOptions: {
-        babelOptions: { configFile: path.resolve(__dirname, '../babel.config.js') },
-    },
     rules: {
-        'no-var': 'off',
-        'prefer-template': 'off',
-        'node/no-unpublished-require': 'off'
-    }
+        'no-param-reassign': 'off',
+        'arrow-body-style': 'off'
+    },
 };

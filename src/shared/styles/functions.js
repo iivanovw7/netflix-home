@@ -2,25 +2,10 @@
  * Module contains postcss functions.
  * @module shared/styles/functions.js
  */
+
 'use strict';
 
-const { fromString, fromRgba } = require('css-color-converter');
-
-const exportedVariables = require('./export');
-const { trimVariable, getValues, camelCase } = require('./utils');
-
-/**
- * Applies opacity value passed in params to color, by default uses black color and opacity 1
- * @param {string} value - color opacity to be changed
- * @param {string} frac - opacity value to be applied
- * @return {string} - returns color in hex string
- */
-const opacify = (value = 'black', frac = '1') => {
-    const color = exportedVariables[camelCase(trimVariable(value))] || value;
-    const rgba = fromString(color).toRgbaArray();
-
-    return fromRgba([rgba[0], rgba[1], rgba[2], frac]).toHexString();
-};
+const { getValues } = require('./utils');
 
 /**
  * Contains global map of zIndexes of te application.
@@ -32,12 +17,12 @@ const zIndexesMap = {
         underlay: -1,
         'default': 0,
         content: 1,
+        overlay: 1000,
     },
     layout: {
         header: 10,
         container: 100,
-        overlay: 1000
-    }
+    },
 };
 
 /**
@@ -47,13 +32,12 @@ const zIndexesMap = {
  * @return {string} - returns `z-index` value
  */
 function zIndex(...keys) {
-    const [value = zIndexesMap.global['default']] = getValues(zIndexesMap, keys.join('.'));
+    const [value = zIndexesMap.global.default] = getValues(zIndexesMap, keys.join('.'));
 
     return value.toString();
 }
 
 module.exports = {
-    opacify,
     zIndex,
     zIndexesMap,
 };

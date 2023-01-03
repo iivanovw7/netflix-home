@@ -1,3 +1,7 @@
+/**
+ * Module contains `navigation link` element.
+ * @module ~/shared/components/NavLink
+ */
 import classNames from 'classnames';
 import React, { forwardRef } from 'react';
 import { NavLink as RouterLink } from 'react-router-dom';
@@ -7,11 +11,11 @@ import { bem } from '../../utils';
 import './index.pcss';
 
 export type NavLinkProps = {
+    className?: string;
+    disabled?: boolean;
+    replace?: boolean;
     text: string;
     to: string;
-    replace?: boolean;
-    disabled?: boolean;
-    className?: string;
 };
 
 const cls = bem('nav-link', { namespace: 'nh-components' });
@@ -19,7 +23,7 @@ const cls = bem('nav-link', { namespace: 'nh-components' });
 /**
  * Creates `NavLink` component.
  * @constructor
- * @name shared/components/NavLink
+ * @name ~/shared/components/NavLink
  * @method
  * @param {object} props - contains component props.
  * @param {ForwardedRef<NavLink>} ref - contains link `ref`.
@@ -52,7 +56,8 @@ export const NavLink = forwardRef<HTMLAnchorElement, NavLinkProps>((props, ref) 
             ref={ref}
             className={linkClassName}
             replace={replace}
-            to={to}>
+            to={to}
+        >
             {({ isActive }) => (
                 <span className={cls('text', { active: isActive })}>
                     {text}

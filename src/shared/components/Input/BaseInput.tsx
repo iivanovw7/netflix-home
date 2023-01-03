@@ -1,6 +1,6 @@
 /**
  * Module contains BaseInput component.
- * @module shared/components/Input/BaseInput
+ * @module ~/shared/components/Input/BaseInput
  */
 import classNames from 'classnames';
 import type {
@@ -40,10 +40,10 @@ type InputPropKeys = 'type'
 | 'maxLength';
 
 export type BaseInputProps = Pick<InputAttrs, InputPropKeys> & {
-    /** @default 'medium' */
-    size?: Size;
     hasError?: boolean;
     selectOnFocus?: boolean;
+    /** @default 'medium' */
+    size?: Size;
     value?: Maybe<string | number>;
 };
 
@@ -51,7 +51,7 @@ const cls = bem('base-input', { namespace: 'nh-components' });
 
 /**
  * Creates BaseInput component.
- * @name shared/components/Input/BaseInput
+ * @name ~/shared/components/Input/BaseInput
  * @method
  * @param {object} props - contains component props.
  * @return {ReactElement} React component with children.

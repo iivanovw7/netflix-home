@@ -2,7 +2,7 @@
  * Module contains application `withTheme` HOC.
  * @module app/providers/withTheme
  */
-import type { ReactElement} from 'react';
+import type { ReactElement } from 'react';
 import React, { useEffect } from 'react';
 
 import { settingsStore } from '../../shared/stores/SettingsStore';
@@ -19,7 +19,6 @@ const { html } = env;
  */
 export const withTheme: HFC = (Component) => {
     return setDisplayName('ThemeProvider')((props): ReactElement => {
-
         useEffect(() => {
             html.dataset.theme = settingsStore.theme;
         }, []);

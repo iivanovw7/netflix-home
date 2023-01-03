@@ -1,6 +1,6 @@
 /**
  * Module contains `H2` component.
- * @module shared/components/H2
+ * @module ~/shared/components/H2
  */
 import classNames from 'classnames';
 import type { PropsWithChildren, ReactElement } from 'react';
@@ -10,14 +10,15 @@ import './index.pcss';
 import { bem } from '../../utils';
 
 export type H2Props = PropsWithChildren<{
-    text?: string;
     className?: string;
+    text?: string;
 }>;
 
 const cls = bem('header-2', { namespace: 'nh-components' });
 
 /**
  * `H2` component.
+ * @name ~/shared/components/H2
  * @method
  * @constructor
  * @param {object} props - contains component props.

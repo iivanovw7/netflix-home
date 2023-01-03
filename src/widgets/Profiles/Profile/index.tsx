@@ -3,19 +3,22 @@
  * @module widgets/profiles/profile
  */
 import { observer } from 'mobx-react-lite';
+import type { Instance } from 'mobx-state-tree';
 import React, { useEffect, useState } from 'react';
 
-import { Icon, Img, Link } from '../../../shared/components';
 import type { LinkProps } from '../../../shared/components';
-import type { TProfile } from '../../../shared/stores/ProfileStore';
+import { Icon, Img, LinkButton } from '../../../shared/components';
+import type { models } from '../../../shared/stores';
 import { bem } from '../../../shared/utils';
 
 import './index.pcss';
 
+type TProfile = Instance<typeof models.Profile>;
+
 export type ProfileProps = Pick<LinkProps, 'onClick'> & {
     avatar: string;
-    profile: TProfile,
     onLoaded: () => void;
+    profile: TProfile
 };
 
 const cls = bem('profile', { namespace: 'nh-widgets-profiles' });
@@ -23,7 +26,7 @@ const cls = bem('profile', { namespace: 'nh-widgets-profiles' });
 /**
  * `Profile` component.
  * @constructor
- * @name widgets/profiles/profile/Profile
+ * @name ~/widgets/Profiles/Profile
  * @method
  * @param {object} props - contains component props.
  *
@@ -33,7 +36,7 @@ export const Profile = observer((props: ProfileProps) => {
     const { profile, avatar, onClick, onLoaded } = props;
     const { name: profileName, lock } = profile;
 
-    const [locked, setLocked] = useState(false);
+    const [locked, setLocked] = useState<boolean>(false);
 
     useEffect(() => {
         setLocked(Boolean(lock));
@@ -41,19 +44,24 @@ export const Profile = observer((props: ProfileProps) => {
 
     return (
         <li className={cls({ locked })}>
-            <Link className={cls('link')}
+            <LinkButton
+                className={cls('link')}
                 color="tertiary"
-                onClick={onClick}>
+                onClick={onClick}
+            >
                 <Img
                     alt="avatar"
                     className={cls('image')}
                     src={avatar}
-                    onLoad={onLoaded} />
+                    onLoad={onLoaded}
+                />
                 <span className={cls('name')}>
                     {profileName}
                 </span>
-            </Link>
-            {locked && <Icon className={cls('icon')} name="lock" size={20} />}
+            </LinkButton>
+            {Boolean(locked) && (
+                <Icon className={cls('icon')} name="lock" size={20} />
+            )}
         </li>
     );
 });

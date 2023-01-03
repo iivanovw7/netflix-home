@@ -1,50 +1,56 @@
 /**
  * Module contains `link` element.
- * @module shared/components/Link
+ * @module ~/shared/components/Link
  */
 import classNames from 'classnames';
-import type { AnchorHTMLAttributes, MouseEventHandler, PropsWithChildren } from 'react';
+import type { AnchorHTMLAttributes, MouseEventHandler, PropsWithChildren, ReactNode } from 'react';
 import React, { createElement, forwardRef } from 'react';
 
+import type { Color } from '../../types';
 import { bem } from '../../utils';
 import type { IconProps } from '../Icon';
 import { Icon } from '../Icon';
+import type { ImgProps } from '../Img';
+import { Img } from '../Img';
 
 import './index.pcss';
 
 export type TLinkElement = HTMLButtonElement | HTMLAnchorElement;
 
 export type LinkProps = PropsWithChildren<{
-    /** @default "primary" */
-    color?: 'primary' | 'secondary' | 'tertiary' | 'inherit';
     className?: string;
-    textClassName?: string;
+    /** @default "primary" */
+    color?: Color | 'inherit';
     /** @default "false" */
     disabled?: boolean;
-    tag?: 'a' | 'button';
     icon?: IconProps,
     /** @default "medium" */
     iconOffset?: 'medium' | 'large';
     /** @default "end" */
     iconPosition?: 'start' | 'end';
-    noHoverAccent?: boolean;
+    image?: ImgProps;
+    /** @default "medium" */
+    imageOffset?: 'medium' | 'large';
+    /** @default "end" */
+    imagePosition?: 'start' | 'end';
     noWrap?: boolean;
+    onClick?: MouseEventHandler<TLinkElement>;
+    tag?: 'a' | 'button';
     target?: '_self' | '_blank' | '_parent' | '_top';
-    text?: string;
+    text?: ReactNode;
+    textClassName?: string;
     /** @default "never" */
     underline?: 'hover' | 'always' | 'never';
     variant?: string;
-    onClick?: MouseEventHandler<TLinkElement>;
-}> & Pick<AnchorHTMLAttributes<HTMLAnchorElement>, 'download' | 'href' | 'title' | 'tabIndex'>;
+}> & Pick<AnchorHTMLAttributes<HTMLAnchorElement>, 'download' | 'href' | 'title' | 'tabIndex' | 'onKeyDown'>;
 
 const cls = bem('link', { namespace: 'nh-components' });
 
 /**
- * Creates Link component.
- * @name shared/components/Link
+ * Creates `Link` component.
+ * @name ~/shared/components/Link
  * @method
  * @param {object} props - contains component props.
- *
  * @return {ReactElement} React component with children.
  * @constructor
  */
@@ -53,23 +59,23 @@ export const Link = forwardRef<TLinkElement, LinkProps>((props, ref) => {
         children,
         className,
         textClassName,
-        tag,
+        tag = 'a',
         color = 'primary',
         disabled = false,
         text,
         icon,
         iconPosition = 'end',
         iconOffset = 'medium',
-        noHoverAccent,
+        image,
+        imagePosition = 'end',
+        imageOffset = 'medium',
         noWrap,
         underline = 'never',
         ...htmlAttributes
     } = props;
 
     return createElement(
-        tag || htmlAttributes.href
-            ? 'a'
-            : 'button',
+        tag,
         {
             ...htmlAttributes,
             ref,
@@ -82,21 +88,24 @@ export const Link = forwardRef<TLinkElement, LinkProps>((props, ref) => {
                     underline: underline === 'always',
                     underlineHover: underline === 'hover',
                     withIcon: Boolean(icon),
+                    withImage: Boolean(image),
                     iconStart: iconPosition === 'start',
-                    noHoverAccent,
+                    imageStart: imagePosition === 'start'
                 }),
                 className
             ),
         },
         children,
         text && (
-            <span className={classNames(
-                cls(
-                    'text',
-                    { noWrap }
-                ),
-                textClassName
-            )}>
+            <span
+                className={classNames(
+                    cls(
+                        'text',
+                        { noWrap }
+                    ),
+                    textClassName
+                )}
+            >
                 {text}
             </span>
         ),
@@ -106,9 +115,21 @@ export const Link = forwardRef<TLinkElement, LinkProps>((props, ref) => {
                 className={classNames(
                     cls(
                         'icon',
-                        { onlyChild: ! text, offsetLarge: iconOffset === 'large' }
+                        { onlyChild: ! text && ! image, offsetLarge: iconOffset === 'large' }
                     ),
                     icon.className
+                )}
+            />
+        ),
+        image && (
+            <Img
+                {...image}
+                className={classNames(
+                    cls(
+                        'image',
+                        { onlyChild: ! text && ! icon, offsetLarge: imageOffset === 'large' }
+                    ),
+                    image.className
                 )}
             />
         )

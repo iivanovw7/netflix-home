@@ -1,10 +1,10 @@
 /**
  * Module contains SVG icon component.
- * @module shared/components/Icon
+ * @module ~/shared/components/Icon
  */
 import classNames from 'classnames';
 import type { CSSProperties, ReactElement } from 'react';
-import React from 'react';
+import React, { forwardRef } from 'react';
 // eslint-disable-next-line import/no-unresolved
 import icons from 'virtual:svg-icons-names';
 
@@ -13,13 +13,14 @@ import { bem, findOr } from '../../utils';
 import './index.pcss';
 
 export type IconProps = {
+    className?: string;
     fill?: string;
     height?: number;
     name: string;
     rotate?: number;
     size?: number;
+    styles?: CSSProperties;
     width?: number;
-    className?: string;
 };
 
 const cls = bem('icon', { namespace: 'nh-components' });
@@ -40,13 +41,13 @@ const getIcon = (id: string): string => {
 
 /**
  * Dynamically loads icon from assets.
- * @name shared/components/Icon
+ * @name ~/shared/components/Icon
  * @method
  * @param {object} props - contains component props.
  * @return {ReactElement} React component with children.
  * @constructor
  */
-export const Icon = (props: IconProps): ReactElement => {
+export const Icon = forwardRef<HTMLDivElement, IconProps>((props, ref): ReactElement => {
     const {
         name: iconName,
         fill = 'currentColor',
@@ -54,13 +55,14 @@ export const Icon = (props: IconProps): ReactElement => {
         height,
         rotate,
         size,
-        className
+        className,
+        styles
     } = props;
 
     const style: CSSProperties = {
         width: width || size,
         height: height || size,
-        fill
+        fill,
     };
 
     if (rotate) {
@@ -68,10 +70,12 @@ export const Icon = (props: IconProps): ReactElement => {
     }
 
     return (
-        <div className={classNames(cls(), className)}>
+        <div style={styles} ref={ref} className={classNames(cls(), className)}>
             <svg aria-hidden="true" style={style}>
                 <use fill={fill} href={`#${getIcon(iconName)}`} />
             </svg>
         </div>
     );
-};
+});
+
+Icon.displayName = 'Icon';

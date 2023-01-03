@@ -1,6 +1,6 @@
 /**
  * Module contains styled `NavLink` element.
- * @module shared/components/NavLink/index.pcss
+ * @module ~/shared/components/NavLink/index.pcss
  */
 
 .nh-components-nav-link {
@@ -20,12 +20,13 @@
     &:not(&--disabled) {
         &:hover,
         &:focus {
-            color: opacify(var(--secondary-link-color-text), 0.8);
+            color: var(--secondary-link-color-text-accent);
         }
     }
 
     &__text {
         display: inline;
+        padding: 0 4px;
         color: inherit;
         font-family: $font-family-medium;
         text-align: center;
@@ -34,11 +35,7 @@
             color: var(--white);
         }
 
-        @mixin fontSize $controls-font-size-large, 1.6, $font-weight-medium;
-
-        @mixin media xxl-up {
-            @mixin fontSize $font-size-xx-small, 1.4, $font-weight-medium;
-        }
+        @mixin fontSize $font-size-xx-small, 1.3, $font-weight-medium;
     }
 }
 

@@ -2,12 +2,12 @@
  * Module contains application `withContext` HOC.
  * @module app/providers/withContext
  */
-import type { RefObject, ReactElement} from 'react';
+import type { RefObject, ReactElement } from 'react';
 import React, { useEffect, useMemo, useRef } from 'react';
 
-import { ModalManager } from '../../shared/components';
 import type { ContextValue } from '../../shared/context';
 import { Context, ctx, setContext } from '../../shared/context';
+import { ModalManager } from '../../shared/context/ModalManager';
 import { setDisplayName } from '../../shared/utils';
 import { createRefContext } from '../model/utils';
 
@@ -35,8 +35,7 @@ export const withContext: HFC = (Component) => {
                 return acc;
 
                 // eslint-disable-next-line react-hooks/exhaustive-deps
-            }, {} as ContextValue), []
-        );
+            }, {} as ContextValue), []);
 
         useEffect(() => {
             setContext(contextValue);

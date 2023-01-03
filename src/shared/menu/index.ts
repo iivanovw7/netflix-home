@@ -12,10 +12,10 @@ const {
 } = routePath;
 
 export type MenuItem = {
-    to: string;
-    text: string;
     disabled?: boolean;
     replace?: boolean;
+    text: string;
+    to: string;
 };
 
 /**
@@ -28,7 +28,7 @@ export type MenuItem = {
 
 /**
  * Set of application menu items.
- * @type {Object.<string, module:shared/Menu~menuItem>}
+ * @type {Object.<string, module:~/shared/Menu~menuItem>}
  */
 export const menuItemSet: Record<string, MenuItem> = {
     home: {
@@ -54,6 +54,6 @@ export const menuItemSet: Record<string, MenuItem> = {
 
 /**
  * Creates a list of navigation options.
- * @return {Array.<module:shared/Menu~menuItem>} menu items list.
+ * @return {Array.<module:~/shared/menu~menuItem>} menu items list.
  */
 export const getMenuItems = (): Array<MenuItem> => Object.values(menuItemSet);

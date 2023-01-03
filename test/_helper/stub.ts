@@ -27,9 +27,12 @@ export const stubMethod = (
     const methodList = toArray(methods);
     const stub: Record<string, AnyObject> = {};
 
-    let i, methodName, q;
-    for (i = 0, q = methodList.length; i < q; i++) {
-        methodName = methodList[i] as string;
+    let i;
+    let methodName;
+    let q;
+
+    for (i = 0, q = methodList.length; i < q; i += 1) {
+        methodName = methodList[i];
         stub[methodName] = jest.spyOn(target, methodName);
 
         if (typeof implementation === 'function') {

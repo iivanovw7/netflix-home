@@ -11,33 +11,35 @@ import storeLib from 'store2';
  * @readonly
  * @enum {string}
  */
-export const storeKeySet: Record<string, string> = {
+export const storageKeySet: Record<string, string> = {
     /** User profile id. */
     profile: 'profile',
 };
 
-const mainStore = storeLib;
+const mainStorage = storeLib;
 
-export let store = mainStore;
+export const storage = {
+    main: mainStorage
+};
 
 /**
  * Returns current local store instance.
  * @param {string} storeName - storage name prefix.
  * @return {StoreType} - returns local storage instance.
  */
-export function getStore(storeName: string): StoreType {
+export const getStore = (storeName: string): StoreType => {
     return storeLib.namespace(storeName);
-}
+};
 
 /**
  * Sets and returns new storage if name passed, otherwise uses default store.
  * @param {string} storeName - storage name prefix.
  * @return {StoreType} - returns local storage instance.
  */
-export function setMainStore(storeName: string): StoreType {
-    store = storeName
+export const setMainStorage = (storeName: string): StoreType => {
+    storage.main = storeName
         ? getStore(storeName)
-        : mainStore;
+        : mainStorage;
 
-    return store;
-}
+    return storage.main;
+};

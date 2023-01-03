@@ -4,18 +4,18 @@
  */
 import type { ValidationError } from 'yup';
 
-import getLogger from '../../shared/log';
+import { getLogger } from '../log';
 
 import { isValidationError } from './validation';
 
 type SetLoading = (isLoading: boolean) => void;
 
 export type MakeApiRequestParams<Req extends () => Promise<unknown>> = {
-    request: Req;
+    ignoreErrors?: unknown[];
     onError: (error: unknown) => void;
     onValidationError?: (error: ValidationError) => void;
+    request: Req;
     setLoading?: SetLoading;
-    ignoreErrors?: unknown[];
 };
 
 const logger = getLogger('Request');
@@ -43,7 +43,7 @@ export const makeApiRequest = async <Req extends () => Promise<unknown>, Res = A
         setLoading?.(true);
         const result = await request();
 
-        return (result ?? true) as unknown as Promise<Voidable<Res extends Maybe<void> ? true : Res>>;
+        return await ((result ?? true) as unknown as Promise<Voidable<Res extends Maybe<void> ? true : Res>>);
     }
     catch (errorData: unknown) {
         if (isValidationError(errorData)) {

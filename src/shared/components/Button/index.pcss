@@ -5,43 +5,150 @@
 
 .nh-components-button {
     width: fit-content;
+    color: var(--primary-button-color-text);
+    background-color: var(--primary-button-color);
     transition: $transition-color, $transition-border-color;
 
-    @mixin buttonColors primary, full;
+    &:hover,
+    &:focus-visible {
+        background-color: var(--primary-button-color-accent);
+    }
+
+    &:disabled {
+        background-color: var(--primary-button-color-disabled);
+        border-color: var(--primary-button-color-disabled);
+    }
 
     &--fluid {
         width: 100%;
     }
 
     &--secondary {
-        @mixin buttonColors secondary, full;
+        color: var(--secondary-button-color-text);
+        background-color: var(--secondary-button-color);
+
+        &:hover,
+        &:focus-visible {
+            background-color: var(--secondary-button-color-accent);
+        }
+
+        &:disabled {
+            background-color: var(--secondary-button-color-disabled);
+            border-color: var(--secondary-button-color-disabled);
+        }
     }
 
     &--tertiary {
-        @mixin buttonColors tertiary, full;
+        color: var(--tertiary-button-color-text);
+        background-color: var(--tertiary-button-color);
+
+        &:hover,
+        &:focus-visible {
+            background-color: var(--tertiary-button-color-accent);
+        }
+
+        &:disabled {
+            background-color: var(--tertiary-button-color-disabled);
+            border-color: var(--tertiary-button-color-disabled);
+        }
     }
 
     &--outlined {
-        @mixin buttonColors primary, outlined;
+        background-color: transparent;
+        border: 1px solid var(--primary-button-color);
+
+        &:hover,
+        &:focus-visible {
+            background-color: transparent;
+            border-color: var(--primary-button-color-accent-outlined);
+        }
+
+        &:disabled {
+            background-color: transparent;
+            border-color: var(--primary-button-color-disabled);
+        }
 
         &.nh-components-button--secondary {
-            @mixin buttonColors secondary, outlined;
+            background-color: transparent;
+            border: 1px solid var(--secondary-button-color);
+
+            &:hover,
+            &:focus-visible {
+                background-color: transparent;
+                border-color: var(--secondary-button-color-accent-outlined);
+            }
+
+            &:disabled {
+                background-color: transparent;
+                border-color: var(--secondary-button-color-disabled);
+            }
         }
 
         &.nh-components-button--tertiary {
-            @mixin buttonColors tertiary, outlined;
+            background-color: transparent;
+            border: 1px solid var(--tertiary-button-color);
+
+            &:hover,
+            &:focus-visible {
+                background-color: transparent;
+                border-color: var(--tertiary-button-color-accent-outlined);
+            }
+
+            &:disabled {
+                background-color: transparent;
+                border-color: var(--tertiary-button-color-disabled);
+            }
         }
     }
 
     &--fillNone {
-        @mixin buttonColors primary, none;
+        color: var(--primary-button-color);
+        background-color: transparent;
+        border: none;
+
+        &:hover,
+        &:focus-visible {
+            background-color: transparent;
+            border-color: var(--primary-button-color-accent-fill-none);
+        }
+
+        &:disabled {
+            background-color: transparent;
+            border-color: var(--primary-button-color-disabled);
+        }
 
         &.nh-components-button--secondary {
-            @mixin buttonColors secondary, none;
+            color: var(--secondary-button-color);
+            background-color: transparent;
+            border: none;
+
+            &:hover,
+            &:focus-visible {
+                background-color: transparent;
+                border-color: var(--secondary-button-color-accent-fill-none);
+            }
+
+            &:disabled {
+                background-color: transparent;
+                border-color: var(--secondary-button-color-disabled);
+            }
         }
 
         &.nh-components-button--tertiary {
-            @mixin buttonColors tertiary, none;
+            color: var(--tertiary-button-color);
+            background-color: transparent;
+            border: none;
+
+            &:hover,
+            &:focus-visible {
+                background-color: transparent;
+                border-color: var(--tertiary-button-color-accent-fill-none);
+            }
+
+            &:disabled {
+                background-color: transparent;
+                border-color: var(--tertiary-button-color-disabled);
+            }
         }
     }
 }

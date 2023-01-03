@@ -1,6 +1,6 @@
 /**
  * Module contains `Profile` unlock modal component.
- * @module widgets/Profiles/model/utils
+ * @module ~/widgets/Profiles/model/utils
  */
 
 import { allPass, pipe, isNil, not } from 'ramda';

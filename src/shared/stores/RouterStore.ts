@@ -5,7 +5,7 @@
 import type { BrowserHistory, Location as BrowserLocation, Path, To } from 'history';
 import { createBrowserHistory } from 'history';
 import { reaction } from 'mobx';
-import type { Instance } from 'mobx-state-tree';
+import type { Instance, SnapshotIn, SnapshotOut } from 'mobx-state-tree';
 import { types } from 'mobx-state-tree';
 import type { NavigateOptions } from 'react-router';
 
@@ -18,13 +18,13 @@ declare global {
 }
 
 /**
- * Sync the history object with the given mst router store.
+ * Syncs the history object with the given mst router store.
  * @param {object} browserHistory - 'History' instance to subscribe and sync to.
  * @param {object} store - Router store instance to sync with the history changes.
  * @return {History} history object.
  */
 export const syncHistoryWithStore = (browserHistory: BrowserHistory, store: TRouterStore): BrowserHistory => {
-    store._setHistory(browserHistory);
+    store.setHistory(browserHistory);
 
     /**
      * Compares location keys.
@@ -34,17 +34,17 @@ export const syncHistoryWithStore = (browserHistory: BrowserHistory, store: TRou
      */
     function isLocationEqual(locationA, locationB): boolean {
         return Boolean((
-            locationA &&
-            locationB &&
-            locationA.key &&
-            locationB.key &&
-            locationA.key === locationB.key
+            locationA
+            && locationB
+            && locationA.key
+            && locationB.key
+            && locationA.key === locationB.key
         ));
     }
 
     const handleLocationChange = ({ location: browserLocation }: { location: BrowserLocation }) => {
         if (! isLocationEqual(store.location, browserLocation)) {
-            store._setLocation({ ...browserLocation });
+            store.setLocation({ ...browserLocation });
         }
     };
 
@@ -60,7 +60,7 @@ export const syncHistoryWithStore = (browserHistory: BrowserHistory, store: TRou
         }
     );
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any, no-param-reassign
     (browserHistory as any).unsubscribe = () => {
         unsubscribeFromHistory();
         unsubscribeFromStoreLocation();
@@ -71,20 +71,20 @@ export const syncHistoryWithStore = (browserHistory: BrowserHistory, store: TRou
     return browserHistory;
 };
 
-export const RouterModel = types
+const RouterModel = types
     .model('RouterStore', {
         location: types.optional(types.frozen(), noop),
         history: types.optional(types.frozen(), null),
         action: types.optional(types.string, '')
     })
-    .actions((_self) => {
+    .actions((routerModel) => {
         let browserHistory;
 
         /**
          * Sets new history object.
          * @param {Location} initialHistory - new location history.
          */
-        const _setHistory = (initialHistory) => {
+        const setHistory = (initialHistory) => {
             browserHistory = initialHistory;
         };
 
@@ -92,9 +92,11 @@ export const RouterModel = types
          * Sets new location.
          * @param {Location} newLocation new browser location.
          */
-        const _setLocation = (newLocation) => {
-            _self.location = newLocation;
-            _self.action = browserHistory.action;
+        const setLocation = (newLocation) => {
+            // eslint-disable-next-line no-param-reassign
+            routerModel.location = newLocation;
+            // eslint-disable-next-line no-param-reassign
+            routerModel.action = browserHistory.action;
         };
 
         /**
@@ -165,8 +167,8 @@ export const RouterModel = types
         };
 
         return {
-            _setHistory,
-            _setLocation,
+            setHistory,
+            setLocation,
             navigateToAbsolute,
             navigateToRelative,
             navigateBack,
@@ -202,3 +204,5 @@ export const navigate = {
 };
 
 export type TRouterStore = Instance<typeof RouterModel>;
+export type TRouterStoreSnapshotIn = SnapshotIn<typeof RouterModel>;
+export type TRouterStoreSnapshotOut = SnapshotOut<typeof RouterModel>;

@@ -3,6 +3,8 @@
  * @module shared/components/Button/PlainButton.pcss
  */
 
+@import './../../styles/mixins.pcss';
+
 .nh-components-plain-button {
     @mixin fontSize $controls-font-size-medium, 1.3, $font-weight-medium;
 
@@ -64,7 +66,7 @@
     }
 
     &__iconBox {
-        @mixin justifyAlignFlex;
+        @mixin justify-align-flex;
 
         z-index: zIndex(global, content);
         grid-area: icon;

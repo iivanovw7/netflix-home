@@ -5,8 +5,10 @@
 import type { ReactElement } from 'react';
 import React from 'react';
 
-import { ErrorBoundary, ErrorFallback } from '../../shared/components';
+import { ErrorFallback } from '../../pages/technical';
 import { setDisplayName } from '../../shared/utils';
+
+import { ErrorBoundary } from './ErrorBoundary';
 
 /**
  * Application error fallback HOC.

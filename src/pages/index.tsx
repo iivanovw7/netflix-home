@@ -15,7 +15,7 @@ import { NotFound } from './technical';
 const {
     home,
     browse,
-    notFound
+    notFound,
 } = routePath;
 
 /**
@@ -34,4 +34,3 @@ export const Routing = observer((): ReactElement => {
         </Routes>
     );
 });
-

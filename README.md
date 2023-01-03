@@ -78,8 +78,6 @@ Technologies used
 ---
 ### Configuration
 
-`./.env` in used for storing private keys:
-(Later it will contain api keys, for now empty file should be created to avoid bundler errors.)
 
 Additional arguments could be added to `pnpm run dev`, or `pnpm run build` after `--`:
 * `--source-maps` {string | false} [true] - creates [source maps](https://webpack.js.org/configuration/devtool/).
@@ -87,8 +85,7 @@ Additional arguments could be added to `pnpm run dev`, or `pnpm run build` after
 * `--port` {string} - override application default port (for `dev` or `view` script).
 
 Additional arguments could be added to `pnpm run build`:
-* `--stats` {string | boolean} [false] - creates `stats.json` file inside `./build` folder.
-* `--source-maps` {string | false} [false] - creates [source maps](https://webpack.js.org/configuration/devtool/).
+* `--stats` {string | boolean} [false] - creates `stats.html` file inside `./build` folder.
 
 Additional arguments could be added to `test` or `coverage` scripts.
 * `--verbose` - add verbose cli report during run.
@@ -114,7 +111,7 @@ Contains information about main configuration files and folders.
 
 `./.nvmrc` -- contains current `Node.js` version.
 
-`./.stylelintrc` -- contains stylelint configuration.
+`./.stylelintrc.js` -- contains stylelint configuration.
 
 `./assets` -- folder contains application resources (images, svg, fonts and etc...)
 
@@ -122,13 +119,15 @@ Contains information about main configuration files and folders.
 
 `./config/vite` -- contains webpack config files.
 
+`./config/postcss` -- contains postcss config.
+
 `./tool` -- contains additional scripts used during build, testing, debugging, etc.
 
 `./src/` -- main application folder.
 
 `./src/main.jsx` -- entry point, renders application.
 
-`./src/app` -- initializing the application (store, providers, etc...).
+`./src/app` -- initializing the application (context, providers, etc...).
 
 `./src/pages` -- contains application pages.
 
@@ -136,7 +135,7 @@ Contains information about main configuration files and folders.
 
 `./src/shared` -- reusable infrastructure code (UIKit, libs, API, ...).
 
-`./src/widgets` -- independent and complex page widgets, composing the underlying layers.
+`./src/widgets` -- complex page widgets, composing the underlying layers.
 
 ---
 ### ToDo
@@ -157,6 +156,9 @@ Contains information about main configuration files and folders.
 - Browse page: Playable asset preview <br/>
 - Player component & store slice <br />
 - Refactor: Technical pages <br />
+- Consider switching to [postcss-modules](https://www.npmjs.com/package/postcss-modules) <br />
+  (see https://vitejs.dev/guide/features.html) <br />
+- Replace Portal with Floating portal in modals <br />
 
 ### License
 [![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://badges.mit-license.org)

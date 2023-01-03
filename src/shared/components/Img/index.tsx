@@ -1,9 +1,9 @@
 /**
  * Module renders an image with parameters
- * @module shared/components/Img
+ * @module ~/shared/components/Img
  */
 import classNames from 'classnames';
-import type { CSSProperties, ReactElement, ReactEventHandler} from 'react';
+import type { CSSProperties, ReactElement, ReactEventHandler } from 'react';
 import React, { useCallback } from 'react';
 
 import placeholder from '../../../../assets/img/placeholder-square.png';
@@ -16,24 +16,23 @@ const cls = bem('img', { namespace: 'nh-components' });
 export type ImgProps = {
     alt: string;
     className?: string;
-    imageClassName?: string;
-    height?: string | number;
     dataId?: string | number;
+    height?: string | number;
+    imageClassName?: string;
     keepSize?: boolean;
     maxWidth?: string | number;
-    size?: string | number;
+    onLoad?: () => void;
     rounded?: boolean;
+    size?: string | number;
     src?: string;
     width?: string | number;
-    onClick?: () => void;
-    onLoad?: () => void;
 };
 
 type HandleError = ReactEventHandler<HTMLImageElement>;
 
 /**
  * Creates image component.
- * @name shared/components/Img
+ * @name ~/shared/components/Img
  * @method
  * @param {object} props - contains component props.
  *
@@ -53,7 +52,6 @@ export const Img = (props: ImgProps): ReactElement => {
         maxWidth: maxWidthProp,
         dataId,
         size,
-        onClick,
         onLoad
     } = props;
 
@@ -84,7 +82,10 @@ export const Img = (props: ImgProps): ReactElement => {
     }, []);
 
     return (
-        <div className={classNames(cls({ rounded }), className)} style={containerStyles} onClick={onClick}>
+        <div
+            className={classNames(cls({ rounded }), className)}
+            style={containerStyles}
+        >
             <img
                 alt={alt}
                 className={classNames(cls('image'), imageClassName)}
@@ -92,7 +93,8 @@ export const Img = (props: ImgProps): ReactElement => {
                 loading="lazy"
                 src={src}
                 onError={handleError}
-                onLoad={onLoad} />
+                onLoad={onLoad}
+            />
         </div>
     );
 };

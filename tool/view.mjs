@@ -2,7 +2,6 @@
  * View util.
  * @module _/tool/view
  */
-
 import LocalWebServer from 'local-web-server';
 import env from './env.js';
 import pc from 'picocolors';

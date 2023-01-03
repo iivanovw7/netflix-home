@@ -1,6 +1,5 @@
-import getLogger, { logLevelMap, setLogLevel } from './logger';
+import { getLogger, logLevelMap, setLogLevel } from './logger';
 
 setLogLevel(logLevelMap.SILENT);
 
-export default getLogger;
-export { setLogLevel, logLevelMap };
+export { getLogger, setLogLevel, logLevelMap };

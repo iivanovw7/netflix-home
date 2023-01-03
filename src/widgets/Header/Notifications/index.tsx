@@ -24,6 +24,7 @@ export const Notifications = (): ReactElement => {
             className={cls('toggle')}
             color="secondary"
             fill="none"
-            icon={{ name: 'bell', size: 20 }} />
+            icon={{ name: 'bell', size: 24 }}
+        />
     );
 };

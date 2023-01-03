@@ -1,26 +1,29 @@
 /**
  * Module contains useValidation hook.
- * @module shared/hooks/useValidation
+ * @module ~/shared/hooks/useValidation
  */
 
 import { useEffect, useState } from 'react';
 
 export type UseValidationParams<Value = unknown> = {
-    value?: Value;
-    validate?: Validate<Value>;
-    hasError?: boolean;
     errorText?: string;
+    hasError?: boolean;
+    validate?: Validate<Value>;
+    value?: Value;
 };
 
 export type UseValidationResult = {
-    validationError: string;
     hasValidationError?: boolean;
+    validationError: string;
 };
 
 export type UseValidation = <Value = unknown>(params: UseValidationParams<Value>) => UseValidationResult;
 
 /**
  * Validation hook.
+ * @name ~/shared/hooks/useValidation
+ * @function
+ * @category hooks
  * @param {UseValidationParams} params - object contains validation properties.
  * @return {UseValidationResult} object represents validation result.
  */

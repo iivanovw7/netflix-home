@@ -1,6 +1,6 @@
 /**
  * Module contains main application configuration.
- * @module shared/config
+ * @module ~/shared/config
  */
 
 import { logLevelMap } from '../log';
@@ -42,7 +42,7 @@ const settings = {
          * Throttle delay in `ms`.
          * @type {number}
          */
-        throttle: 1000
+        throttle: 1000,
     }
 };
 
@@ -64,7 +64,7 @@ const settings = {
     }
 
     Object.assign(object, { logLevel });
+}(settings, runningMode));
 
-})(settings, runningMode);
-
+// eslint-disable-next-line import/no-default-export
 export default settings;

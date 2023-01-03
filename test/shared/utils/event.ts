@@ -1,14 +1,13 @@
-import { eventMap, onEvent, offEvent, noop } from '../../../src/shared/utils';
-import { getSpecTitle } from '../../_helper/common';
-import type { Stub} from '../../_helper/stub';
+import { EventMap, onEvent, offEvent, noop } from '../../../src/shared/utils';
+import type { Stub } from '../../_helper/stub';
 import { removeStub, resetStub, stubMethod, verifyCall } from '../../_helper/stub';
 
 const {
     POINTERDOWN,
-    RESIZE
-} = eventMap;
+    RESIZE,
+} = EventMap;
 
-describe(getSpecTitle('shared.utils', 'event'), () => {
+describe('shared/utils/event', () => {
     describe('onEvent, offEvent', () => {
         let addEventListenerStub: Stub;
         let removeEventListenerStub: Stub;
@@ -17,7 +16,7 @@ describe(getSpecTitle('shared.utils', 'event'), () => {
 
         const OBJECT_STUB = {
             addEventListener: noop,
-            removeEventListener: noop
+            removeEventListener: noop,
         } as unknown as EventTarget;
 
         afterEach(() => {
@@ -34,11 +33,11 @@ describe(getSpecTitle('shared.utils', 'event'), () => {
             onEvent(document, POINTERDOWN, handler);
 
             verifyCall(addEventListenerStub, {
-                args: [POINTERDOWN, handler]
+                args: [POINTERDOWN, handler],
             });
         });
 
-        it('Should call addEventListener to assign listener', () => {
+        it('Should call addEventListener to assign and remove listener', () => {
             addEventListenerStub = stubMethod('addEventListener', document);
             removeEventListenerStub = stubMethod('removeEventListener', document);
 
@@ -46,7 +45,7 @@ describe(getSpecTitle('shared.utils', 'event'), () => {
             offEvent(document, POINTERDOWN, handler);
 
             verifyCall(removeEventListenerStub, {
-                args: [POINTERDOWN, handler]
+                args: [POINTERDOWN, handler],
             });
         });
 
@@ -56,18 +55,18 @@ describe(getSpecTitle('shared.utils', 'event'), () => {
             onEvent(OBJECT_STUB, RESIZE, handler);
 
             verifyCall(addEventListenerStub, {
-                args: [RESIZE, handler]
+                args: [RESIZE, handler],
             });
         });
 
-        it('Should call addEventListener to assign listener on custom object', () => {
+        it('Should call addEventListener to assign and remove listener on custom object', () => {
             removeEventListenerStub = stubMethod('removeEventListener', OBJECT_STUB);
 
             onEvent(OBJECT_STUB, RESIZE, handler);
             offEvent(OBJECT_STUB, RESIZE, handler);
 
             verifyCall(removeEventListenerStub, {
-                args: [RESIZE, handler]
+                args: [RESIZE, handler],
             });
         });
     });

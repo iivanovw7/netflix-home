@@ -1,5 +1,9 @@
 import '@testing-library/jest-dom';
 
-jest.mock('../../src/shared/utils/env', jest.fn);
-
-
+jest.mock('../../src/shared/utils/env', () => {
+    return {
+        env: {
+            isBrowser: true
+        }
+    };
+});

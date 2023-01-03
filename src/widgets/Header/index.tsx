@@ -1,9 +1,10 @@
 /**
  * Module contains application header.
- * @module widgets/Header
+ * @module ~/widgets/Header
  */
 import bem from 'bem-ts';
-import type { PropsWithChildren, ReactElement } from 'react';
+import { observer } from 'mobx-react-lite';
+import type { ReactElement } from 'react';
 import React from 'react';
 
 import Logo from '../../../assets/img/logo-v7.png?w=200&png&imagetools';
@@ -22,19 +23,20 @@ const cls = {
     logo: bem('header-logo', { namespace: 'nh-widgets' })
 };
 
-export type HeaderProps = PropsWithChildren<{
+export type HeaderProps = {
     withNavigation?: boolean;
-}>;
+};
 
 /**
  * Header component.
  * @method
+ * @name ~/widgets/Header
  * @param {object} props - contains component props.
  * @return {ReactElement} React component with children.
  * @constructor
  */
-export const Header = (props: HeaderProps): ReactElement => {
-    const { children, withNavigation } = props;
+export const Header = observer((props: HeaderProps): ReactElement => {
+    const { withNavigation = false } = props;
     const {
         profile: { profile },
     } = stores;
@@ -46,16 +48,17 @@ export const Header = (props: HeaderProps): ReactElement => {
                     alt="Netflix"
                     className={cls.logo()}
                     imageClassName={cls.logo('image')}
-                    src={Logo} />
-                {profile && withNavigation && <Navigation />}
+                    src={Logo}
+                />
+                {profile && withNavigation
+                    ? <Navigation />
+                    : null}
             </div>
             <div className={cls.header('section')}>
-                {children}
                 <Search />
                 <Notifications />
                 <Menu />
             </div>
         </Container>
     );
-};
-
+});

@@ -12,6 +12,7 @@ export type CurriedValidate<T> = (
     options?: ValidateOptions<never>
 ) => (value: never) => FieldValidationResult;
 
+// eslint-disable-next-line max-len
 export type ValidateField = (schema: yup.AnySchema, value: unknown, options?: ValidateOptions<unknown>) => FieldValidationResult;
 
 /**
@@ -76,6 +77,10 @@ export const isValidationError = (error: unknown): error is yup.ValidationError 
     return error instanceof yup.ValidationError;
 };
 
+export const VALIDATION_ERRORS = {
+    EMPTY: 'Field is required',
+};
+
 export const VALIDATION_SCHEMAS = {
     /**
      * Option string.
@@ -86,6 +91,6 @@ export const VALIDATION_SCHEMAS = {
      * Required string.
      * @type {yup.StringSchema}
      */
-    STRING_REQUIRED: yup.string().trim()
+    STRING_REQUIRED: yup.string().trim().required(VALIDATION_ERRORS.EMPTY)
 };
 

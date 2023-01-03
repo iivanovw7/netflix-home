@@ -1,24 +1,27 @@
 /**
  * Module contains `Profiles` page.
- * @module widgets/Profiles/index.styled
+ * @module ~/widgets/Profiles
  */
 
 import { observer } from 'mobx-react-lite';
+import type { Instance } from 'mobx-state-tree';
 import type { ReactElement } from 'react';
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 
 import type { LinkProps } from '../../shared/components';
 import { Button, Container, H1, AVATARS } from '../../shared/components';
 import { ctx } from '../../shared/context';
+import type { models } from '../../shared/stores';
 import { stores } from '../../shared/stores';
-import type { TProfile } from '../../shared/stores/ProfileStore';
 import { bem, uuid } from '../../shared/utils';
+import { getProfileUnlockProps } from '../ProfileUnlock';
 
 import { isValidCode } from './model/utils';
 import { Profile } from './Profile';
-import { getUnlockModalProps } from './UnlockModal';
 
 import './index.pcss';
+
+type TProfile = Instance<typeof models.Profile>;
 
 const cls = {
     page: bem('page', { namespace: 'nh-widgets-profiles' }),
@@ -33,7 +36,7 @@ const MESSAGES = {
 /**
  * `Profiles` page.
  * @constructor
- * @name widgets/Profiles
+ * @name ~/widgets/Profiles
  * @method
  * @return {ReactElement} React component with children.
  */
@@ -41,8 +44,7 @@ export const Profiles = observer((): ReactElement => {
     const {
         profile: {
             profiles,
-            loadProfiles,
-            setProfile
+            changeUserProfile
         },
     } = stores;
 
@@ -52,29 +54,23 @@ export const Profiles = observer((): ReactElement => {
         setLoaded(true);
     }, []);
 
-    const handleClick = useCallback((profile: TProfile): LinkProps['onClick'] => () => {
+    const handleClick = useCallback((profile: TProfile): LinkProps['onClick'] => async () => {
         const { lock } = profile;
 
         if (lock && isValidCode(lock)) {
-            ctx.modal.open(getUnlockModalProps({
+            ctx.modal.open(getProfileUnlockProps({
                 lock,
                 onClose: ctx.modal.close,
-                onSuccess: () => {
-                    setProfile(profile);
+                onSuccess: async () => {
+                    await changeUserProfile(profile);
                     ctx.modal.close();
                 }
             }));
         }
         else {
-            setProfile(profile);
+            await changeUserProfile(profile);
         }
-    }, [setProfile]);
-
-    useEffect(() => {
-        // eslint-disable-next-line no-void
-        void loadProfiles();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    }, [changeUserProfile]);
 
     return (
         <div className={cls.page()}>
@@ -89,7 +85,8 @@ export const Profiles = observer((): ReactElement => {
                                     avatar={AVATARS[index]}
                                     profile={profile}
                                     onClick={handleClick(profile)}
-                                    onLoaded={handleLoaded} />
+                                    onLoaded={handleLoaded}
+                                />
                             ))}
                         </ul>
                         <div className={cls.box('footer')}>
@@ -97,7 +94,8 @@ export const Profiles = observer((): ReactElement => {
                                 className={cls.box('button')}
                                 color="tertiary"
                                 fill="outlined"
-                                text={MESSAGES.button} />
+                                text={MESSAGES.button}
+                            />
                         </div>
                     </div>
                 </Container>

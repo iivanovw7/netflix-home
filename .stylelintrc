@@ -48,6 +48,7 @@
                 ]
             }
         ],
+        "scss/no-duplicate-mixins": null,
         "selector-max-attribute": 2,
         "selector-max-class": 4,
         "selector-max-combinators": 3,
@@ -80,6 +81,14 @@
         "function-name-case": null,
         "selector-class-pattern": "([A-Za-z0-9]+(?:-[A-Za-z0-9]+)*)(?:__([A-Za-z0-9]+(?:-[A-Za-z0-9]+)*))?(?:--([A-Za-z0-9]+(?:-[A-Za-z0-9]+)*))?",
         "scss/no-global-function-names": null,
+        "function-no-unknown": [
+            true,
+            {
+                "ignoreFunctions": [
+                    "zIndex", "color-mod", "a"
+                ]
+            }
+        ]
     }
 }
 

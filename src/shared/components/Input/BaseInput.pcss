@@ -1,6 +1,6 @@
 /**
  * Module contains styled `BaseInput` component.
- * @module shared/components/BaseInput/index.pcss
+ * @module ~/shared/components/BaseInput/index.pcss
  */
 
 .nh-components-base-input {
@@ -25,21 +25,17 @@
         appearance: textfield;
     }
 
-    &--small {
+    &--sizeSmall {
         @mixin fontSize $controls-font-size-small, 1.4, $font-weight-bold;
-    }
 
-    &--large {
-        @mixin fontSize $controls-font-size-large, 1.6, $font-weight-bold;
-    }
-
-    &--size-small {
         height: $control-size-small;
         font-size: 14px;
         line-height: 24px;
     }
 
-    &--size-large {
+    &--sizeLarge {
+        @mixin fontSize $controls-font-size-large, 1.6, $font-weight-bold;
+
         height: $control-size-large;
     }
 

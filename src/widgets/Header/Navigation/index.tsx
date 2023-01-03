@@ -8,7 +8,6 @@ import React from 'react';
 
 import { NavLink } from '../../../shared/components/NavLink';
 import { getMenuItems } from '../../../shared/menu';
-import { uuid } from '../../../shared/utils';
 
 import './index.pcss';
 
@@ -29,7 +28,7 @@ export const Navigation = (): ReactElement => {
                 const { to, text, disabled } = item;
 
                 return (
-                    <div key={uuid()} className={cls('element')}>
+                    <div key={text} className={cls('element')}>
                         <NavLink disabled={disabled} text={text} to={to} />
                     </div>
                 );

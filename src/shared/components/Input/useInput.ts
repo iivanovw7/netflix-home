@@ -1,6 +1,6 @@
 /**
  * Module contains useInput hook.
- * @module shared/components/Input/useInput
+ * @module ~/shared/components/Input/useInput
  */
 import type { ChangeEvent } from 'react';
 import { useState, useCallback } from 'react';
@@ -8,8 +8,8 @@ import { useState, useCallback } from 'react';
 export type TOnChange = (eventData: ChangeEvent<HTMLInputElement>) => void;
 
 export type UseInput<Value> = {
-    value: Value;
     onChange: TOnChange;
+    value: Value;
 };
 
 export const useInput = <Value>(initialValue: Value, onChange?: TOnChange): UseInput<Value> => {

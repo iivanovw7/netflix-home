@@ -2,9 +2,6 @@
  * Dev server util.
  * @module _/tool/server
  */
-
-'use strict';
-
 const { createServer, mergeConfig } = require('vite');
 
 const env = require('./env').getEnv('development');

@@ -1,1 +1,2 @@
-export * from './notFound';
+export * from './NotFound';
+export * from './ErrorFallback';

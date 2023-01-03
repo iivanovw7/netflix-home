@@ -1,6 +1,6 @@
 /**
  * Module contains link styles.
- * @module shared/components/Link/index.pcss
+ * @module ~/shared/components/Link/index.pcss
  */
 
 .nh-components-link {
@@ -16,20 +16,20 @@
     cursor: pointer;
     transition: $transition-color;
 
+    &--underlineHover {
+        &:not([disabled]) {
+            &:focus,
+            &:focus-visible,
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+
     &:not([disabled]) {
         &:focus,
         &:focus-visible {
             color: var(--primary-link-color-accent);
-        }
-
-        &:hover {
-            &--underlineHover {
-                text-decoration: underline;
-            }
-
-            &:not(&--noHoverAccent) {
-                color: var(--primary-link-color-accent);
-            }
         }
     }
 
@@ -57,25 +57,11 @@
         color: inherit;
     }
 
+    &--withImage,
     &--withIcon {
         display: inline-flex;
         align-items: center;
         vertical-align: baseline;
-    }
-
-    &--disabled {
-        color: var(--primary-link-color-text-disabled);
-        pointer-events: none;
-
-        .icon {
-            color: var(--primary-link-color-text-disabled);
-        }
-    }
-
-    &__text {
-        &--noWrap {
-            @mixin textOverflow ellipsis, true;
-        }
     }
 
     &__icon {
@@ -84,16 +70,59 @@
             margin-left: 4px;
         }
 
-        &--offsetLarge {
+        .nh-components-link--offsetLarge {
             & > svg {
-                margin-left: 8px;
+                margin-left: 12px;
             }
         }
 
-        &--onlyChild {
+        .nh-components-link--onlyChild {
             & > svg {
                 margin-left: 0;
             }
+        }
+    }
+
+    &__image {
+        flex-shrink: 0;
+        margin-left: 4px;
+
+        .nh-components-link--offsetLarge {
+            margin-left: 12px;
+        }
+
+        .nh-components-link--onlyChild {
+            margin-left: 0;
+        }
+    }
+
+    &--disabled {
+        color: var(--primary-link-color-text-disabled);
+        pointer-events: none;
+
+        .nh-components-link__image,
+        .nh-components-link__icon {
+            color: var(--primary-link-color-text-disabled);
+        }
+    }
+
+    &--imageStart {
+        .nh-components-link__image {
+            order: -1;
+            margin: 0 8px 0 0;
+        }
+    }
+
+    &--iconStart {
+        .nh-components-link__icon {
+            order: -1;
+            margin: 0 8px 0 0;
+        }
+    }
+
+    &__text {
+        &--noWrap {
+            @mixin textOverflow ellipsis, true;
         }
     }
 }

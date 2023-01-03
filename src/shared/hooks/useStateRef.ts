@@ -1,23 +1,27 @@
 /**
  * Module contains useStateRef hook.
- * @module shared/hooks/useStateRef
+ * @module ~/shared/hooks/useStateRef
  */
 
 import type { Dispatch, MutableRefObject, SetStateAction } from 'react';
 import { useRef, useState } from 'react';
 
 type UseStateRef = {
+    // eslint-disable-next-line max-len
     <State>(initialState: State | (() => State)): readonly [State, Dispatch<SetStateAction<State>>, Readonly<MutableRefObject<State>>];
+    // eslint-disable-next-line max-len
     <State = undefined>(): readonly [State | undefined, Dispatch<SetStateAction<State | undefined>>, Readonly<MutableRefObject<State>>];
 };
 
 /**
  * Combines `useState` with `useRef`.
+ * @name ~/shared/hooks/useStateRef
  * @function
  * @category hooks
  * @template State
  * @param {State | function} [initialState] - `useState` initial state.
- * @return {Array.<State, Dispatch<SetStateAction<State>>, Readonly<MutableRefObject<State>>>} `useState` return type with `ref`.
+ * @return {Array.<State, Dispatch<SetStateAction<State>>, Readonly<MutableRefObject<State>>>}
+ *      `useState` return type with `ref`.
  */
 export const useStateRef: UseStateRef = <State>(initialState?: State | (() => State)) => {
     const [state, setState] = useState(initialState);

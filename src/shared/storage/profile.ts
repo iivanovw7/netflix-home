@@ -2,22 +2,28 @@
  * Module contains profile local storage.
  * @module shared/storage/profile
  */
-import type { TProfile } from '../stores/ProfileStore';
+import type { Instance } from 'mobx-state-tree';
 
-import { store, storeKeySet } from './index';
+import type { models } from '../stores';
+
+import { storage, storageKeySet } from './index';
+
+type TProfile = Instance<typeof models.Profile>;
+
+const { main: mainStorage } = storage;
 
 /**
  * Saves new user profile.
  * @param {Object} profile - user profile.
  */
-export function setProfile(profile: unknown): void {
-    store.set(storeKeySet.profile, profile);
-}
+export const setProfile = (profile: unknown): void => {
+    mainStorage.set(storageKeySet.profile, profile);
+};
 
 /**
  * Retrieves user profile out of local storage.
  * @return {Object | null} - user profile.
  */
-export function getProfile(): Nullable<TProfile> {
-    return store.get(storeKeySet.profile) as TProfile;
-}
+export const getProfile = (): Nullable<TProfile> => {
+    return mainStorage.get(storageKeySet.profile) as TProfile;
+};

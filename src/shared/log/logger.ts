@@ -24,15 +24,15 @@ export const logLevelMap: Record<keyof LogLevel, LogLevelDesc> = {
  * Disables all logging below the given level.
  * @param {LogLevelDesc} level - log level.
  */
-export function setLogLevel(level: LogLevelDesc): void {
+export const setLogLevel = (level: LogLevelDesc): void => {
     logger.setLevel(level);
-}
+};
 
 /**
  * Creates new logger object.
  * @param {string} [loggerName=''] - new logger name.
  * @return {Object} new logger object.
  */
-export default function getLogger(loggerName: string): Logger {
+export const getLogger = (loggerName: string): Logger => {
     return logger.getLogger(loggerName || '');
-}
+};

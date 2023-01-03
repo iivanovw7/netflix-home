@@ -9,6 +9,7 @@ import { withContext } from './withContext';
 import { withErrorBoundary } from './withErrorBoundary';
 import { withRouter } from './withRouter';
 import { withTheme } from './withTheme';
+import { withWaitScreen } from './withWaitScreen';
 
 /**
  * Combines application providers.
@@ -21,5 +22,6 @@ export const withProviders = compose(
     withErrorBoundary,
     withContext,
     withRouter,
-    withTheme
+    withTheme,
+    withWaitScreen
 );

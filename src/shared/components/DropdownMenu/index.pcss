@@ -1,0 +1,46 @@
+/**
+ * Module contains DropdownMenu base classes.
+ * @module shared/components/DropdownMenu/index.pcss
+ */
+
+@import '../../../shared/styles/mixins.pcss';
+
+.nh-components-dropdown-menu {
+    &__menu {
+        width: 200px;
+        background-color: var(--background-header-color);
+        border: 1px solid var(--border-color);
+    }
+
+    &__floating {
+        position: absolute;
+        z-index: zIndex(global, overlay);
+        color: var(--primary-text-color);
+        outline: none;
+    }
+
+    &__toggle {
+        display: block;
+    }
+
+    &__arrowFloating {
+        position: absolute;
+        z-index: -1;
+        background-color: var(--background-content-color-accent);
+        transform: rotate(45deg);
+        pointer-events: none;
+    }
+
+    &__arrowToggle {
+        @mixin triangle-base 5px;
+
+        margin-left: 8px;
+        border-top: 5px solid var(--background-content-color-accent);
+        transform: translateY(50%);
+        transition: $transition-transform;
+
+        &--isOpen {
+            transform: rotate(180deg);
+        }
+    }
+}

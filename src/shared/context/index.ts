@@ -1,25 +1,21 @@
 /**
  * Module contains global application context methods.
- * @module shared/context
+ * @module ~/shared/context
  */
 
 import { createContext } from 'react';
 
-import type { ModalManagerRef } from '../components';
-import type { ErrorBoundaryContext} from '../components/ErrorBoundary/ErrorBoundaryContext';
-import { errorBoundaryContext } from '../components/ErrorBoundary/ErrorBoundaryContext';
-import { defaultModalContext } from '../components/Modal/modalContext';
+import type { ModalManagerRef } from './ModalManager';
+import { defaultModalContext } from './ModalManager/model/context';
 
 export type ContextValue = {
     modal: ModalManagerRef;
-    errorBoundary: ErrorBoundaryContext;
 };
 
 export type SetContext = (value: ContextValue) => ContextValue;
 
 export const ctx = {
     modal: defaultModalContext,
-    errorBoundary: errorBoundaryContext
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

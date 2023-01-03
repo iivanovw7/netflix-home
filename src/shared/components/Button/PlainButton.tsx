@@ -3,7 +3,7 @@
  * @module shared/components/PlainButton
  */
 import classNames from 'classnames';
-import type { ButtonHTMLAttributes, PropsWithChildren, ReactNode } from 'react';
+import type { ButtonHTMLAttributes, PropsWithChildren, ReactNode, MouseEvent as ReactMouseEvent } from 'react';
 import React, { forwardRef, isValidElement } from 'react';
 
 import { bem } from '../../utils';
@@ -12,11 +12,11 @@ import { Icon } from '../Icon';
 
 import './PlainButton.pcss';
 
-export type ButtonAttributeProps = Pick<ButtonHTMLAttributes<HTMLButtonElement>, 'type' | 'id' | 'name' | 'title' | 'style' | 'onMouseEnter' | 'onMouseLeave'>;
+type ButtonAttributes = 'type' | 'id' | 'name' | 'title' | 'style' | 'onMouseEnter' | 'onMouseLeave' | 'onKeyDown';
 
-export type PlainButtonProps = ButtonAttributeProps & PropsWithChildren<{
-    customIcon?: ReactNode;
+export type PlainButtonProps = PropsWithChildren<{
     className?: string;
+    customIcon?: ReactNode;
     dataId?: string | number;
     disabled?: boolean;
     icon?: IconProps;
@@ -24,6 +24,7 @@ export type PlainButtonProps = ButtonAttributeProps & PropsWithChildren<{
     iconPosition?: 'start' | 'end';
     /** @default 'horizontal' */
     layout?: 'horizontal' | 'vertical';
+    onClick?: (eventData: ReactMouseEvent<HTMLButtonElement>) => void;
     /** @default 'medium' */
     size?: 'small' | 'medium' | 'large';
     text?: ReactNode,
@@ -31,8 +32,7 @@ export type PlainButtonProps = ButtonAttributeProps & PropsWithChildren<{
     textAlign?: 'left' | 'right' | 'center';
     /** @default 'button' */
     type?: 'button' | 'submit' | 'reset';
-    onClick?: () => void;
-}>;
+}> & Pick<ButtonHTMLAttributes<HTMLButtonElement>, ButtonAttributes>;
 
 const cls = bem('plain-button', { namespace: 'nh-components' });
 
@@ -88,27 +88,32 @@ export const PlainButton = forwardRef<HTMLButtonElement, PlainButtonProps>((prop
             title={title}
             /* eslint-disable-next-line react/button-has-type */
             type={type}
-            onClick={onClick}>
+            onClick={onClick}
+        >
             {children}
-            {hasText && (
-                <div
-                    className={cls('textBox', {
-                        positionEnd: iconPosition === 'end'
-                    })}
-                >
-                    {text}
-                </div>
-            )}
-            {iconElement && (
-                <div
-                    className={cls('iconBox', {
-                        left: textAlign === 'left',
-                        right: textAlign === 'right'
-                    })}
-                >
-                    {iconElement}
-                </div>
-            )}
+            {hasText
+                ? (
+                    <div
+                        className={cls('textBox', {
+                            positionEnd: iconPosition === 'end'
+                        })}
+                    >
+                        {text}
+                    </div>
+                )
+                : null}
+            {iconElement
+                ? (
+                    <div
+                        className={cls('iconBox', {
+                            left: textAlign === 'left',
+                            right: textAlign === 'right'
+                        })}
+                    >
+                        {iconElement}
+                    </div>
+                )
+                : null}
         </button>
     );
 });

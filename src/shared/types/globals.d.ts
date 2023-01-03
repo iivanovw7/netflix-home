@@ -24,6 +24,8 @@ declare global {
 
     type Pixels = number;
 
+    type Milliseconds = number;
+
     /** Represents type of optional object. */
     type Maybe<T> = T | undefined | null;
 
@@ -37,7 +39,7 @@ declare global {
     type UnwrapPromise<T extends Promise<any>> = T extends Promise<infer Data> ? Data : never;
 
     /** Represents any function. */
-    type AnyFunction = (...args: unknown[]) => unknown;
+    type AnyFunction = (...args: any[]) => any;
 
     type AsyncReturnType<T extends (...args: any[]) => Promise<any>> = UnwrapPromise<ReturnType<T>>;
 

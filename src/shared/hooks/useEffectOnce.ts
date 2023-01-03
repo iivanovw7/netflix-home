@@ -1,6 +1,6 @@
 /**
  * Module contains useEffectOnce hook.
- * @module shared/hooks/useEffectOnce
+ * @module ~/shared/hooks/useEffectOnce
  */
 
 import type { EffectCallback } from 'react';
@@ -8,6 +8,7 @@ import { useEffect } from 'react';
 
 /**
  * React lifecycle hook that runs an effect only once.
+ * @name ~/shared/hooks/useEffectOnce
  * @function
  * @category hooks
  * @param {EffectCallback} effect - effect callback.

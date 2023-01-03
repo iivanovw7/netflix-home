@@ -1,10 +1,12 @@
 /**
  * Module header styles.
- * @module widgets/Header/index.pcss
+ * @module ~/widgets/Header/index.pcss
  */
 
+@import './../../shared/styles/mixins.pcss';
+
 .nh-widgets-header {
-    @mixin justifyAlignFlex space-between;
+    @mixin justify-align-flex space-between;
 
     position: fixed;
     top: 0;
@@ -14,10 +16,10 @@
     flex-direction: row;
     height: $header-height;
     padding: 0 4%;
-    background-color: opacify(var(--black), 0.97);
+    background-color: var(--background-header-color);
 
     &__section {
-        @mixin justifyAlignFlex;
+        @mixin justify-align-flex;
     }
 
     @mixin media lg-up {
@@ -30,7 +32,11 @@
     margin-right: 25px;
 
     &__image {
-        max-height: 2.2em;
+        max-height: 2em;
+
+        @mixin media md-down {
+            max-height: 2.6em;
+        }
     }
 }
 

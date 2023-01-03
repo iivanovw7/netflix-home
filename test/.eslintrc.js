@@ -1,38 +1,32 @@
-const path = require('path');
-
+/**
+ * Eslint configuration.
+ * @module _/test/.eslintrc.js
+ */
 module.exports = {
-    parserOptions: {
-        babelOptions: { configFile: path.resolve(__dirname, '../babel.config.js') },
-    },
     'extends': [
-        'guard/test-jest'
+        'iivanovw7/test-jest',
     ],
-    overrides: [
+    'overrides': [
         {
-            files: ['**/*.ts', '**/*.tsx'],
-            'extends': [
-                'ts-guard',
-                'guard/test-jest'
+            'files': [
+                '**/*.ts',
+                '**/*.tsx'
             ],
-            parser: '@typescript-eslint/parser',
-            plugins: ['@typescript-eslint'],
-            parserOptions: {
-                project: ['../tsconfig.eslint.json'],
-                tsconfigRootDir: __dirname,
+            'extends': [
+                'iivanovw7/typescript',
+            ],
+            'parserOptions': {
+                'project': ['../tsconfig.eslint.json'],
+                tsconfigRootDir: __dirname
             },
-            rules: {
-                'arrow-body-style': 0,
+            'rules': {
                 '@typescript-eslint/no-unsafe-call': 0,
                 '@typescript-eslint/no-unsafe-assignment': 0,
                 '@typescript-eslint/no-unsafe-member-access': 0,
-                'no-use-before-define': ['error', { 'variables': false } ]
+                'no-use-before-define': ['error', { 'variables': false } ],
+                'react/jsx-filename-extension': 'off',
+                'import/no-extraneous-dependencies': 'off'
             }
         }
-    ],
-    settings: {
-        'import/resolver': {
-            typescript: {}
-        },
-    }
+    ]
 };
-

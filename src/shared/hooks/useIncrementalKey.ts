@@ -1,8 +1,7 @@
 /**
  * Module contains useIncrementalKey hook.
- * @module shared/hooks/useIncrementalKey
+ * @module ~/shared/hooks/useIncrementalKey
  */
-
 import type { DispatchWithoutAction, ReducerStateWithoutAction } from 'react';
 import { useReducer } from 'react';
 
@@ -12,6 +11,7 @@ export type UseIncrementalKey = (initialKey?: number) => [
 
 /**
  * Used to create incremental keys inside components.
+ * @name ~/shared/hooks/useForceUpdate
  * @function
  * @category hooks
  * @param {number} [initialKey = Number.MIN_SAFE_INTEGER] start key.

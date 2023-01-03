@@ -2,9 +2,6 @@
  * Env variables module.
  * @module _/tool/env
  */
-
-'use strict';
-
 const { logger } = require('./utils');
 
 /**
@@ -43,7 +40,6 @@ const defaultPorts = {
  * @return {module:_/tool/env} object which represents env variables.
  */
 function getEnv(mode) {
-    // eslint-disable-next-line node/global-require
     const args = require('minimist')(process.argv.slice(2));
     const appMode = mode || 'development';
 
@@ -54,8 +50,8 @@ function getEnv(mode) {
         port: args.port || defaultPorts[appMode === 'production'
             ? 'prod'
             : 'dev'],
-        sourceMaps: args['source-maps'] || false,
-        publicPath: '',
+        sourcemap: args['source-maps'] || false,
+        stats: args.stats || false
     };
 }
 

@@ -2,9 +2,6 @@
  * Contains utils.
  * @module _/tool/tool/utils
  */
-
-'use strict';
-
 const pc = require('picocolors');
 
 const logger = {

@@ -1,0 +1,43 @@
+////
+/// Mixins.
+///
+/// @group mixins.
+////
+
+/*
+ * Creates basic triangle shape.
+ *
+ * @param {String} size - sets triangle size.
+ *
+ * @example css - sample usage as `arrow-down`.
+ *      @mixin triangle-base 4px;
+ *      border-top: 8px solid var(--background-content-color-accent);
+
+ * @example css - sample usage as `arrow-right`.
+ *      @mixin triangle-base 4px;
+ *      border-left: 8px solid var(--background-content-color-accent);
+ */
+@define-mixin triangle-base $size {
+    width: 0;
+    height: 0;
+    border-top: $size solid transparent;
+    border-right: $size solid transparent;
+    border-bottom: $size solid transparent;
+    border-left: $size solid transparent;
+}
+
+/*
+ * Centers element with flex.
+ *
+ * @param {String} $justify ['center'] - justify content value.
+ * @param {String} $align ['center'] - align items value.
+ *
+ * @example css
+ *      @mixin justify-align-flex;
+ *      @mixin justify-align-flex 'space-between';
+ */
+@define-mixin justify-align-flex $justify: center, $align: center {
+    display: flex;
+    align-items: $align;
+    justify-content: $justify;
+}

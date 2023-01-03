@@ -7,6 +7,7 @@ export type RunningMode = 'development' | 'test' | 'production';
 
 export type Env = {
     html: HTMLElement;
+    isBrowser: boolean;
     isDarkTheme: boolean;
     isDevelopment: boolean;
     isProduction: boolean;
@@ -29,6 +30,17 @@ export const env: Env = {
      * @type {HTMLElement}
      */
     html: document.documentElement,
+    /**
+     * True if runs in browser environment.
+     * @readonly
+     * @type {boolean}
+     */
+    isBrowser: Boolean(
+        typeof window !== 'undefined'
+        // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+        && window.document
+        && window.document.createElement
+    ),
     /**
      * Refers true if dark theme is enabled,
      * @readonly
