@@ -125,23 +125,23 @@ export const MenuItem = forwardRef<HTMLButtonElement, MenuItemProps>((props, ref
                     case 'link': {
                         return (
                             <Link
-                                {...restProp}
-                                {...baseProps as LinkProps}
                                 ref={ref}
                                 color="inherit"
                                 iconPosition="start"
+                                {...restProp}
+                                {...baseProps as LinkProps}
                             />
                         );
                     }
                     default: {
                         return (
                             <PlainButton
-                                {...restProp}
-                                {...baseProps}
                                 ref={ref}
                                 size={itemSize}
                                 style={style}
                                 textAlign="left"
+                                {...restProp}
+                                {...baseProps}
                             />
                         );
                     }

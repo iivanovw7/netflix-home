@@ -8,4 +8,8 @@ export type Color = 'primary' | 'secondary' | 'tertiary';
 
 export type Fill = 'full' | 'outlined' | 'none';
 
+export type Align = 'left' | 'right' | 'center';
+
+export type Position = 'start' | 'end';
+
 

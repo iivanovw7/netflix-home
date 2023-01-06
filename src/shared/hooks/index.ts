@@ -8,3 +8,4 @@ export * from './useUnmount';
 export * from './useForceUpdate';
 export * from './useFirstMountState';
 export * from './useOnClickOutside';
+export * from './useBreakpoints';

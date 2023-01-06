@@ -11,7 +11,7 @@ export const StaticSidesMap = {
 } as const;
 
 // eslint-disable-next-line @typescript-eslint/no-redeclare
-export type StaticSidesMap = typeof StaticSidesMap[keyof typeof StaticSidesMap];
+export type StaticSidesMap = Readonly<typeof StaticSidesMap[keyof typeof StaticSidesMap]>;
 
 /**
  * Dropdown arrow size in `px`.
@@ -27,4 +27,4 @@ export const ItemTypeMap = {
 } as const;
 
 // eslint-disable-next-line @typescript-eslint/no-redeclare
-export type ItemTypeMap = typeof ItemTypeMap[keyof typeof ItemTypeMap];
+export type ItemTypeMap = Readonly<typeof ItemTypeMap[keyof typeof ItemTypeMap]>;

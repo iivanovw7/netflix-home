@@ -3,3 +3,9 @@ declare module '*&imagetools' {
     // eslint-disable-next-line import/no-default-export
     export default out;
 }
+
+declare module '*.module.pcss' {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const content: any;
+    export = content;
+}

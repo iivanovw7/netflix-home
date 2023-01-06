@@ -15,11 +15,11 @@ export const ErrorCodeMap = {
 } as const;
 
 // eslint-disable-next-line @typescript-eslint/no-redeclare
-export type ErrorCodeMap = typeof ErrorCodeMap[keyof typeof ErrorCodeMap];
+export type ErrorCodeMap = Readonly<typeof ErrorCodeMap[keyof typeof ErrorCodeMap]>;
 
-export type ErrorData = {
+export type ErrorData = Readonly<{
     code: ValueOf<typeof ErrorCodeMap>;
-};
+}>;
 
 /**
  * Error code prefix.

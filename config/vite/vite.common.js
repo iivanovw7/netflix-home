@@ -43,12 +43,17 @@ module.exports = function getViteCommonConfig(env) {
             }),
         ],
         css: {
-            postcss
+            postcss,
+            modules: {
+                exportGlobals: true,
+                localsConvention: 'camelCase',
+                generateScopedName: 'nh--[local]__[hash:base64:5]',
+            }
         },
         root: path.resolve(__dirname, './../../'),
         resolve: {
             alias: [
-                { find: '@', replacement: path.resolve(__dirname, './src') },
+                { find: '@', replacement: path.resolve(__dirname, './../../src') },
             ],
         },
     };

@@ -24,7 +24,8 @@ export type IconProps = {
 };
 
 const cls = bem('icon', { namespace: 'nh-components' });
-const PREFIX = 'icon';
+
+const PREFIX: Readonly<string> = 'icon';
 
 /**
  * Gets icon file extension string.

@@ -14,7 +14,6 @@ import config from './shared/config';
 import { setLogLevel } from './shared/log';
 import { setMainStorage } from './shared/storage';
 import { initStores } from './shared/stores';
-import { setBemConfig } from './shared/utils';
 
 const { logLevel } = config;
 
@@ -23,10 +22,6 @@ const root = createRoot(MOUNT_NODE);
 
 setLogLevel(logLevel);
 setMainStorage('netflix-home');
-setBemConfig({
-    namespace: 'nh',
-    elementDelimiter: '__',
-});
 
 initStores();
 

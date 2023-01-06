@@ -11,6 +11,7 @@ export * from './Img/model/constants';
 export * from './Icon';
 export * from './Link';
 export * from './Link/LinkButton';
+export * from './NavLink';
 export * from './Modal';
 export * from './Input/BaseInput';
 export * from './Input/useInput';

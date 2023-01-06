@@ -3,4 +3,4 @@
  * @module shared/utils/bem
  */
 
-export { default as bem, setup as setBemConfig } from 'bem-ts';
+export { default as bem } from 'bem-ts';

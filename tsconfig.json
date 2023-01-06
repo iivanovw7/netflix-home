@@ -46,6 +46,7 @@
             "./src/shared/types/env",
             "./src/shared/types/globals",
         ],
+        "plugins": [{ "name": "typescript-plugin-css-modules" }]
     },
     "rules": {
         "quotemark": [

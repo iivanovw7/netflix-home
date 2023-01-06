@@ -146,6 +146,7 @@ const centerAbsolute = (mixin, axis) => ({
 });
 
 module.exports = {
+    breakpointMap,
     fontSize,
     media,
     textOverflow,

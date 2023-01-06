@@ -1,0 +1,42 @@
+/**
+ * Module header styles.
+ * @module ~/widgets/Header/index.pcss
+ */
+
+@import './../../shared/styles/mixins.pcss';
+
+.header {
+    @mixin justify-align-flex space-between;
+
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: zIndex(layout, header);
+    flex-direction: row;
+    height: $header-height;
+    padding: 0 4%;
+    background-color: var(--background-header-color);
+
+    @mixin media lg-up {
+        height: $header-height-desktop;
+    }
+}
+
+.header__section {
+    @mixin justify-align-flex;
+}
+
+.header__logo {
+    width: auto;
+    margin-right: 25px;
+}
+
+.header__logo__image {
+    max-height: 2em;
+
+    @mixin media md-down {
+        max-height: 2.6em;
+    }
+}
+

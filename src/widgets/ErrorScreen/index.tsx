@@ -10,10 +10,10 @@ import React, { useCallback } from 'react';
 import { routePath } from '../../pages/routes';
 import { Button, H1, P, Strong } from '../../shared/components';
 import { navigate } from '../../shared/stores/RouterStore';
-import { bem, getErrorCodeString } from '../../shared/utils';
+import { getErrorCodeString } from '../../shared/utils';
 import type { ErrorData } from '../../shared/utils';
 
-import './index.pcss';
+import cls from './index.module.pcss';
 
 export type ErrorScreenProps = {
     className?: string;
@@ -21,8 +21,6 @@ export type ErrorScreenProps = {
     subtitle: string;
     title: string;
 };
-
-const cls = bem('error-screen', { namespace: 'nh-widgets' });
 
 const MESSAGES = {
     button: 'Netflix Home',
@@ -49,14 +47,14 @@ export const ErrorScreen = observer((props: ErrorScreenProps): ReactElement => {
     }, []);
 
     return (
-        <div className={classNames(cls('content'), className)}>
-            <H1 className={cls('title')} text={title} />
-            <div className={cls('body')}>
-                <P className={cls('message')} text={subtitle} />
+        <div className={classNames(cls.errorScreenCode, className)}>
+            <H1 className={cls.errorScreenTitle} text={title} />
+            <div className={cls.errorScreenBody}>
+                <P className={cls.errorScreenMessage} text={subtitle} size="large" />
                 <Button color="secondary" text={MESSAGES.button} onClick={handleHomeClick} />
             </div>
-            <div className={cls('footer')}>
-                <span className={cls('code')}>
+            <div className={cls.errorScreenFooter}>
+                <span className={cls.errorScreenCode}>
                     {MESSAGES.code}
                     <Strong text={getErrorCodeString(error)} />
                 </span>

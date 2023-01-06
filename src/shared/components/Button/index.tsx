@@ -13,7 +13,6 @@ import { PlainButton } from './PlainButton';
 
 import './index.pcss';
 
-
 const cls = bem('button', { namespace: 'nh-components' });
 
 export type ButtonProps = PlainButtonProps & {

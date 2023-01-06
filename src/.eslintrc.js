@@ -28,7 +28,11 @@ module.exports = {
                 'no-param-reassign': 'off',
                 'react/require-default-props': 'off',
                 '@typescript-eslint/require-await': 'off',
+                'react/jsx-no-leaked-render': 'off'
             }
         },
+    ],
+    ignorePatterns: [
+        '*.module.pcss.d.ts'
     ],
 };

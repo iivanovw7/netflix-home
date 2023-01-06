@@ -37,22 +37,6 @@
         text-decoration: underline;
     }
 
-    &--colorSecondary {
-        color: var(--secondary-link-color-text);
-
-        &:hover {
-            color: var(--secondary-link-color-accent);
-        }
-    }
-
-    &--colorTertiary {
-        color: var(--tertiary-link-color-text);
-
-        &:hover {
-            color: var(--tertiary-link-color-accent);
-        }
-    }
-
     &--colorInherit {
         color: inherit;
     }
@@ -67,7 +51,13 @@
     &__icon {
         & > svg {
             flex-shrink: 0;
-            margin-left: 4px;
+            margin-left: 8px;
+        }
+
+        .nh-components-link--offsetSmall {
+            & > svg {
+                margin-left: 4px;
+            }
         }
 
         .nh-components-link--offsetLarge {
@@ -85,7 +75,11 @@
 
     &__image {
         flex-shrink: 0;
-        margin-left: 4px;
+        margin-left: 8px;
+
+        .nh-components-link--offsetSmall {
+            margin-left: 4px;
+        }
 
         .nh-components-link--offsetLarge {
             margin-left: 12px;
@@ -123,6 +117,42 @@
     &__text {
         &--noWrap {
             @mixin textOverflow ellipsis, true;
+        }
+    }
+
+    &--colorSecondary {
+        color: var(--secondary-link-color-text);
+
+        &:hover {
+            color: var(--secondary-link-color-accent);
+        }
+
+        &.nh-components-link--disabled {
+            color: var(--secondary-link-color-text-disabled);
+            pointer-events: none;
+
+            .nh-components-link__image,
+            .nh-components-link__icon {
+                color: var(--secondary-link-color-text-disabled);
+            }
+        }
+    }
+
+    &--colorTertiary {
+        color: var(--tertiary-link-color-text);
+
+        &:hover {
+            color: var(--tertiary-link-color-accent);
+        }
+
+        &.nh-components-link--disabled {
+            color: var(--tertiary-link-color-text-disabled);
+            pointer-events: none;
+
+            .nh-components-link__image,
+            .nh-components-link__icon {
+                color: var(--tertiary-link-color-text-disabled);
+            }
         }
     }
 }

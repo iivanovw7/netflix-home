@@ -1,0 +1,42 @@
+/**
+ * Module navigation styles.
+ * @module ~/features/Navigation/index.styled
+ */
+
+@import '../../shared/styles/mixins.pcss';
+
+.nav {
+    @mixin justify-align-flex;
+
+    margin: 0;
+    padding: 0;
+}
+
+.nav__link {
+    display: block;
+    margin-left: 18px;
+    list-style-type: none;
+}
+
+.menu {
+    border-top: 1px solid var(--white);
+}
+
+.menu__item {
+    display: block;
+    line-height: 24px;
+    cursor: default;
+}
+
+.menu__item__link {
+    @mixin justify-align-flex;
+
+    height: 42px;
+}
+
+.menu__toggle {
+    @mixin justify-align-flex;
+    @mixin fontSize 11px, 1.2;
+
+    padding: 2px;
+}

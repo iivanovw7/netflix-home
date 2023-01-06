@@ -20,7 +20,9 @@ const config = mergeConfig(
 );
 
 createServer(config).then((server) => {
-    server.listen().then(() => {
-        server.printUrls();
-    });
+    server
+        .listen()
+        .then(() => {
+            server.printUrls();
+        });
 });

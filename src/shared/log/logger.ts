@@ -11,7 +11,7 @@ import logger from 'loglevel';
  * @readonly
  * @enum {LogLevelDesc}
  */
-export const logLevelMap: Record<keyof LogLevel, LogLevelDesc> = {
+export const logLevelMap: Readonly<Record<keyof LogLevel, LogLevelDesc>> = {
     DEBUG: 'debug',
     ERROR: 'error',
     INFO: 'info',

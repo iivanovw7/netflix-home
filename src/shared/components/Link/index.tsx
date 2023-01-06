@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import type { AnchorHTMLAttributes, MouseEventHandler, PropsWithChildren, ReactNode } from 'react';
 import React, { createElement, forwardRef } from 'react';
 
-import type { Color } from '../../types';
+import type { Color, Position, Size } from '../../types';
 import { bem } from '../../utils';
 import type { IconProps } from '../Icon';
 import { Icon } from '../Icon';
@@ -25,14 +25,14 @@ export type LinkProps = PropsWithChildren<{
     disabled?: boolean;
     icon?: IconProps,
     /** @default "medium" */
-    iconOffset?: 'medium' | 'large';
+    iconOffset?: Size;
     /** @default "end" */
-    iconPosition?: 'start' | 'end';
+    iconPosition?: Position;
     image?: ImgProps;
     /** @default "medium" */
-    imageOffset?: 'medium' | 'large';
+    imageOffset?: Size;
     /** @default "end" */
-    imagePosition?: 'start' | 'end';
+    imagePosition?: Position;
     noWrap?: boolean;
     onClick?: MouseEventHandler<TLinkElement>;
     tag?: 'a' | 'button';
@@ -115,7 +115,11 @@ export const Link = forwardRef<TLinkElement, LinkProps>((props, ref) => {
                 className={classNames(
                     cls(
                         'icon',
-                        { onlyChild: ! text && ! image, offsetLarge: iconOffset === 'large' }
+                        {
+                            onlyChild: ! text && ! image,
+                            offsetSmall: iconOffset === 'small',
+                            offsetLarge: iconOffset === 'large'
+                        }
                     ),
                     icon.className
                 )}
@@ -127,7 +131,11 @@ export const Link = forwardRef<TLinkElement, LinkProps>((props, ref) => {
                 className={classNames(
                     cls(
                         'image',
-                        { onlyChild: ! text && ! icon, offsetLarge: imageOffset === 'large' }
+                        {
+                            onlyChild: ! text && ! icon,
+                            offsetSmall: imageOffset === 'small',
+                            offsetLarge: imageOffset === 'large'
+                        }
                     ),
                     image.className
                 )}

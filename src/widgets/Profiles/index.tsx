@@ -1,32 +1,26 @@
 /**
- * Module contains `Profiles` page.
+ * Module contains `Profiles` selector component.
  * @module ~/widgets/Profiles
  */
 
+import classNames from 'classnames';
 import { observer } from 'mobx-react-lite';
 import type { Instance } from 'mobx-state-tree';
 import type { ReactElement } from 'react';
 import React, { useCallback, useState } from 'react';
 
+import { getProfileUnlockProps } from '../../features';
 import type { LinkProps } from '../../shared/components';
 import { Button, Container, H1, AVATARS } from '../../shared/components';
 import { ctx } from '../../shared/context';
 import type { models } from '../../shared/stores';
 import { stores } from '../../shared/stores';
-import { bem, uuid } from '../../shared/utils';
-import { getProfileUnlockProps } from '../ProfileUnlock';
+import { uuid, isValidCode } from '../../shared/utils';
 
-import { isValidCode } from './model/utils';
+import cls from './index.module.pcss';
 import { Profile } from './Profile';
 
-import './index.pcss';
-
 type TProfile = Instance<typeof models.Profile>;
-
-const cls = {
-    page: bem('page', { namespace: 'nh-widgets-profiles' }),
-    box: bem('box', { namespace: 'nh-widgets-profiles-page' })
-};
 
 const MESSAGES = {
     button: 'Manage Profiles',
@@ -34,7 +28,7 @@ const MESSAGES = {
 };
 
 /**
- * `Profiles` page.
+ * `Profiles` selector component..
  * @constructor
  * @name ~/widgets/Profiles
  * @method
@@ -73,12 +67,19 @@ export const Profiles = observer((): ReactElement => {
     }, [changeUserProfile]);
 
     return (
-        <div className={cls.page()}>
-            <div className={cls.page('content')}>
-                <Container className={cls.page('container', { loaded })}>
-                    <div className={cls.box()}>
-                        <H1 className={cls.box('title')} text={MESSAGES.title} />
-                        <ul className={cls.box('list')}>
+        <div className={cls.page}>
+            <div className={cls.pageContent}>
+                <Container
+                    className={classNames(
+                        cls.pageContent,
+                        {
+                            [cls.pageContainerLoaded]: loaded
+                        }
+                    )}
+                >
+                    <div className={cls.pageBox}>
+                        <H1 className={cls.pageBoxTitle} text={MESSAGES.title} />
+                        <ul className={cls.pageBoxList}>
                             {profiles.map((profile, index) => (
                                 <Profile
                                     key={uuid()}
@@ -89,9 +90,9 @@ export const Profiles = observer((): ReactElement => {
                                 />
                             ))}
                         </ul>
-                        <div className={cls.box('footer')}>
+                        <div className={cls.pageBoxFooter}>
                             <Button
-                                className={cls.box('button')}
+                                className={cls.pageBoxButton}
                                 color="tertiary"
                                 fill="outlined"
                                 text={MESSAGES.button}

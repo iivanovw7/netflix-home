@@ -4,7 +4,15 @@
  */
 
 .nh-components-paragraph {
-    @mixin fontSize $font-size-large, 1.2, $font-weight-light;
+    @mixin fontSize $font-size-medium, 1.2, $font-weight-light;
 
     color: inherit;
+
+    &--large {
+        @mixin fontSize $font-size-large, 1.2, $font-weight-light;
+    }
+
+    &--small {
+        @mixin fontSize $font-size-small, 1.2, $font-weight-light;
+    }
 }

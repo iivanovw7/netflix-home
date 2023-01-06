@@ -6,12 +6,10 @@ import { observer } from 'mobx-react-lite';
 import type { ReactElement } from 'react';
 import React from 'react';
 
-import { bem, ErrorCodeMap } from '../../../shared/utils';
+import { ErrorCodeMap } from '../../../shared/utils';
 import { Header, ErrorScreen } from '../../../widgets';
 
-import './index.pcss';
-
-const cls = bem('error-fallback', { namespace: 'nh-pages-technical' });
+import cls from './index.module.pcss';
 
 const { NOT_FOUND } = ErrorCodeMap;
 
@@ -27,10 +25,10 @@ const MESSAGES = {
  * @return {ReactElement} React component with children.
  */
 export const ErrorFallback = observer((): ReactElement => (
-    <div className={cls()}>
+    <div className={cls.page}>
         <Header />
         <ErrorScreen
-            className={cls('content')}
+            className={cls.pageContent}
             error={NOT_FOUND}
             subtitle={MESSAGES.subtitle}
             title={MESSAGES.title}

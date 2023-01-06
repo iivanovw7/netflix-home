@@ -2,6 +2,7 @@
  * Module contains `Profile` component.
  * @module widgets/profiles/profile
  */
+import classNames from 'classnames';
 import { observer } from 'mobx-react-lite';
 import type { Instance } from 'mobx-state-tree';
 import React, { useEffect, useState } from 'react';
@@ -9,9 +10,8 @@ import React, { useEffect, useState } from 'react';
 import type { LinkProps } from '../../../shared/components';
 import { Icon, Img, LinkButton } from '../../../shared/components';
 import type { models } from '../../../shared/stores';
-import { bem } from '../../../shared/utils';
 
-import './index.pcss';
+import cls from './index.module.pcss';
 
 type TProfile = Instance<typeof models.Profile>;
 
@@ -20,8 +20,6 @@ export type ProfileProps = Pick<LinkProps, 'onClick'> & {
     onLoaded: () => void;
     profile: TProfile
 };
-
-const cls = bem('profile', { namespace: 'nh-widgets-profiles' });
 
 /**
  * `Profile` component.
@@ -43,24 +41,31 @@ export const Profile = observer((props: ProfileProps) => {
     }, [lock, profile]);
 
     return (
-        <li className={cls({ locked })}>
+        <li
+            className={classNames(
+                cls.profile,
+                {
+                    [cls.profileLocked]: locked
+                }
+            )}
+        >
             <LinkButton
-                className={cls('link')}
+                className={cls.profileLink}
                 color="tertiary"
                 onClick={onClick}
             >
                 <Img
                     alt="avatar"
-                    className={cls('image')}
+                    className={cls.profileImage}
                     src={avatar}
                     onLoad={onLoaded}
                 />
-                <span className={cls('name')}>
+                <span className={cls.profileName}>
                     {profileName}
                 </span>
             </LinkButton>
-            {Boolean(locked) && (
-                <Icon className={cls('icon')} name="lock" size={20} />
+            {locked && (
+                <Icon className={cls.profileIcon} name="lock" size={20} />
             )}
         </li>
     );

@@ -6,6 +6,7 @@ import classNames from 'classnames';
 import type { ButtonHTMLAttributes, PropsWithChildren, ReactNode, MouseEvent as ReactMouseEvent } from 'react';
 import React, { forwardRef, isValidElement } from 'react';
 
+import type { Size, Align, Position } from '../../types';
 import { bem } from '../../utils';
 import type { IconProps } from '../Icon';
 import { Icon } from '../Icon';
@@ -21,15 +22,15 @@ export type PlainButtonProps = PropsWithChildren<{
     disabled?: boolean;
     icon?: IconProps;
     /** @default 'start' */
-    iconPosition?: 'start' | 'end';
+    iconPosition?: Position;
     /** @default 'horizontal' */
     layout?: 'horizontal' | 'vertical';
     onClick?: (eventData: ReactMouseEvent<HTMLButtonElement>) => void;
     /** @default 'medium' */
-    size?: 'small' | 'medium' | 'large';
+    size?: Size;
     text?: ReactNode,
     /** @default 'center' */
-    textAlign?: 'left' | 'right' | 'center';
+    textAlign?: Align;
     /** @default 'button' */
     type?: 'button' | 'submit' | 'reset';
 }> & Pick<ButtonHTMLAttributes<HTMLButtonElement>, ButtonAttributes>;

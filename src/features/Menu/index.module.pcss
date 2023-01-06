@@ -1,0 +1,42 @@
+/**
+ * Module header menu styles.
+ * @module ~/features/Menu/index.module.pcss
+ */
+
+@import '../../shared/styles/mixins.pcss';
+
+.menu__avatar {
+    max-width: 26px;
+    height: 26px;
+    border-radius: $border-radius;
+}
+
+.menu__logout {
+    display: block;
+    width: 100%;
+    padding: 10px 5px;
+    text-align: center;
+}
+
+.menu__toggle {
+    @mixin justify-align-flex;
+
+    position: relative;
+    flex-direction: row;
+    margin-left: 16px;
+    padding: 2px;
+    border: 2px solid transparent;
+    border-radius: $border-radius-controls;
+
+    &:focus-visible {
+        border-color: var(--white);
+    }
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    @mixin media md-down {
+        margin-left: 8px;
+    }
+}

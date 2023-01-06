@@ -44,7 +44,7 @@ export type DropdownMenuRef = {
 };
 
 export type DropdownMenuProps = PropsWithChildren<{
-    items?: TMenuItem[];
+    items: TMenuItem[];
     menuClassName?: string;
     menuItemClassName?: string;
     offset?: {
@@ -86,7 +86,7 @@ export const DropdownMenu = forwardRef<DropdownMenuRef, DropdownMenuProps>((prop
     const {
         toggleClassName,
         children,
-        items = [],
+        items,
         menuClassName,
         menuItemClassName,
         offset: offsetParams,
